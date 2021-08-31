@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -17,34 +17,35 @@
         app:headerLayout="@layout/sidebar_header"
         android:layout_gravity="start"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/main_menu_color">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/main_color"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/menu">
 
-            <TextView
-                android:layout_width="@dimen/dimen_300"
-                android:layout_height="@dimen/dimen_300"
-                android:gravity="center"
-                android:text="abc"
-                android:textSize="30dp"
-                tools:layout_editor_absoluteX="111dp"
-                tools:layout_editor_absoluteY="220dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/main_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_36"
+                    android:textStyle="bold"/>
+
+            </androidx.appcompat.widget.Toolbar>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 
 
