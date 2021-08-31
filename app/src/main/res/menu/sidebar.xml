@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:id="@+id/group1"
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item1"
-            android:title="abc"
-            android:checked="true" />
+            android:id="@+id/sidebar_home"
+            android:title="@string/home_title"
+            android:icon="@drawable/home"/>
         <item
-            android:id="@+id/item2"
-
-            android:title="abc" />
+            android:id="@+id/sidebar_encounter"
+            android:title="@string/encounter_title"
+            android:icon="@drawable/search_small"/>
         <item
-            android:id="@+id/item3"
-            android:title="abc" />
+            android:id="@+id/sidebar_aboutus"
+            android:title="@string/about_title"
+            android:icon="@drawable/aboutus"/>
+        <item
+            android:id="@+id/sidebar_settings"
+            android:title="@string/setting_title"
+            android:icon="@drawable/setting"/>
     </group>
 
 </menu>
