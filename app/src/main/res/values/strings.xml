@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Ranwildimal</string>
     <string name="main_title">RANWILDIMAL</string>
-
+    <string name="home_title">HOME</string>
+    <string name="encounter_title">MY ENCOUNTER</string>
+    <string name="about_title">ABOUT US</string>
+    <string name="setting_title">SETTINGS</string>
 </resources>
