@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ranwildimal">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-
+        android:label="RANWILDIMAL"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ranwildimal"
-        android:name="androidx.multidex.MultiDexApplication" >
-
+        android:theme="@style/Theme.Ranwildimal">
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".AbouUsActivity" />
+        <activity android:name=".MyEncounterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

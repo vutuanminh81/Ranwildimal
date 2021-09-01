@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -29,8 +30,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
 
-//        setSupportActionBar(toolbar);
+        //Customize toolbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
 
+        //Customize sidebar
         sidebar.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.sidebar_open, R.string.sidebar_close);
         drawer.addDrawerListener(toggle);
@@ -48,8 +52,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
     @Override
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem sidebarItem) {
+        switch (sidebarItem.getItemId()) {
+            case R.id.sidebar_home:
+                break;
+            case R.id.sidebar_encounter:
+                Intent myEncouter = new Intent(MainActivity.this, MyEncounterActivity.class);
+                startActivity(myEncouter);
+                break;
+            case R.id.sidebar_aboutus:
+                Intent aboutUs = new Intent(MainActivity.this, AbouUsActivity.class);
+                startActivity(aboutUs);
+                break;
+            case R.id.sidebar_settings:
+                Intent setting = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(setting);
+                break;
+        }
         return true;
     }
 }

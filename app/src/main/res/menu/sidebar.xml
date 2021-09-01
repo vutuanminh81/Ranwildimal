@@ -4,7 +4,7 @@
         <item
             android:id="@+id/sidebar_home"
             android:title="@string/home_title"
-            android:icon="@drawable/home"/>
+            android:icon="@drawable/home" />
         <item
             android:id="@+id/sidebar_encounter"
             android:title="@string/encounter_title"

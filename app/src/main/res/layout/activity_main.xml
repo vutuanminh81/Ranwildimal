@@ -10,11 +10,17 @@
     tools:openDrawer="">
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_320"
         android:layout_height="match_parent"
         android:id="@+id/main_sidebar"
+        android:background="@color/main_color"
         app:menu="@menu/sidebar"
+        app:itemIconTint="@color/icon"
+        app:itemTextColor="@color/white"
         app:headerLayout="@layout/sidebar_header"
+        app:itemTextAppearance="@style/menu_item"
+        app:itemHorizontalPadding="15dp"
+        app:itemIconSize="@dimen/dimen_50"
         android:layout_gravity="start"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +48,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/textsize_36"
                     android:textStyle="bold"/>
+
 
             </androidx.appcompat.widget.Toolbar>
 
