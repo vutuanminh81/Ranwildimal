@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -20,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     NavigationView sidebar;
     Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         sidebar.setNavigationItemSelectedListener(this);
+
+    }
+
+    public void SearchIntent(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void CameraIntent(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        this.startActivity(intent);
     }
 
     @Override
