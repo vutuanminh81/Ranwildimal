@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ranwildimal">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".GuilineActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AbouUsActivity" />
         <activity android:name=".MyEncounterActivity" />
