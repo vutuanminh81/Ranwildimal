@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ranwildimal">
         <activity android:name=".GuilineActivity"></activity>
+        <activity android:name=".CameraActivity"></activity>
         <activity android:name=".SearchActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AbouUsActivity" />
