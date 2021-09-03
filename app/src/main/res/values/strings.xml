@@ -7,7 +7,7 @@
     <string name="setting_title">SETTINGS</string>
     <string name="sidebar_open">Open sidebar</string>
     <string name="sidebar_close">Close sidebar</string>
-    <string name="or" translatable="false">OR</string>
+    <string name="search_animal">Search an animal</string>
     <string name="home_page_1">Welcome to</string>
     <string name="home_page_2">This is where you can know how to call animals in </string>
     <string name="home_page_3">Japanese and Vietnamses</string>

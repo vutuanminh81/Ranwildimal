@@ -7,11 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".MyEncounterActivity">
 
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/encounter_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/encounter_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_36"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/btn_search_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/back"
+        android:gravity="start"
+        android:onClick="HomeIntent"
+        android:background="@color/main_color"/>
+  </androidx.appcompat.widget.Toolbar>
+
   <TextView
       android:id="@+id/textView3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Hello Madafaka"
+      android:text="Hello"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
