@@ -2,8 +2,11 @@ package com.example.ranwildimal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.widget.Toolbar;
 public class SearchActivity extends AppCompatActivity {
 
@@ -28,5 +31,10 @@ public class SearchActivity extends AppCompatActivity {
         }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
         }
+    }
+
+    public void HomeIntent(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
     }
 }

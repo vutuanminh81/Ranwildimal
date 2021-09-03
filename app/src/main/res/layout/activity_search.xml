@@ -39,11 +39,12 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btn_search_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/back"
             android:gravity="start"
+            android:onClick="HomeIntent"
             android:background="@color/main_color"/>
     </androidx.appcompat.widget.Toolbar>
 
