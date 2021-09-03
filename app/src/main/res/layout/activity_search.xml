@@ -8,13 +8,21 @@
 
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/search_background"
         android:gravity="bottom"
+        android:src="@drawable/search_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -50,6 +58,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -80,8 +89,10 @@
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="@dimen/textsize_18"/>
+            android:textSize="@dimen/textsize_18" />
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
