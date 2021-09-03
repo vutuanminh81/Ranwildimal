@@ -144,14 +144,14 @@
             android:layout_height="90dp"
             android:background="@drawable/or"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/btn_main_camera"
             app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toEndOf="@+id/btn_main_search"
             app:layout_constraintTop_toBottomOf="@+id/home_background"
             app:layout_constraintVertical_bias="0.408" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btn_main_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/home_button"
@@ -163,7 +163,7 @@
             app:srcCompat="@drawable/search_big" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btn_main_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/home_button"

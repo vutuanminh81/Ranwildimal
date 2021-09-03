@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Customize status bar
+        statusBarColor();
+
         drawer = findViewById(R.id.drawer_layout);
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void CameraIntent(View view) {
-        Intent intent = new Intent(this, SearchActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
     }
 
@@ -84,5 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
+    }
+
+    private void statusBarColor(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.main_color,this.getTheme()));
+        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
+        }
     }
 }
