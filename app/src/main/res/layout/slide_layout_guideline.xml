@@ -15,10 +15,12 @@
         android:shadowDx="2.5"
         android:shadowDy="2.5"
         android:shadowRadius="2.0"
-        android:text="IN HOME SCREEN & CAMERA SCREEN"
+        android:text="IN HOME SCREEN and CAMERA SCREEN"
         android:textColor="#4E8A3E"
         android:textSize="@dimen/textsize_20"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="99dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
