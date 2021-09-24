@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ranwildimal">
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".SearchHistoryListActivity"></activity>
+        <activity android:name=".Encounter_List_Activity" />
+        <activity android:name=".CameraActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AbouUsActivity" />

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/encounter_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:minHeight="100dp"
+    android:padding="15dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/lectImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/animal_image"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="30dp">
+
+        <TextView
+            android:id="@+id/etxt_normal_name"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:text="Normal Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_18"
+            android:textStyle="bold" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/etxt_japanese_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:text="Japannese Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_18"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</LinearLayout>
