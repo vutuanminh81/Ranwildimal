@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_history_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:minHeight="100dp"
+    android:padding="@dimen/padding_15"
+    android:orientation="horizontal">
+
+
+        <!--   Chỗ này nữa để theo ngôn ngữ của máy nha   -->
+        <TextView
+            android:padding="@dimen/padding_10"
+            android:id="@+id/etxt_normal_search_history"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:background="@color/main_color"
+            android:text="Word"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_20"
+            android:textStyle="bold" />
+
+</LinearLayout>
