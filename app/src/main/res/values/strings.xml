@@ -12,5 +12,6 @@
     <string name="home_page_2" translatable="false">Where you can know animals in</string>
     <string name="home_page_3" translatable="false">Japanese and Vietnamses</string>
     <string name="animal_encounter" translatable="false">Animal</string>
+    <string name="guideline_title" translatable="false">Guideline</string>
 
 </resources>

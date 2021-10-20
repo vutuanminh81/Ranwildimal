@@ -43,7 +43,7 @@
         android:id="@+id/textView9"
         android:layout_width="257dp"
         android:layout_height="62dp"
-        android:text="TextView"
+        android:text="IN HOME SCREEN & CAMERA SCREEN"
         tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="116dp" />
+        tools:layout_editor_absoluteY="114dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
