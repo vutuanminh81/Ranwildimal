@@ -7,7 +7,7 @@
 
         <View
             android:id="@+id/view15"
-            android:layout_width="10dp"
+            android:layout_width="0dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/description_exxemple_list"
             app:layout_constraintEnd_toStartOf="@+id/textView9"
@@ -83,8 +83,8 @@
 
         <ImageView
             android:id="@+id/img_description_animal"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_marginTop="65dp"
             android:background="@drawable/animal_image2"
             android:scaleType="centerCrop"
@@ -145,7 +145,7 @@
 
         <View
             android:id="@+id/view16"
-            android:layout_width="10dp"
+            android:layout_width="0dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toStartOf="@+id/textView12"
@@ -220,7 +220,7 @@
 
         <View
             android:id="@+id/view19"
-            android:layout_width="10dp"
+            android:layout_width="0dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/view21"
             app:layout_constraintEnd_toStartOf="@+id/textView21"
