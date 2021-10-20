@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:minHeight="100dp"
     android:padding="@dimen/padding_15"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
 
         <!--   Chỗ này nữa để theo ngôn ngữ của máy nha   -->
