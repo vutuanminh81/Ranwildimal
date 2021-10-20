@@ -12,6 +12,10 @@
     <string name="home_page_2" translatable="false">Where you can know animals in</string>
     <string name="home_page_3" translatable="false">Japanese and Vietnamses</string>
     <string name="animal_encounter" translatable="false">Animal</string>
+    <string name="description_language" translatable="false">Japanese</string>
+    <string name="description_video" translatable="false">Video</string>
+    <string name="dot_1" translatable="false">●</string>
+    <string name="dot_2" translatable="false">○</string>
     <string name="guideline_title" translatable="false">Guideline</string>
 
 </resources>

@@ -10,7 +10,7 @@
 
     <ImageView
         android:layout_marginTop="10dp"
-        android:id="@+id/lectImage"
+        android:id="@+id/img_encounter_animal"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/animal_image"
@@ -24,7 +24,7 @@
         android:paddingLeft="30dp">
 
         <TextView
-            android:id="@+id/etxt_normal_name"
+            android:id="@+id/txt_normal_name"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -36,7 +36,7 @@
 
         <TextView
             android:gravity="center_vertical"
-            android:id="@+id/etxt_japanese_name"
+            android:id="@+id/txt_japanese_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"

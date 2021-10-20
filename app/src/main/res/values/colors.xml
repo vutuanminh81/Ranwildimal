@@ -11,7 +11,8 @@
     <color name="main_color">#4E8A3E</color>
     <color name="main_menu_color">#F7F7F7</color>
     <color name="icon">#C5E382</color>
-
+    <color name="exemple">#F33329</color>
+    <color name="exemple_sub">#847675</color>
 
 
 </resources>
