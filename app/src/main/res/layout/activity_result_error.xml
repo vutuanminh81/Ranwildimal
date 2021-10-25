@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultErrorActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/result_error_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/error_message"
+        android:gravity="top"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/main_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_36"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_search_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/error_message"
+            android:gravity="start"
+            android:onClick="HomeIntent"
+            app:srcCompat="@drawable/back" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/img_result_current_error_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/animal_image2"
+        android:scaleType="centerCrop"
+        android:src=""
+        app:layout_constraintBottom_toTopOf="@+id/view36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/result_error_toolbar" />
+
+    <View
+        android:id="@+id/view36"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_result_success_title3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_result_current_error_image" />
+
+    <TextView
+        android:id="@+id/txt_result_success_title3"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/result_error_message_title"
+        android:textColor="@color/error_message"
+        android:textSize="@dimen/textsize_22"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view37"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view36" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/result_error_button"
+        android:gravity="center"
+        android:text="@string/take_another_picture_button"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        app:backgroundTint="@color/error_message"
+        app:layout_constraintBottom_toTopOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view38" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/result_error_message"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize_20"
+        app:layout_constraintBottom_toTopOf="@+id/view38"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view37" />
+
+    <View
+        android:id="@+id/view39"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <View
+        android:id="@+id/view40"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <View
+        android:id="@+id/view37"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_result_success_title3" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="285dp"
+        android:layout_height="165dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/post_message"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize_20"
+        app:layout_constraintBottom_toTopOf="@+id/view40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view39" />
+
+    <View
+        android:id="@+id/view38"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/result_error_button"
+        android:gravity="center"
+        android:text="@string/post_picture_button"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        app:backgroundTint="@color/error_message"
+        app:layout_constraintBottom_toTopOf="@+id/view41"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view40" />
+
+    <View
+        android:id="@+id/view41"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view42"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+    <View
+        android:id="@+id/view42"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view41" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,6 @@
     <color name="icon">#C5E382</color>
     <color name="exemple">#F33329</color>
     <color name="exemple_sub">#847675</color>
-
+    <color name="error_message">#BC002D</color>
 
 </resources>
