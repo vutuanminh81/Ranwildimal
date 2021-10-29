@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ranwildimal">
-        <activity android:name=".DescriptionExempleListActivity"></activity>
+        <activity android:name=".ResultErrorActivity"></activity>
+        <activity android:name=".ResultSuccessActivity" />
+        <activity android:name=".DescriptionExempleListActivity" />
         <activity android:name=".DescriptionActivity" />
         <activity android:name=".GuilineActivity"></activity>
         <activity android:name=".CameraActivity"></activity>
