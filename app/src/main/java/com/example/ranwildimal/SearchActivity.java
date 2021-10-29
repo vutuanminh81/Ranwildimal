@@ -7,10 +7,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ranwildimal.adapter.WordAdapter;
+import com.example.ranwildimal.database.DatabaseAccess;
+import com.example.ranwildimal.model.Word;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchActivity extends AppCompatActivity {
 
     Toolbar search_toolbar;
+    RecyclerView recyclerView;
+    WordAdapter wordAdap;
+    ArrayList<Word> listWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,4 +51,6 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
     }
+
+
 }
