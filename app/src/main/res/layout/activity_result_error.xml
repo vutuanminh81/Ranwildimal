@@ -37,20 +37,31 @@
             app:srcCompat="@drawable/back" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/img_result_current_error_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_result_current_error_image"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="65dp"
-        android:background="@drawable/animal_image2"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-
+        android:elevation="10dp"
+        app:cardCornerRadius="96dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/view36"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/result_error_toolbar" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_result_current_error_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:background="@drawable/animal_image2"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background" />
+
+    </androidx.cardview.widget.CardView>
 
     <View
         android:id="@+id/view36"
@@ -60,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_result_current_error_image" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_result_current_error_image" />
 
     <TextView
         android:id="@+id/txt_result_success_title3"
@@ -78,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view36" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_error_take_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/result_error_button"
@@ -116,13 +127,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_error_take_picture" />
 
     <View
         android:id="@+id/view40"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/btn_error_post_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,14 +167,14 @@
         android:id="@+id/view38"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintBottom_toTopOf="@+id/btn_error_take_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btn_error_post_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/result_error_button"
@@ -186,7 +197,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_error_post_image" />
 
     <View
         android:id="@+id/view42"

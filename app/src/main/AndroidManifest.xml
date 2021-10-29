@@ -15,7 +15,8 @@
         <activity android:name=".ResultErrorActivity">
 
         </activity>
-        <activity android:name=".ResultSuccessActivity" />
+        <activity android:name=".ResultSuccessActivity" >
+        </activity>
         <activity android:name=".DescriptionExempleListActivity" />
         <activity android:name=".DescriptionActivity" />
         <activity android:name=".SearchHistoryListActivity" />
