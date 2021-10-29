@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
 
 import java.util.ArrayList;
@@ -67,8 +68,38 @@ public class DatabaseAccess {
         return list;
     }
 
-    public Word get1Word(){
-        c = db.rawQuery("select * from Word where Word_Id = 1", new String[]{});
+    public ArrayList<Example> getExampleListByWord(String wordId){
+        c = db.rawQuery("select * from Example where Word_Id = "+wordId, new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        ArrayList<Example> list = new ArrayList<>();
+        while(c.moveToNext()){
+            int id = c.getInt(0);
+            String example = c.getString(1);
+            int word_id = c.getInt(2);
+            Example new_example = new Example(id,example,word_id);
+            list.add(new_example);
+        }
+        return list;
+    }
+
+    public Word getOneWordById(String wordId){
+        c = db.rawQuery("select * from Word where Word_Id = " + wordId, new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        ArrayList<Word> list = new ArrayList<>();
+        while(c.moveToNext()){
+            int id = c.getInt(0);
+            String word = c.getString(1);
+            int language = c.getInt(2);
+            int word_des = c.getInt(3);
+            int type = c.getInt(4);
+            Word new_word = new Word(id,word,language,word_des,type);
+            return new_word;
+        }
+        return null;
+    }
+
+    public Word getOneWordByLanguage(String wordDesId, String languageId){
+        c = db.rawQuery("select * from Word where Word_Des_Id = " + wordDesId + " and Language_Id = " + languageId, new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
