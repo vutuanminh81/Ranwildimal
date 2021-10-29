@@ -16,7 +16,7 @@ public class DescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
-        description_toolbar = findViewById(R.id.search_toolbar);
+        description_toolbar = findViewById(R.id.description_toolbar);
         //Customize status bar
         statusBarColor();
         //Customize toolbar
