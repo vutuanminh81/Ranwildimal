@@ -88,7 +88,7 @@
             android:layout_marginTop="65dp"
             android:background="@drawable/animal_image2"
             android:scaleType="centerCrop"
-            android:src=""
+            android:src="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/view12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
