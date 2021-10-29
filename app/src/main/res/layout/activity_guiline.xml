@@ -35,15 +35,22 @@
             android:layout_height="wrap_content"
             android:background="@color/main_color"
             android:gravity="start"
-            android:onClick=""
+
             app:srcCompat="@drawable/back" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="257dp"
-        android:layout_height="62dp"
-        android:text="IN HOME SCREEN & CAMERA SCREEN"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="114dp" />
+        android:layout_width="251dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="IN HOME SCREEN CAMERA SCREEN"
+        android:textColor="#4E8A3E"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_toolbar2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
