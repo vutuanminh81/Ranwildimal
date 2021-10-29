@@ -22,6 +22,7 @@ public class DescriptionActivity extends AppCompatActivity {
         //Customize toolbar
         setSupportActionBar(description_toolbar);
         getSupportActionBar().setTitle(null);
+
     }
 
     private void statusBarColor(){

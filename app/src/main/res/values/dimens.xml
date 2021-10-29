@@ -81,6 +81,7 @@
     <dimen name="dimen_200">200dp</dimen>
     <dimen name="dimen_180">180dp</dimen>
     <dimen name="dimen_60">60dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_15">15dp</dimen>
     <dimen name="margin_15">15dp</dimen>

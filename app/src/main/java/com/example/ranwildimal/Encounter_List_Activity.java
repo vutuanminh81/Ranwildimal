@@ -27,13 +27,4 @@ public class Encounter_List_Activity extends AppCompatActivity {
         recyclerView = findViewById(R.id.id_Encounter_Guideline);
     }
 
-    private void loadData(){
-        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-        dbAccess.openConn();
-        listWord = dbAccess.getWord();
-        wordAdap = new WordAdapter(listWord,Encounter_List_Activity.this);
-        LinearLayoutManager manager = new LinearLayoutManager(Encounter_List_Activity.this);
-        recyclerView.setAdapter(wordAdap);
-        recyclerView.setLayoutManager(manager);
-    }
 }

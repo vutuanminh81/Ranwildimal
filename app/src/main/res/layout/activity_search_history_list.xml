@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/search_history_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
-    android:minHeight="100dp"
-    android:padding="@dimen/padding_15"
+    android:minHeight="60dp"
+    android:padding="@dimen/padding_5"
     android:orientation="vertical">
 
 
         <!--   Chỗ này nữa để theo ngôn ngữ của máy nha   -->
         <TextView
-            android:padding="@dimen/padding_10"
+            android:paddingHorizontal="@dimen/padding_10"
             android:id="@+id/etxt_normal_search_history"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
