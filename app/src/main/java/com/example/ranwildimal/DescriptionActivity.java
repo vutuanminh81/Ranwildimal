@@ -35,6 +35,7 @@ public class DescriptionActivity extends AppCompatActivity {
     RecyclerView exampleListView;
     ImageView animalImage;
     YouTubePlayerView youTubePlayerView;
+    String videoLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

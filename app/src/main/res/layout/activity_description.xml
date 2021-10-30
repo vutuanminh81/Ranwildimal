@@ -270,6 +270,8 @@
             android:layout_width="300dp"
             android:layout_height="190dp"
             app:autoPlay="false"
+            app:showFullScreenButton="false"
+            app:handleNetworkEvents="true"
             app:layout_constraintBottom_toTopOf="@+id/view24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
