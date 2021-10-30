@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ranwildimal"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -51,4 +51,5 @@ dependencies {
     implementation "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:1.2.0"
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }
