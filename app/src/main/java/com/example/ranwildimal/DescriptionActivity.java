@@ -8,14 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.ranwildimal.adapter.WordDescriptionAdapter;
 import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 
@@ -29,6 +34,7 @@ public class DescriptionActivity extends AppCompatActivity {
     WordDescriptionAdapter exampleAdapter;
     RecyclerView exampleListView;
     ImageView animalImage;
+    YouTubePlayerView youTubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,9 @@ public class DescriptionActivity extends AppCompatActivity {
         selectedTxtWord = findViewById(R.id.txt_animal_description_word);
         exampleListView = findViewById(R.id.description_exxemple_list);
         animalImage = findViewById(R.id.img_description_animal);
+        youTubePlayerView = findViewById(R.id.ex_ExampleVideo);
+
+        getLifecycle().addObserver(youTubePlayerView);
 
         wordID = String.valueOf(getIntent().getIntExtra("GETID",0));
         loadData();
@@ -56,7 +65,17 @@ public class DescriptionActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(DescriptionActivity.this); //Linear Layout Manager use to handling layout for each Lecturer
         exampleListView.setAdapter(exampleAdapter);
         exampleListView.setLayoutManager(manager);
+
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId = "qzcGfN9S_QY";
+                youTubePlayer.cueVideo(videoId, 0);
+            }
+        });
     }
+
+
 
     private void loadData(){
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
