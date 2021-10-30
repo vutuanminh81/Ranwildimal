@@ -5,22 +5,37 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.VideoView;
 
 import com.example.ranwildimal.adapter.WordDescriptionAdapter;
 import com.example.ranwildimal.database.DatabaseAccess;
-import com.example.ranwildimal.model.Example;
+import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
+import com.example.ranwildimal.model.Example;
+
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 
@@ -31,6 +46,9 @@ public class DescriptionActivity extends AppCompatActivity {
     Word selectWord,jpWord;
     TextView jpTxtWord,selectedTxtWord;
     ArrayList<Example> listSelectExample,listJpExample;
+    AssetManager assetMan;
+    Word word;
+    ImageButton playbutton;
     WordDescriptionAdapter exampleAdapter;
     RecyclerView exampleListView;
     ImageView animalImage;
@@ -42,12 +60,14 @@ public class DescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
         description_toolbar = findViewById(R.id.description_toolbar);
+        assetMan = this.getAssets();
         //Customize status bar
         statusBarColor();
         //Customize toolbar
         setSupportActionBar(description_toolbar);
         getSupportActionBar().setTitle(null);
 
+        playbutton = findViewById(R.id.btn_search_back2);
         jpTxtWord = findViewById(R.id.text_description_japanese_word);
         selectedTxtWord = findViewById(R.id.txt_animal_description_word);
         exampleListView = findViewById(R.id.description_exxemple_list);
@@ -70,10 +90,22 @@ public class DescriptionActivity extends AppCompatActivity {
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "qzcGfN9S_QY";
+                String videoId = "1HygThMLzGs";
                 youTubePlayer.cueVideo(videoId, 0);
             }
         });
+
+        int des_id = selectWord.getWord_Des_Id();
+        String img_id = des_id + ".jpg";
+        Bitmap bitmap = null;
+        try {
+            InputStream is = assetMan.open("avt/"+img_id);
+            bitmap = BitmapFactory.decodeStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        animalImage.setImageBitmap(bitmap);
+
     }
 
 
@@ -95,6 +127,34 @@ public class DescriptionActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
         }
     }
+
+    public void playSound(View view){
+        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+        dbAccess.openConn();
+        int des_id = selectWord.getWord_Des_Id();
+        String sound_id = +des_id+"_Pronounce.mp3";
+        try {
+            AssetFileDescriptor is = assetMan.openFd("pronounce/"+sound_id);
+            MediaPlayer media = new MediaPlayer();
+            media.setDataSource(is.getFileDescriptor(),is.getStartOffset(),is.getLength());
+            media.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    if(media.isPlaying()){
+                        media.pause();
+                    }else{
+                        media.start();
+                    }
+                }
+            });
+            media.prepareAsync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        dbAccess.closeConn();
+    }
+
+
 
     public void HomeIntent(View view) {
         Intent intent = new Intent(this, MainActivity.class);

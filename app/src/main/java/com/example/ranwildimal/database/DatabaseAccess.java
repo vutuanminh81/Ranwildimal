@@ -1,9 +1,11 @@
 package com.example.ranwildimal.database;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 
 import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
@@ -87,12 +89,12 @@ public class DatabaseAccess {
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
-            int id = c.getInt(0);
+            int w_id = c.getInt(0);
             String word = c.getString(1);
             int language = c.getInt(2);
             int word_des = c.getInt(3);
             int type = c.getInt(4);
-            Word new_word = new Word(id,word,language,word_des,type);
+            Word new_word = new Word(w_id,word,language,word_des,type);
             return new_word;
         }
         return null;
@@ -115,7 +117,7 @@ public class DatabaseAccess {
     }
 
     public ArrayList<Word> searchWord(String search){
-        c = db.rawQuery("select * from Word where Word like '%"+search+"%'", new String[]{});
+        c = db.rawQuery("select * from Word where Word like '%"+search+"%' and Language_Id = 1", new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
@@ -129,4 +131,7 @@ public class DatabaseAccess {
         }
         return list;
     }
+
+
+
 }
