@@ -1,9 +1,11 @@
 package com.example.ranwildimal.database;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 
 import com.example.ranwildimal.model.Word;
 
@@ -67,12 +69,12 @@ public class DatabaseAccess {
         return list;
     }
 
-    public Word get1Word(){
-        c = db.rawQuery("select * from Word where Word_Id = 1", new String[]{});
+    public Word get1Word(int id){
+        c = db.rawQuery("select * from Word where Word_Id = "+id, new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
-            int id = c.getInt(0);
+            int w_id = c.getInt(0);
             String word = c.getString(1);
             int language = c.getInt(2);
             int word_des = c.getInt(3);
@@ -98,4 +100,7 @@ public class DatabaseAccess {
         }
         return list;
     }
+
+
+
 }
