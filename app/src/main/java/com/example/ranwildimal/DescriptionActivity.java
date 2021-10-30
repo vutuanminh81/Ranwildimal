@@ -5,27 +5,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import android.widget.VideoView;
 
 import com.example.ranwildimal.adapter.WordDescriptionAdapter;
-import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
 import com.example.ranwildimal.model.Example;
@@ -33,7 +27,7 @@ import com.example.ranwildimal.model.Example;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -67,7 +61,7 @@ public class DescriptionActivity extends AppCompatActivity {
         setSupportActionBar(description_toolbar);
         getSupportActionBar().setTitle(null);
 
-        playbutton = findViewById(R.id.btn_search_back2);
+        playbutton = findViewById(R.id.btn_des_sound);
         jpTxtWord = findViewById(R.id.text_description_japanese_word);
         selectedTxtWord = findViewById(R.id.txt_animal_description_word);
         exampleListView = findViewById(R.id.description_exxemple_list);
