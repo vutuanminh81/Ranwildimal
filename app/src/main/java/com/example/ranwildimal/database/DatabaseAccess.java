@@ -52,7 +52,7 @@ public class DatabaseAccess {
     }
 
     public ArrayList<Word> getWord(){
-        c = db.rawQuery("select * from Word where Language_Id = 1", new String[]{});
+        c = db.rawQuery("select * from Word", new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
@@ -83,8 +83,8 @@ public class DatabaseAccess {
         return null;
     }
 
-    public ArrayList<Word> searchWord(String search){
-        c = db.rawQuery("select * from Word where Word like '%"+search+"%'", new String[]{});
+    public ArrayList<Word> searchWord(String search, int typeLang){
+        c = db.rawQuery("select * from Word where Word like '%"+search+"%' and Language_Id ="+typeLang, new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
@@ -97,5 +97,20 @@ public class DatabaseAccess {
             list.add(new_word);
         }
         return list;
+    }
+
+    public Word japWord(int worddesid){
+        c = db.rawQuery("select * from Word where Language_Id = 3 and Word_Des_Id = "+worddesid, new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        Word w = new Word();
+        while(c.moveToNext()){
+            int id = c.getInt(0);
+            String word = c.getString(1);
+            int language = c.getInt(2);
+            int word_des = c.getInt(3);
+            int type = c.getInt(4);
+            w = new Word(id,word,language,word_des,type);
+        }
+        return w;
     }
 }
