@@ -3,6 +3,8 @@ package com.example.ranwildimal.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import com.example.ranwildimal.DescriptionActivity;
 import com.example.ranwildimal.R;
 import com.example.ranwildimal.model.Word;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.MyViewHolder> {
@@ -47,7 +51,6 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
             Word wordall = wordJapList.get(position);
             holder.txtWordName.setText(word.getWord());
             holder.txtJapName.setText(wordall.getWord());
-
             holder.txtWordName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

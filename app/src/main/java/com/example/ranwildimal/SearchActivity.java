@@ -79,7 +79,7 @@ public class SearchActivity extends AppCompatActivity {
         } else {
             DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
             dbAccess.openConn();
-            newlist = dbAccess.searchWord(s,2);
+            newlist = dbAccess.searchWord(s);
             if (!newlist.isEmpty()) {
                 recyclerView.setVisibility(View.VISIBLE);
             } else {
