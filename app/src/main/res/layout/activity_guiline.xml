@@ -7,15 +7,13 @@
     tools:context=".GuilineActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/setting_toolbar2"
+        android:id="@+id/search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -33,17 +31,16 @@
             android:id="@+id/btn_search_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/main_color"
+            app:srcCompat="@drawable/back"
             android:gravity="start"
-
-            app:srcCompat="@drawable/back" />
+            android:background="@color/main_color"/>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="251dp"
         android:layout_height="67dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="56dp"
         android:gravity="center"
         android:text="IN HOME SCREEN CAMERA SCREEN"
         android:textColor="#4E8A3E"
@@ -51,6 +48,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
