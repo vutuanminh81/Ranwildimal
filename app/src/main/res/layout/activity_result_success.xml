@@ -60,7 +60,7 @@
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@color/black"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +89,7 @@
             android:adjustViewBounds="true"
             android:background="@drawable/animal_image2"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@color/black"/>
     </androidx.cardview.widget.CardView>
 
 

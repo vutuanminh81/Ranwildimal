@@ -192,7 +192,7 @@
             app:layout_constraintEnd_toStartOf="@+id/view11"
             app:layout_constraintStart_toEndOf="@+id/text_description_japanese_sound"
             app:layout_constraintTop_toBottomOf="@+id/view13"
-            app:srcCompat="@drawable/sound" />
+            app:srcCompat="@drawable/sound_mute"/>
 
         <View
             android:id="@+id/view11"
