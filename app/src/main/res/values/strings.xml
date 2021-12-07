@@ -24,5 +24,11 @@
     <string name="dot_1" translatable="false">●</string>
     <string name="dot_2" translatable="false">○</string>
     <string name="guideline_title" translatable="false">Guideline</string>
+    <string name="ranwildimal_language">RANWILDIMAL LANGUAGE</string>
+    <string name="ranwildimal_guideline">RANWILDIMAL GUIDELINE</string>
+    <string name="ranwildimal_version">RANWILDIMAL VERSION</string>
+    <string name="how_to_use">HOW TO USE</string>
+    <string name="lasted_version">LASTED VERSION</string>
+    <string name="how_to_use">HOW TO USE</string>
 
 </resources>
