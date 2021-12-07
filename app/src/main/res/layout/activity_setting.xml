@@ -37,11 +37,11 @@
             android:background="@color/main_color"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <Spinner
+        android:id="@+id/language_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
