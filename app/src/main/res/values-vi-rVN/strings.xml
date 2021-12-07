@@ -11,4 +11,9 @@
     <string name="home_page_1">Chào mừng bạn</string>
     <string name="home_page_2">Là nơi bạn có thể gọi động vật bằng</string>
     <string name="home_page_3">Tiếng Nhật và tiếng Việt</string>
+    <string-array name="languages">
+        <item>Tiếng Việt</item>
+        <item>Tiếng Anh</item>
+        <item>Tiếng Nhật</item>
+    </string-array>
 </resources>

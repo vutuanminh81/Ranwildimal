@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/view15"
@@ -62,38 +66,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/main_title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_36"
-                    android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/main_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_36"
+                android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/btn_search_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/main_color"
-                    android:gravity="start"
-                    android:onClick="HomeIntent"
-                    app:srcCompat="@drawable/back" />
+            <ImageButton
+                android:id="@+id/btn_des_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/main_color"
+                android:gravity="start"
+                android:onClick="HomeIntent"
+                app:srcCompat="@drawable/back" />
         </androidx.appcompat.widget.Toolbar>
 
-        <ImageView
-            android:id="@+id/img_description_animal"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_des_animal_image"
             android:layout_width="110dp"
             android:layout_height="110dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="65dp"
-            android:background="@drawable/animal_image2"
-            android:scaleType="centerCrop"
-            android:src=""
+            android:elevation="10dp"
+            app:cardCornerRadius="96dp"
+            app:cardElevation="10dp"
             app:layout_constraintBottom_toTopOf="@+id/view12"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/description_toolbar" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_description_animal"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:scaleType="centerCrop"
+                android:src="@color/black" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/txt_animal_description_word"
@@ -118,7 +131,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_description_animal" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_des_animal_image" />
 
         <View
             android:id="@+id/view13"
@@ -140,7 +153,7 @@
             android:textSize="@dimen/textsize_26"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/view14"
-            app:layout_constraintEnd_toStartOf="@+id/btn_search_back2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_des_sound"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/view13" />
 
@@ -168,17 +181,18 @@
             app:layout_constraintTop_toBottomOf="@+id/view13" />
 
         <ImageButton
-            android:id="@+id/btn_search_back2"
+            android:id="@+id/btn_des_sound"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@color/white"
+            android:clickable="true"
             android:gravity="right|end"
-            android:onClick="HomeIntent"
+            android:onClick="playSound"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toStartOf="@+id/view11"
             app:layout_constraintStart_toEndOf="@+id/text_description_japanese_sound"
             app:layout_constraintTop_toBottomOf="@+id/view13"
-            app:srcCompat="@drawable/sound" />
+            app:srcCompat="@drawable/sound_mute"/>
 
         <View
             android:id="@+id/view11"
@@ -186,7 +200,7 @@
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_search_back2"
+            app:layout_constraintStart_toEndOf="@+id/btn_des_sound"
             app:layout_constraintTop_toBottomOf="@+id/view13" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -207,7 +221,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_search_back2" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_des_sound" />
 
         <View
             android:id="@+id/view18"
@@ -265,22 +279,24 @@
             app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/view18" />
 
-        <TextView
-            android:id="@+id/textView10"
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/ex_ExampleVideo"
             android:layout_width="300dp"
             android:layout_height="190dp"
-            android:text="Video"
+            android:maxWidth="@dimen/width_300"
+            app:autoPlay="false"
+            app:handleNetworkEvents="true"
             app:layout_constraintBottom_toTopOf="@+id/view24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view21" />
+            app:layout_constraintEnd_toStartOf="@+id/view31"
+            app:layout_constraintStart_toEndOf="@+id/view30"
+            app:layout_constraintTop_toBottomOf="@+id/view21"
+            app:showFullScreenButton="false" />
 
         <View
             android:id="@+id/view21"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView10"
+            app:layout_constraintBottom_toTopOf="@+id/ex_ExampleVideo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view20" />
@@ -292,7 +308,27 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/ex_ExampleVideo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/view30"
+            android:layout_width="50dp"
+            android:layout_height="190dp"
+            app:layout_constraintBottom_toTopOf="@+id/view24"
+            app:layout_constraintEnd_toStartOf="@+id/ex_ExampleVideo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view21" />
+
+        <View
+            android:id="@+id/view31"
+            android:layout_width="50dp"
+            android:layout_height="190dp"
+            app:layout_constraintBottom_toTopOf="@+id/view24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ex_ExampleVideo"
+            app:layout_constraintTop_toBottomOf="@+id/view21" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
 

@@ -28,7 +28,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_search_back"
+            android:id="@+id/btn_des_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_color"
@@ -37,36 +37,61 @@
             app:srcCompat="@drawable/back" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/img_result_current_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_current_image"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="65dp"
         android:layout_marginLeft="65dp"
         android:layout_marginTop="65dp"
-        android:background="@drawable/animal_image2"
-        android:scaleType="centerCrop"
-        android:src=""
+        android:elevation="10dp"
+        app:cardCornerRadius="96dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/view22"
         app:layout_constraintEnd_toStartOf="@+id/view23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/img_result_app_image"
+        <ImageView
+            android:id="@+id/img_result_current_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@color/black"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_app_image"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
-        android:background="@drawable/animal_image2"
-        android:scaleType="centerCrop"
-        android:src=""
+        android:elevation="10dp"
+        app:cardCornerRadius="96dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/view22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view23"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_result_app_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:background="@drawable/animal_image2"
+            android:scaleType="fitXY"
+            android:src="@color/black"/>
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/txt_result_success_title"
@@ -98,8 +123,8 @@
         android:layout_height="110dp"
         android:layout_marginTop="65dp"
         app:layout_constraintBottom_toTopOf="@+id/view22"
-        app:layout_constraintEnd_toStartOf="@+id/img_result_app_image"
-        app:layout_constraintStart_toEndOf="@+id/img_result_current_image"
+        app:layout_constraintEnd_toStartOf="@+id/cv_app_image"
+        app:layout_constraintStart_toEndOf="@+id/cv_current_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -131,13 +156,13 @@
         android:id="@+id/view25"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_success_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_result_success_name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_success_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/result_success_button"
@@ -158,7 +183,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_success_view" />
 
     <TextView
         android:id="@+id/textView11"
@@ -179,13 +204,13 @@
         android:id="@+id/view27"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btn_success_post_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_success_post_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/result_success_button"
@@ -207,7 +232,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_success_post_image" />
 
     <View
         android:id="@+id/view29"

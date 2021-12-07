@@ -1,17 +1,17 @@
-<resources>
-    <string name="app_name" translatable="false">Ranwildimal</string>
-    <string name="main_title" translatable="false">RANWILDIMAL</string>
-    <string name="home_title" translatable="false">HOME</string>
-    <string name="encounter_title" translatable="false">MY ENCOUNTER</string>
-    <string name="about_title" translatable="false">ABOUT US</string>
-    <string name="setting_title" translatable="false">SETTINGS</string>
-    <string name="sidebar_open" translatable="false">Open sidebar</string>
-    <string name="sidebar_close" translatable="false">Close sidebar</string>
-    <string name="search_animal" translatable="false">Search an animal</string>
-    <string name="home_page_1" translatable="false">Welcome to </string>
-    <string name="home_page_2" translatable="false">Where you can know animals in</string>
-    <string name="home_page_3" translatable="false">Japanese and Vietnamses</string>
-    <string name="animal_encounter" translatable="false">Animal</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name"        >Ranwildimal</string>
+    <string name="main_title"      >RANWILDIMAL</string>
+    <string name="home_title"      >HOME</string>
+    <string name="encounter_title" >MY ENCOUNTER</string>
+    <string name="about_title"     >ABOUT US</string>
+    <string name="setting_title"   >SETTINGS</string>
+    <string name="sidebar_open"    >Open sidebar</string>
+    <string name="sidebar_close"   >Close sidebar</string>
+    <string name="search_animal" tools:ignore="MissingTranslation">Search an animal</string>
+    <string name="home_page_1"     >Welcome to </string>
+    <string name="home_page_2"     >Where you can know animals in</string>
+    <string name="home_page_3"     >Japanese and Vietnamses</string>
+    <string name="animal_encounter" tools:ignore="MissingTranslation">Animal</string>
     <string name="description_language" translatable="false">Japanese</string>
     <string name="description_video" translatable="false">Video</string>
     <string name="result_success_message_title" translatable="false">YOU IDENTIFY AN ANIMAL</string>
@@ -31,4 +31,10 @@
     <string name="lasted_version">LASTED VERSION</string>
     <string name="how_to_use">HOW TO USE</string>
 
+</resources>
+    <string-array name="languages">
+        <item>Vietnamese</item>
+        <item>English</item>
+        <item>Japanese</item>
+    </string-array>
 </resources>
