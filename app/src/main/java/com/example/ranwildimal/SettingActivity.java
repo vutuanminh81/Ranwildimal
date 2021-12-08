@@ -35,15 +35,15 @@ public class SettingActivity extends AppCompatActivity {
         //Customize toolbar
         setSupportActionBar(setting_toolbar);
         getSupportActionBar().setTitle(null);
-        Spinner spinner = (Spinner) findViewById(R.id.language_spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> languages = new ArrayAdapter<String>(SettingActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
         languages.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(languages);
         Locale locale = getResources().getConfiguration().locale;
-        if(locale.toString().equals("en_US")){
+        if(locale.toString().equals("en")){
             spinner.setSelection(1);
-        }else if(locale.toString().equals("vi_rVN")){
+        }else if(locale.toString().equals("vi")){
             spinner.setSelection(0);
         }else{
             spinner.setSelection(2);

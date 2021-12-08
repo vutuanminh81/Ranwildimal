@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ranwildimal</string>
     <string name="main_title">RANWILDIMAL</string>
     <string name="home_title">TRANG CHÍNH</string>
@@ -11,6 +11,22 @@
     <string name="home_page_1">Chào mừng bạn</string>
     <string name="home_page_2">Là nơi bạn có thể gọi động vật bằng</string>
     <string name="home_page_3">Tiếng Nhật và tiếng Việt</string>
+
+    <string name="search_animal">Tìm kiếm</string>
+    <string name="animal_encounter">Con vật</string>
+    <string name="description_language" translatable="false">Tiếng Nhật</string>
+    <string name="result_success_message_title">CON VẬT MÀ BẠN TÌM KIẾM LÀ</string>
+    <string name="result_error_message_title">XIN LỖI, CHÚNG TÔI KHÔNG THỂ NHẬN DẠNG CON VẬT NÀY</string>
+    <string name="result_error_message">BẠN CÓ THỂ CHỤP GẦN HƠN, RÕ RÀNG HƠN HOẶC CHỤP Ở 1 HƯỚNG KHÁC ĐỂ NHẬN DIỆN CON VẬT</string>
+    <string name="result_success_button">XEM CON VẬT</string>
+    <string name="post_picture_button">ĐĂNG ẢNH</string>
+    <string name="take_another_picture_button">CHỤP ẢNH KHÁC</string>
+    <string name="guideline_title">Hướng dẫn</string>
+    <string name="ranwildimal_language">NGÔN NGỮ</string>
+    <string name="ranwildimal_guideline">HƯỚNG DẪN SỬ DỤNG</string>
+    <string name="ranwildimal_version">PHIÊN BẢN</string>
+    <string name="how_to_use">CÁCH SỬ DỤNG</string>
+    <string name="lasted_version">PHIÊN BẢN MỚI NHẤT</string>
     <string-array name="languages">
         <item>Tiếng Việt</item>
         <item>Tiếng Anh</item>
