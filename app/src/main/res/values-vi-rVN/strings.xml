@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ranwildimal</string>
-    <string name="main_title">RANWILDIMAL</string>
     <string name="home_title">TRANG CHÍNH</string>
-    <string name="encounter_title">LỊCH SỬ CHỤP</string>
-    <string name="about_title">NHÀ PHÁT TRIỂN</string>
+    <string name="about_title">VỀ CHÚNG TÔI</string>
     <string name="setting_title">CÀI ĐẶT</string>
-    <string name="sidebar_open">Mở Sidebar</string>
-    <string name="sidebar_close">Đóng Sidebar</string>
-    <string name="home_page_1">Chào mừng bạn</string>
-    <string name="home_page_2">Là nơi bạn có thể gọi động vật bằng</string>
+    <string name="home_page_1">Chào mừng đến với</string>
+    <string name="home_page_2">Nơi bạn có thể gọi con vật bằng</string>
     <string name="home_page_3">Tiếng Nhật và tiếng Việt</string>
     <string-array name="languages">
         <item>Tiếng Việt</item>
         <item>Tiếng Anh</item>
         <item>Tiếng Nhật</item>
     </string-array>
+    <string name="search_animal">Tìm kiếm một con vật</string>
+    <string name="animal_encounter">Con vật</string>
+    <string name="description_language" translatable="false">Tiếng Nhật</string>
+    <string name="result_success_message_title">ĐÃ XÁC ĐỊNH ĐƯỢC CON VẬT</string>
+    <string name="result_error_message_title" translatable="false">XIN LỖI, KHÔNG THỂ XÁC ĐỊNH ĐƯỢC BỨC ẢNH NÀY</string>
+    <string name="result_error_message" translatable="false">Bạn có thể thử lại bằng cách chụp một góc khác của con vật hoặc là chụp con vật gần hơn</string>
+    <string name="result_success_button">XEM CON VẬT</string>
+    <string name="post_picture_button">ĐĂNG BỨC ẢNH NÀY</string>
+    <string name="take_another_picture_button">CHỤP BỨC ẢNH KHÁC</string>
+    <string name="post_message" translatable="false">Nếu bạn chụp bức ảnh động vật, bạn có thể giúp chúng tôi cải thiện cơ sở dữ liệu. Tất nhiên là điều đó sẽ làm cho ứng dụng trở trên tốt hơn trong một tương lai không xa</string>
+    <string name="guideline_title">Hướng dẫn</string>
+    <string name="ranwildimal_language">"NGÔN NGỮ CỦA RANWILDIMAL "</string>
+    <string name="ranwildimal_guideline">"HƯỚNG DẪN CỦA RANWILDIMAL "</string>
+    <string name="ranwildimal_version">"PHIÊN BẢN CỦA RANWILDIMAL "</string>
+    <string name="how_to_use">CÁCH SỬ DỤNG</string>
+    <string name="latest_version">PHIÊN BẢN MỚI NHẤT</string>
+    <string name="encounter_title">LƯỢT GẶP CON VẬT</string>
+    <string name="main_title">RANWILDIMAL</string>
+    <string name="welcome_title">RANWILDIMAL</string>
+    <string name="description_video">Video</string>
 </resources>
