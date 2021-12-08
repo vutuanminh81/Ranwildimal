@@ -92,7 +92,7 @@
             android:shadowDx="3.5"
             android:shadowDy="2.5"
             android:shadowRadius="2.5"
-            android:text="@string/main_title"
+            android:text="@string/welcome_title"
             android:textColor="@color/icon"
             android:textSize="@dimen/textsize_20"
             android:textStyle="bold"
