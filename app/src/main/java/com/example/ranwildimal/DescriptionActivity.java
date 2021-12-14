@@ -14,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
@@ -153,7 +154,15 @@ public class DescriptionActivity extends AppCompatActivity {
                     if(media.isPlaying()){
                         media.pause();
                     }else{
+                        long duration = media.getDuration();
                         media.start();
+                        playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_activate));
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_mute));
+                            }
+                        },duration);
                     }
                 }
             });
