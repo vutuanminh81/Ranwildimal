@@ -1,40 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name"        >Ranwildimal</string>
-    <string name="main_title"      >RANWILDIMAL</string>
+    <string name="main_title">RANWILDIMAL</string>
+    <string name="welcome_title">RANWILDIMAL</string>
     <string name="home_title"      >HOME</string>
     <string name="encounter_title" >MY ENCOUNTER</string>
-    <string name="about_title"     >ABOUT US</string>
+    <string name="about_title"     >ABOUT</string>
     <string name="setting_title"   >SETTINGS</string>
-    <string name="sidebar_open"    >Open sidebar</string>
-    <string name="sidebar_close"   >Close sidebar</string>
+    <string name="sidebar_open" translatable="false">Open sidebar</string>
+    <string name="sidebar_close" translatable="false">Close sidebar</string>
     <string name="search_animal" tools:ignore="MissingTranslation">Search an animal</string>
-    <string name="home_page_1"     >Welcome to </string>
+    <string name="home_page_1"     >Welcome to</string>
     <string name="home_page_2"     >Where you can know animals in</string>
     <string name="home_page_3"     >Japanese and Vietnamses</string>
     <string name="animal_encounter" tools:ignore="MissingTranslation">Animal</string>
-    <string name="description_language" translatable="false">Japanese</string>
-    <string name="description_video" translatable="false">Video</string>
-    <string name="result_success_message_title" translatable="false">YOU IDENTIFY AN ANIMAL</string>
-    <string name="result_error_message_title" translatable="false">SORRY, WE CAN’T IDENTIFY THIS PICTURE</string>
-    <string name="result_error_message" translatable="false">You can try other view of the animal you want to identify, or try a clear and closer shot.</string>
-    <string name="result_success_button" translatable="false">VIEW ANIMAL</string>
-    <string name="post_picture_button" translatable="false">POST THIS PICTURE</string>
-    <string name="take_another_picture_button" translatable="false">TAKE ANOTHER PICTURE</string>
-    <string name="post_message" translatable="false">If you took a picture of animal, you can help us improve our data by posting this picture to our data. Of course, it will make our app more better in the near feature.</string>
+    <string name="description_language">Japanese</string>
+    <string name="description_video">Video</string>
+    <string name="result_success_message_title">YOU IDENTIFIED AN ANIMAL</string>
+    <string name="result_error_message_title">SORRY, WE CAN’T IDENTIFY THIS PICTURE</string>
+    <string name="result_error_message">You can try other view of the animal you want to identify, or try a clear and closer shot.</string>
+    <string name="result_success_button">VIEW ANIMAL</string>
+    <string name="post_picture_button">POST THIS PICTURE</string>
+    <string name="take_another_picture_button">TAKE ANOTHER PICTURE</string>
+    <string name="post_message">If you took a picture of animal, you can help us improve our data by posting this picture to our data. Of course, it will make our app more better in the near feature.</string>
     <string name="dot_1" translatable="false">●</string>
     <string name="dot_2" translatable="false">○</string>
-    <string name="guideline_title" translatable="false">Guideline</string>
+    <string name="guideline_title">Guideline</string>
     <string name="ranwildimal_language">RANWILDIMAL LANGUAGE</string>
     <string name="ranwildimal_guideline">RANWILDIMAL GUIDELINE</string>
     <string name="ranwildimal_version">RANWILDIMAL VERSION</string>
     <string name="how_to_use">HOW TO USE</string>
-    <string name="lasted_version">LASTED VERSION</string>
-    <string name="how_to_use">HOW TO USE</string>
-
-</resources>
+    <string name="latest_version">LATEST VERSION</string>
     <string-array name="languages">
         <item>Vietnamese</item>
         <item>English</item>
         <item>Japanese</item>
     </string-array>
 </resources>
+

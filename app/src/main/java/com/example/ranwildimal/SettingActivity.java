@@ -4,17 +4,22 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -35,18 +40,32 @@ public class SettingActivity extends AppCompatActivity {
         //Customize toolbar
         setSupportActionBar(setting_toolbar);
         getSupportActionBar().setTitle(null);
-        Spinner spinner = (Spinner) findViewById(R.id.language_spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spin_language);
         ArrayAdapter<String> languages = new ArrayAdapter<String>(SettingActivity.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.languages));
+                R.layout.languages_spinner_item,getResources().getStringArray(R.array.languages)){
+
+            public View getView(int position, View convertView,ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView,parent);
+                ((TextView) v).setGravity(Gravity.CENTER);
+                return v;
+
+            }
+        };
         languages.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(languages);
         Locale locale = getResources().getConfiguration().locale;
-        if(locale.toString().equals("en_US")){
-            spinner.setSelection(1);
-        }else if(locale.toString().equals("vi_rVN")){
+        if(locale.toString().equals("ja")){
+            spinner.setSelection(2);
+        }else if(locale.toString().equals("vi")){
             spinner.setSelection(0);
         }else{
-            spinner.setSelection(2);
+            spinner.setSelection(1);
         }
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -61,6 +80,13 @@ public class SettingActivity extends AppCompatActivity {
                 }else if(spinner.getSelectedItemPosition() == 1){
                     if(!locale.toString().equals("en")){
                         setLocale("en");
+                        recreate();
+                    }else{
+                        return;
+                    }
+                }else if(spinner.getSelectedItemPosition() == 2){
+                    if(!locale.toString().equals("ja")){
+                        setLocale("ja");
                         recreate();
                     }else{
                         return;

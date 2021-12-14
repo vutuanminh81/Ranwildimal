@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ranwildimal</string>
+    <string name="home_title">ホーム</string>
+    <string name="encounter_title">出会い</string>
+    <string name="about_title">私たちについて</string>
+    <string name="setting_title">設定</string>
+    <string name="description_language" >日本語</string>
+    <string name="animal_encounter">動物</string>
+    <string name="ranwildimal_guideline">RANWILDIMAL ガイドライン</string>
+    <string name="ranwildimal_language">RANWILDIMAL 語</string>
+    <string name="ranwildimal_version">RANWILDMAL バージョン</string>
+    <string name="how_to_use">使い方</string>
+    <string name="latest_version">最新バージョン</string>
+    <string name="guideline_title">ガイドライン</string>
+    <string name="result_error_message_title">申し訳ありませんが、この写真を特定できません</string>
+    <string name="result_error_message">識別したい動物の他のビューを試すことも、鮮明でより近いショットを試すこともできます。</string>
+    <string name="post_message">動物の写真を撮った場合は、この写真をデータに投稿することで、データの改善に役立てることができます。 それは私たちのアプリを近い機能でより良くするでしょう。</string>
+    <string name="take_another_picture_button">別の写真を撮る</string>
+    <string name="post_picture_button">写真を投稿する</string>
+    <string name="result_success_button">"動物を見る "</string>
+    <string name="result_success_message_title">動物を特定しました</string>
+    <string name="search_animal">動物を検索する</string>
+    <string name="home_page_2">日本語とベトナム語で</string>
+    <string name="home_page_3">動物を知ることができる場所</string>
+    <string name="home_page_1">Ranwildimalへ</string>
+    <string name="main_title">RANWILDIMAL</string>
+    <string name="welcome_title">ようこそ</string>
+    <string-array name="languages">
+        <item>ベトナム語</item>
+        <item>英語</item>
+        <item>日本語</item>
+    </string-array>
+    <string name="description_video">ビデオ</string>
+</resources>
