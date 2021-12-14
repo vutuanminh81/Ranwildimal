@@ -31,7 +31,7 @@ android {
 dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-analytics:20.0.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
@@ -42,14 +42,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.activity_login_active.ext:junit:1.1.2'
     androidTestImplementation 'androidx.activity_login_active.espresso:espresso-core:3.3.0'
-    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.0'
-    implementation 'com.google.firebase:firebase-storage'
-    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }
