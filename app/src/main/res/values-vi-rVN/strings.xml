@@ -2,13 +2,13 @@
 <resources>
     <string name="app_name">Ranwildimal</string>
     <string name="main_title">RANWILDIMAL</string>
-    <string name="home_title">TRANG CHÍNH</string>
-    <string name="encounter_title">LỊCH SỬ CHỤP</string>
+    <string name="home_title">TRANG CHỦ</string>
+    <string name="encounter_title">LỊCH SỬ</string>
     <string name="about_title">NHÀ PHÁT TRIỂN</string>
     <string name="setting_title">CÀI ĐẶT</string>
-    <string name="sidebar_open">Mở Sidebar</string>
-    <string name="sidebar_close">Đóng Sidebar</string>
-    <string name="home_page_1">Chào mừng bạn</string>
-    <string name="home_page_2">Là nơi bạn có thể gọi động vật bằng</string>
-    <string name="home_page_3">Tiếng Nhật và tiếng Việt</string>
+    <string name="sidebar_open">MỞ MENU CHÍNH</string>
+    <string name="sidebar_close">ĐÓNG MENU CHÍNH</string>
+    <string name="home_page_1">CHÀO MỪNG BẠN</string>
+    <string name="home_page_2">LÀ NƠI BẠN CÓ THỂ GỌI ĐỘNG VẬT BẰNG</string>
+    <string name="home_page_3">TIẾNG NHẬT VÀ TIỀNG VIỆT</string>
 </resources>
