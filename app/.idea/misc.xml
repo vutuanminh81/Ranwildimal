@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/drawable/custome_button.xml" value="0.2703125" />
+        <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_camera.xml" value="0.264" />
         <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_description.xml" value="0.2" />
+        <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_description_exemple_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_encounter_list.xml" value="0.25416666666666665" />
         <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_guiline.xml" value="0.264" />
+        <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_my_encounter.xml" value="0.25416666666666665" />
         <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/activity_setting.xml" value="0.264" />
         <entry key="..\:/FPTU/SU21/PRM391/GitHub/Ranwildimal/app/src/main/res/layout/layout_guideline.xml" value="0.264" />
       </map>
@@ -16,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

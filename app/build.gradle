@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ranwildimal"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -53,4 +53,18 @@ dependencies {
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // CameraX core library using the camera2 implementation
+    def camerax_version = "1.0.2"
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    // If you want to additionally use the CameraX VideoCapture library
+    implementation "androidx.camera:camera-video:1.1.0-alpha12"
+    // If you want to additionally use the CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha32"
+    // If you want to additionally use the CameraX Extensions library
+    implementation "androidx.camera:camera-extensions:1.0.0-alpha32"
 }

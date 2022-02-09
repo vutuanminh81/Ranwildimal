@@ -4,6 +4,9 @@ public class GuidelineItem {
     String title;
     int descriptionImg;
 
+    public GuidelineItem() {
+    }
+
     public GuidelineItem(String title, int descriptionImg) {
         this.title = title;
         this.descriptionImg = descriptionImg;
