@@ -64,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextureView
+    <androidx.camera.view.PreviewView
         android:id="@+id/cameraView"
         android:layout_width="345dp"
         android:layout_height="485dp"

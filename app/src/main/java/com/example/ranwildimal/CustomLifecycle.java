@@ -22,6 +22,6 @@ public class CustomLifecycle implements LifecycleOwner {
     @NonNull
     @Override
     public Lifecycle getLifecycle() {
-        return null;
+        return lifecycleRegistry;
     }
 }
