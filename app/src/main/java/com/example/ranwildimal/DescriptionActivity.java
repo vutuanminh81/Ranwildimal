@@ -183,6 +183,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     public void saveID(){
         String path = FILE_PATH + ID_FILE;
+        System.out.println("////////////////////////"+FILE_PATH);
         try {
             File file = new File(path);
             if(!file.exists()){

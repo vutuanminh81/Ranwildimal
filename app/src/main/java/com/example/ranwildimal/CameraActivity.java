@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.annotation.RequiresApi;
@@ -26,6 +27,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -33,12 +35,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -57,12 +61,14 @@ import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -79,6 +85,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageCapture imageCapture;
     private Button btnGallery, btnCamera;
 
+    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal";
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -209,22 +216,50 @@ public class CameraActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     private void getCaptureImage(){
-        imageCapture.takePicture(this.getMainExecutor(), new ImageCapture.OnImageCapturedCallback() {
+//        imageCapture.takePicture(this.getMainExecutor(), new ImageCapture.OnImageCapturedCallback() {
+//
+//            @Override
+//            public void onCaptureSuccess (ImageProxy imageProxy) {
+//                // Use the image, then make sure to close it before returning from the method
+//                bitmap= imageProxyToBitmap(imageProxy);
+//                classifyImage();
+//                imageProxy.close();
+//
+//            }
+//
+//            @Override
+//            public void onError (ImageCaptureException exception) {
+//                // Handle the exception however you'd like
+//            }
+//        });
 
-            @Override
-            public void onCaptureSuccess (ImageProxy imageProxy) {
-                // Use the image, then make sure to close it before returning from the method
-                bitmap= imageProxyToBitmap(imageProxy);
-                classifyImage();
-                imageProxy.close();
+        File photoDir = new File(FILE_PATH);
+        if(!photoDir.exists()){
+            photoDir.mkdir();
+        }
+        Date date = new Date();
+        String timestamp=  String.valueOf(date.getTime());
+        String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+        File photoFile = new File(photoFilePath);
 
-            }
 
-            @Override
-            public void onError (ImageCaptureException exception) {
-                // Handle the exception however you'd like
-            }
-        });
+
+        imageCapture.takePicture(
+                new ImageCapture.OutputFileOptions.Builder(photoFile).build(),
+                getMainExecutor(),
+                new ImageCapture.OnImageSavedCallback() {
+                    @Override
+                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                        Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+//                        classifyImage();
+                    }
+
+                    @Override
+                    public void onError(@NonNull ImageCaptureException exception) {
+                        Toast.makeText(CameraActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private Bitmap imageProxyToBitmap(ImageProxy image) {
