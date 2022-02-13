@@ -30,6 +30,7 @@
     <string name="ranwildimal_version">RANWILDIMAL VERSION</string>
     <string name="how_to_use">HOW TO USE</string>
     <string name="latest_version">LATEST VERSION</string>
+    <string name="camera_title" translatable="false">Camera</string>
     <string-array name="languages">
         <item>Vietnamese</item>
         <item>English</item>
