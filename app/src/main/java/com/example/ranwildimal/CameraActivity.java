@@ -67,6 +67,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -98,6 +99,7 @@ public class CameraActivity extends AppCompatActivity {
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
     private Bitmap bitmap;
+    String filePathAll;
     private List<String> labels;
     Uri imageuri;
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -108,6 +110,7 @@ public class CameraActivity extends AppCompatActivity {
                         imageuri = result.getData().getData();
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
+                            filePathAll = imageuri.toString();
                             classifyImage();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -188,7 +191,25 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
-        showresult();
+        System.out.println("///////////////////////");
+        float[] listResult = outputProbabilityBuffer.getFloatArray();
+        boolean checkResult = false;
+        int i=1;
+        for(Float f : listResult){
+            if(f>=0.7){
+                checkResult = true;
+
+            }
+            System.out.println(i++ + "//////////////////"+f);
+        }
+        if(checkResult){
+            showresult();
+        }else{
+            Intent intent = new Intent(this, ResultErrorActivity.class);
+            intent.putExtra("filePathImg",filePathAll);
+            this.startActivity(intent);
+        }
+
     }
 
     private void startCameraX(ProcessCameraProvider cameraProvider) {
@@ -216,22 +237,21 @@ public class CameraActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     private void getCaptureImage(){
-//        imageCapture.takePicture(this.getMainExecutor(), new ImageCapture.OnImageCapturedCallback() {
-//
-//            @Override
-//            public void onCaptureSuccess (ImageProxy imageProxy) {
-//                // Use the image, then make sure to close it before returning from the method
-//                bitmap= imageProxyToBitmap(imageProxy);
-//                classifyImage();
-//                imageProxy.close();
-//
-//            }
-//
-//            @Override
-//            public void onError (ImageCaptureException exception) {
-//                // Handle the exception however you'd like
-//            }
-//        });
+        imageCapture.takePicture(this.getMainExecutor(), new ImageCapture.OnImageCapturedCallback() {
+
+            @Override
+            public void onCaptureSuccess (ImageProxy imageProxy) {
+                // Use the image, then make sure to close it before returning from the method
+                bitmap= imageProxyToBitmap(imageProxy);
+                imageProxy.close();
+
+            }
+
+            @Override
+            public void onError (ImageCaptureException exception) {
+                // Handle the exception however you'd like
+            }
+        });
 
         File photoDir = new File(FILE_PATH);
         if(!photoDir.exists()){
@@ -240,6 +260,7 @@ public class CameraActivity extends AppCompatActivity {
         Date date = new Date();
         String timestamp=  String.valueOf(date.getTime());
         String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+        filePathAll = photoFilePath;
         File photoFile = new File(photoFilePath);
 
 
@@ -251,7 +272,7 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
-//                        classifyImage();
+                        classifyImage();
                     }
 
                     @Override
@@ -317,6 +338,7 @@ public class CameraActivity extends AppCompatActivity {
         float maxValueInMap =(Collections.max(labeledProbability.values()));
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
+
             if (entry.getValue()==maxValueInMap) {
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -324,6 +346,7 @@ public class CameraActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ResultSuccessActivity.class);
 //                intent.putExtra("imgBitmap",byteArray);
                 intent.putExtra("animalName",entry.getKey());
+                intent.putExtra("filePathImg",filePathAll);
                 this.startActivity(intent);
                 break;
             }

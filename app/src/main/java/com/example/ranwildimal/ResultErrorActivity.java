@@ -4,23 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+
+import java.io.File;
 
 public class ResultErrorActivity extends AppCompatActivity {
 
     Toolbar errorResultActivity_toolbar;
+    ImageView currentImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_error);
         errorResultActivity_toolbar = findViewById(R.id.result_error_toolbar);
+        currentImage = findViewById(R.id.img_result_current_error_image);
         //Customize status bar
         statusBarColor();
         //Customize toolbar
         setSupportActionBar(errorResultActivity_toolbar);
         getSupportActionBar().setTitle(null);
+        String filePath = getIntent().getStringExtra("filePathImg");
+        Bitmap bmImg = BitmapFactory.decodeFile(filePath);
+        currentImage.setImageBitmap(bmImg);
+        File dir = new File(filePath);
+        dir.delete();
     }
 
     private void statusBarColor(){
