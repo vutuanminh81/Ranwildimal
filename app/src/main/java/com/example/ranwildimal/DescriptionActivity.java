@@ -30,9 +30,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import java.io.File;
@@ -60,6 +64,10 @@ public class DescriptionActivity extends AppCompatActivity {
     YouTubePlayerView youTubePlayerView;
     String videoLink;
 
+    String filename = "";
+    String filepath = "";
+    String fileContent = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +83,7 @@ public class DescriptionActivity extends AppCompatActivity {
         if (extras != null) {
             getId = String.valueOf(extras.getInt("GETID"));
         }
-        loadID();
+//        loadID();
         saveID();
 
         playbutton = findViewById(R.id.btn_des_sound);
@@ -84,6 +92,9 @@ public class DescriptionActivity extends AppCompatActivity {
         exampleListView = findViewById(R.id.description_exxemple_list);
         animalImage = findViewById(R.id.img_description_animal);
         youTubePlayerView = findViewById(R.id.ex_ExampleVideo);
+
+        filename = "myFile.txt";
+        filepath = "MyFileDir";
 
         getLifecycle().addObserver(youTubePlayerView);
 
@@ -184,40 +195,72 @@ public class DescriptionActivity extends AppCompatActivity {
     public void saveID(){
         String path = FILE_PATH + ID_FILE;
         System.out.println("////////////////////////"+FILE_PATH);
-        try {
-            File file = new File(path);
-            if(!file.exists()){
-                file.createNewFile();
+//        try {
+//            File file = new File(path);
+//            if(!file.exists()){
+//                file.createNewFile();
+//            }
+//            FileOutputStream fos = new FileOutputStream(file, false);
+//            if(data.compareTo("") == 0){
+//                data = getId;
+//            }else{
+//                checkDuplicate();
+//            }
+//            byte buff[] = data.getBytes();
+//            fos.write(buff,0 ,buff.length);
+//            fos.close();
+            File myExternalFile = new File(getExternalFilesDir(filepath), filename);
+            // Create an object of FileOutputStream for writing data to myFile.txt
+            FileOutputStream fos = null;
+            try {
+                // Instantiate the FileOutputStream object and pass myExternalFile in constructor
+                fos = new FileOutputStream(myExternalFile);
+                // Write to the file
+                fos.write(data.getBytes());
+                // Close the stream
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            FileOutputStream fos = new FileOutputStream(file, false);
-            if(data.compareTo("") == 0){
-                data = getId;
-            }else{
-                checkDuplicate();
-            }
-            byte buff[] = data.getBytes();
-            fos.write(buff,0 ,buff.length);
-            fos.close();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void loadID(){
-        String path = FILE_PATH + ID_FILE;
+//        String path = FILE_PATH + ID_FILE;
+//        try {
+//            File file = new File(path);
+//            if(!file.exists()){
+//                return;
+//            }
+//            FileInputStream fis = new FileInputStream(path);
+//            int lengh;
+//            byte buff[] = new byte[1024];
+//            while((lengh = fis.read(buff)) > 0){
+//                data+= new String(buff,0,lengh);
+//            }
+//            fis.close();
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        FileReader fr = null;
+        File myExternalFile = new File(getExternalFilesDir(filepath), filename);
+        StringBuilder stringBuilder = new StringBuilder();
         try {
-            File file = new File(path);
-            if(!file.exists()){
-                return;
+            fr = new FileReader(myExternalFile);
+            BufferedReader br = new BufferedReader(fr);
+            String line = br.readLine();
+            while(line != null){
+                stringBuilder.append(line).append('\n');
+                // Again read the next line and store in variable line
+                line = br.readLine();
             }
-            FileInputStream fis = new FileInputStream(path);
-            int lengh;
-            byte buff[] = new byte[1024];
-            while((lengh = fis.read(buff)) > 0){
-                data+= new String(buff,0,lengh);
-            }
-            fis.close();
-        }catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

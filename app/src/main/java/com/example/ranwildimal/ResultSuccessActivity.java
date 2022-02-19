@@ -18,6 +18,10 @@ import android.widget.TextView;
 import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
 
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -45,9 +49,15 @@ public class ResultSuccessActivity extends AppCompatActivity {
         String animal = getIntent().getStringExtra("animalName");
         String filePath = getIntent().getStringExtra("filePathImg");
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
+
+        Mat mat = new Mat();
+        Utils.bitmapToMat(bmImg,mat);
+        Imgproc.equalizeHist(mat,mat);
+        Utils.matToBitmap(mat,bmImg);
+
         currentImage.setImageBitmap(bmImg);
-        File dir = new File(filePath);
-        dir.delete();
+//        File dir = new File(filePath);
+//        dir.delete();
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

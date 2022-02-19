@@ -30,6 +30,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -63,6 +64,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
@@ -86,6 +88,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageCapture imageCapture;
     private Button btnGallery, btnCamera;
 
+    //public final String FILE_PATH = this.getExternalCacheDir().getPath()+"/data/com.example.ranwildimal";
     public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal";
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
@@ -110,7 +113,22 @@ public class CameraActivity extends AppCompatActivity {
                         imageuri = result.getData().getData();
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
-                            filePathAll = imageuri.toString();
+                            File photoDir = new File(FILE_PATH);
+                            if(!photoDir.exists()){
+                                photoDir.mkdir();
+                            }
+                            Date date = new Date();
+                            String timestamp=  String.valueOf(date.getTime());
+                            String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+                            filePathAll = photoFilePath;
+                            File photoFile = new File(photoFilePath);
+                            try (FileOutputStream out = new FileOutputStream(photoFile)) {
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out); // bmp is your Bitmap instance
+                                // PNG is a lossless format, the compression factor (100) is ignored
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+//                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
                             classifyImage();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -210,6 +228,16 @@ public class CameraActivity extends AppCompatActivity {
             this.startActivity(intent);
         }
 
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        @SuppressWarnings("deprecation")
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     private void startCameraX(ProcessCameraProvider cameraProvider) {

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,6 +20,7 @@ import android.view.View;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
+import org.opencv.android.OpenCVLoader;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
@@ -26,6 +28,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     Context context;
     Resources res ;
+
+    static{
+        if(OpenCVLoader.initDebug()){
+            System.out.println("............................. Success");
+        }else{
+            System.out.println("............................. Ngu");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
+
+        System.out.println("DAta can write??--->"+ Environment.getDataDirectory().canWrite());
+        System.out.println("DAta can read??--->"+Environment.getDataDirectory().canRead());
 
         //Customize toolbar
         setSupportActionBar(toolbar);
