@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_menu_color"
     tools:context=".SettingActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/setting_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/main_color"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,22 +32,137 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_search_back"
+            android:id="@+id/btn_setting_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/back"
+            android:background="@color/main_color"
             android:gravity="start"
             android:onClick="HomeIntent"
-            android:background="@color/main_color"/>
+            app:srcCompat="@drawable/back" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
+        android:layout_height="55dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="@string/ranwildimal_language"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spin_language"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view32" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_15"
+        android:gravity="center"
+        android:text="@string/ranwildimal_guideline"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/textsize_24"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_howtouse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spin_language" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_15"
+        android:gravity="center"
+        android:text="@string/ranwildimal_version"
+        android:textColor="#4E8A3E"
+        android:textSize="@dimen/textsize_24"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_version"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_howtouse" />
+
+    <Button
+        android:id="@+id/btn_version"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_marginTop="15dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/latest_version"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        app:backgroundTint="@color/main_menu_color"
+        app:cornerRadius="10dp"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:strokeColor="@color/main_color"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/btn_howtouse"
+        android:layout_width="@dimen/dimen_200"
+        android:layout_height="65dp"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_15"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/how_to_use"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        app:backgroundTint="@color/main_menu_color"
+        app:cornerRadius="10dp"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:strokeColor="@color/main_color"
+        app:strokeWidth="2dp"
+        tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+    <Spinner
+        android:id="@+id/spin_language"
+        android:background="@drawable/language_box"
+        android:layout_width="@dimen/dimen_200"
+        android:layout_height="65dp"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_15"
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <View
+        android:id="@+id/view32"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_toolbar" />
+
+    <View
+        android:id="@+id/view33"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_version" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

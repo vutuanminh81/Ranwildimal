@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     <View
         android:id="@+id/view"
@@ -50,7 +51,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_search_back"
+            android:id="@+id/btn_des_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/back"

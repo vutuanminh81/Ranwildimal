@@ -2,58 +2,111 @@ package com.example.ranwildimal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.ImageButton;
 
+import com.example.ranwildimal.adapter.WordDescriptionAdapter;
 import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
-import com.squareup.picasso.Picasso;
+import com.example.ranwildimal.model.Example;
 
-import java.io.File;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DescriptionActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+public class DescriptionActivity extends AppCompatActivity {
+    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal/";
+    public static final String ID_FILE = "idfile.txt";
+    private String data = "";
+    String getId="";
     Toolbar description_toolbar;
+    String wordID;
+    Word selectWord,jpWord;
+    TextView jpTxtWord,selectedTxtWord;
+    ArrayList<Example> listSelectExample,listJpExample;
     AssetManager assetMan;
     Word word;
-    int wordID;
     ImageButton playbutton;
-    @SuppressLint("ResourceType")
+    WordDescriptionAdapter exampleAdapter;
+    RecyclerView exampleListView;
+    ImageView animalImage;
+    YouTubePlayerView youTubePlayerView;
+    String videoLink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
         description_toolbar = findViewById(R.id.description_toolbar);
+        assetMan = this.getAssets();
         //Customize status bar
         statusBarColor();
         //Customize toolbar
         setSupportActionBar(description_toolbar);
         getSupportActionBar().setTitle(null);
-        ImageView img ;
-        img = findViewById(R.id.img_description_animal);
-        playbutton = findViewById(R.id.btn_search_back2);
-        assetMan = this.getAssets();
-        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-        dbAccess.openConn();
-        wordID = getIntent().getIntExtra("GETID",0);
-        word = dbAccess.get1Word(wordID);
-        int des_id = word.getWord_Des_Id();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            getId = String.valueOf(extras.getInt("GETID"));
+        }
+        loadID();
+        saveID();
+
+        playbutton = findViewById(R.id.btn_des_sound);
+        jpTxtWord = findViewById(R.id.text_description_japanese_word);
+        selectedTxtWord = findViewById(R.id.txt_animal_description_word);
+        exampleListView = findViewById(R.id.description_exxemple_list);
+        animalImage = findViewById(R.id.img_description_animal);
+        youTubePlayerView = findViewById(R.id.ex_ExampleVideo);
+
+        getLifecycle().addObserver(youTubePlayerView);
+
+        wordID = String.valueOf(getIntent().getIntExtra("GETID",0));
+        loadData();
+
+        jpTxtWord.setText(jpWord.getWord());
+        selectedTxtWord.setText(selectWord.getWord());
+
+        exampleAdapter = new WordDescriptionAdapter(listSelectExample,listJpExample,this);
+        LinearLayoutManager manager = new LinearLayoutManager(DescriptionActivity.this); //Linear Layout Manager use to handling layout for each Lecturer
+        exampleListView.setAdapter(exampleAdapter);
+        exampleListView.setLayoutManager(manager);
+
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId = "1HygThMLzGs";
+                youTubePlayer.cueVideo(videoId, 0);
+            }
+        });
+
+        int des_id = selectWord.getWord_Des_Id();
         String img_id = des_id + ".jpg";
         Bitmap bitmap = null;
         try {
@@ -62,7 +115,19 @@ public class DescriptionActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        img.setImageBitmap(bitmap);
+        animalImage.setImageBitmap(bitmap);
+
+    }
+
+
+
+    private void loadData(){
+        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+        dbAccess.openConn();
+        selectWord = dbAccess.getOneWordById(wordID);
+        jpWord = dbAccess.getOneWordByLanguage(String.valueOf(selectWord.getWord_Des_Id()),"3");
+        listJpExample = dbAccess.getExampleListByWord(String.valueOf(jpWord.getWord_ID()));
+        listSelectExample = dbAccess.getExampleListByWord(String.valueOf(selectWord.getWord_ID()));
         dbAccess.closeConn();
     }
 
@@ -77,9 +142,7 @@ public class DescriptionActivity extends AppCompatActivity {
     public void playSound(View view){
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
-        wordID = getIntent().getIntExtra("GETID",0);
-        word = dbAccess.get1Word(wordID);
-        int des_id = word.getWord_Des_Id();
+        int des_id = selectWord.getWord_Des_Id();
         String sound_id = +des_id+"_Pronounce.mp3";
         try {
             AssetFileDescriptor is = assetMan.openFd("pronounce/"+sound_id);
@@ -91,7 +154,15 @@ public class DescriptionActivity extends AppCompatActivity {
                     if(media.isPlaying()){
                         media.pause();
                     }else{
+                        long duration = media.getDuration();
                         media.start();
+                        playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_activate));
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_mute));
+                            }
+                        },duration);
                     }
                 }
             });
@@ -107,5 +178,62 @@ public class DescriptionActivity extends AppCompatActivity {
     public void HomeIntent(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+        this.finish();
+    }
+
+    public void saveID(){
+        String path = FILE_PATH + ID_FILE;
+        try {
+            File file = new File(path);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(file, false);
+            if(data.compareTo("") == 0){
+                data = getId;
+            }else{
+                checkDuplicate();
+            }
+            byte buff[] = data.getBytes();
+            fos.write(buff,0 ,buff.length);
+            fos.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadID(){
+        String path = FILE_PATH + ID_FILE;
+        try {
+            File file = new File(path);
+            if(!file.exists()){
+                return;
+            }
+            FileInputStream fis = new FileInputStream(path);
+            int lengh;
+            byte buff[] = new byte[1024];
+            while((lengh = fis.read(buff)) > 0){
+                data+= new String(buff,0,lengh);
+            }
+            fis.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void checkDuplicate(){
+        String getdata[] = data.split(",");
+        if(getdata.length>1){
+            data="";
+            for (int i = 0;i < getdata.length;i++) {
+                if(getId.compareTo(getdata[i])!= 0){
+                    data+=getdata[i]+",";
+                }
+            }
+        }else{
+            data+=",";
+        }
+        data+=getId;
+
     }
 }

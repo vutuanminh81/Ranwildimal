@@ -22,13 +22,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/setting_title"
+            android:text="@string/about_title"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_36"
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_search_back"
+            android:id="@+id/btn_des_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/back"

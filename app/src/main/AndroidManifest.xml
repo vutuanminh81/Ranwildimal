@@ -19,7 +19,9 @@
         </activity>
         <activity android:name=".DescriptionExempleListActivity" />
         <activity android:name=".DescriptionActivity" />
-        <activity android:name=".SearchHistoryListActivity" />
+        <activity android:name=".GuilineActivity"></activity>
+        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".SearchHistoryListActivity"></activity>
         <activity android:name=".Encounter_List_Activity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".SearchActivity" />

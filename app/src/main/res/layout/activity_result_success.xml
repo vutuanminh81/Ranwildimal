@@ -28,7 +28,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btn_search_back"
+            android:id="@+id/btn_des_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_color"
@@ -60,7 +60,7 @@
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@color/black"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +89,7 @@
             android:adjustViewBounds="true"
             android:background="@drawable/animal_image2"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@color/black"/>
     </androidx.cardview.widget.CardView>
 
 
@@ -188,7 +188,7 @@
     <TextView
         android:id="@+id/textView11"
         android:layout_width="285dp"
-        android:layout_height="165dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/post_message"
