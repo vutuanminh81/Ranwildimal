@@ -268,21 +268,11 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void grantPermissionCamera() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(CameraActivity.this, Manifest.permission.CAMERA)) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Camera Permission Grant")
-                    .setMessage("You need permission to use the camera for this feature")
-                    .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
-                        }
-                    }).setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).create().show();
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
         }
@@ -293,9 +283,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_CODE) {
             if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show();
-
             } else {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
             }
@@ -319,8 +307,14 @@ public class CameraActivity extends AppCompatActivity {
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
     }
 
-    private void showresult() {
 
+    public void HomeIntent(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+
+    private void showresult() {
         try {
             labels = FileUtil.loadLabels(this, "newdict.txt");
         } catch (Exception e) {
