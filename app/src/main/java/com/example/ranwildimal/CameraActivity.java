@@ -130,9 +130,7 @@ public class CameraActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             grantPermissionCamera();
         }
-        if(ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            grantPermissionStorage();
-        }
+
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
 
@@ -158,10 +156,12 @@ public class CameraActivity extends AppCompatActivity {
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startForResult.launch(intent);
+
             }
         });
 
@@ -269,26 +269,16 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void grantPermissionCamera() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return;
         }
         if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
+            Toast.makeText(CameraActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
         }
     }
 
-    private void grantPermissionStorage() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            return;
-        }
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -303,16 +293,7 @@ public class CameraActivity extends AppCompatActivity {
                 this.finish();
             }
         }
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                this.startActivity(intent);
-                this.finish();
-            }
-        }
+
     }
 
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
