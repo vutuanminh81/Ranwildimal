@@ -129,8 +129,9 @@ public class CameraActivity extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             grantPermissionCamera();
-        } else {
-
+        }
+        if(ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            grantPermissionStorage();
         }
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
@@ -278,14 +279,38 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void grantPermissionStorage() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_CODE) {
             if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
+                this.finish();
+            }
+        }
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
+                this.finish();
             }
         }
     }
