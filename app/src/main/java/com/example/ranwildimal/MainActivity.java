@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
 
-        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            grantPermissionStorage();
-        }
         //Customize toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
@@ -99,30 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
-    }
-
-    private void grantPermissionStorage() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            return;
-        }
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            Toast.makeText(MainActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
-        } else {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1) {
-            if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show();
-            }
-        }
-
     }
 
     private void statusBarColor(){

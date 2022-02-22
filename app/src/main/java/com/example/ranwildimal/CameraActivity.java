@@ -77,9 +77,11 @@ import java.util.concurrent.ExecutionException;
 
 public class CameraActivity extends AppCompatActivity {
 
-    private int STORAGE_PERMISSION_CODE = 1;
+
     private int CAMERA_PERMISSION_CODE = 1;
+    private int STORAGE_PERMISSION_CODE = 1;
     public static final int CAMERA_ACTION_CODE = 1;
+    boolean checkGalleryButton = false;
 
 
     PreviewView cameraView;
@@ -154,14 +156,18 @@ public class CameraActivity extends AppCompatActivity {
         });
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startForResult.launch(intent);
-
+                checkGalleryButton = true;
+                if(ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    grantPermissionStorage();
+                }else{
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startForResult.launch(intent);
+                }
             }
         });
 
@@ -279,18 +285,43 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void grantPermissionStorage() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                this.startActivity(intent);
-                this.finish();
+        if(checkGalleryButton){
+            if (requestCode == STORAGE_PERMISSION_CODE) {
+                if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startForResult.launch(intent);
+                } else {
+                    Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_LONG).show();
+                }
+            }
+        }else{
+            if (requestCode == CAMERA_PERMISSION_CODE) {
+                if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_LONG).show();
+                } else if(grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_DENIED){
+                    Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    this.startActivity(intent);
+                    this.finish();
+                }
+
             }
         }
 
