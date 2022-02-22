@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Ranwildimal</string>
     <string name="home_title">TRANG CHỦ</string>
-    <string name="encounter_title">LỊCH SỬ</string>
     <string name="about_title">NHÀ PHÁT TRIỂN</string>
     <string name="setting_title">CÀI ĐẶT</string>
     <string name="sidebar_open">MỞ MENU CHÍNH</string>
