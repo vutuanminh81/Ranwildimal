@@ -50,14 +50,15 @@ public class ResultSuccessActivity extends AppCompatActivity {
         String filePath = getIntent().getStringExtra("filePathImg");
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
 
-        Mat mat = new Mat();
-        Utils.bitmapToMat(bmImg,mat);
-        Imgproc.equalizeHist(mat,mat);
-        Utils.matToBitmap(mat,bmImg);
+//        Mat mat = new Mat();
+//        Mat mat2 = new Mat();
+//        Utils.bitmapToMat(bmImg,mat);
+//        Imgproc.equalizeHist(mat,mat2);
+//        Utils.matToBitmap(mat,bmImg);
 
         currentImage.setImageBitmap(bmImg);
-//        File dir = new File(filePath);
-//        dir.delete();
+        File dir = new File(filePath);
+        dir.delete();
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

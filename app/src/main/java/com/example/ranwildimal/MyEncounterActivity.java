@@ -26,7 +26,9 @@ import java.util.ArrayList;
 
 public class MyEncounterActivity extends AppCompatActivity {
 
-    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal/";
+    String filename = "idfile.txt";
+    String filepath = "MyFileDir";
+    //public String FILE_PATH = getExternalFilesDir(filepath).getPath() + filename;
     public static final String ID_FILE = "idfile.txt";
     private String data = "";
     Toolbar encounter_toolbar;
@@ -146,9 +148,9 @@ public class MyEncounterActivity extends AppCompatActivity {
     }
 
     public void loadID(){
-        String path = FILE_PATH + ID_FILE;
+        String path = getExternalFilesDir(filepath).getPath()+"/"+filename;
         try {
-            File file = new File(path);
+            File file = new File(getExternalFilesDir(filepath), filename);
             if(!file.exists()){
                 return;
             }

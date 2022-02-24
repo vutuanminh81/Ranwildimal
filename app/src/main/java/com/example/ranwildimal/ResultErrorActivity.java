@@ -32,8 +32,8 @@ public class ResultErrorActivity extends AppCompatActivity {
         String filePath = getIntent().getStringExtra("filePathImg");
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         currentImage.setImageBitmap(bmImg);
-//        File dir = new File(filePath);
-//        dir.delete();
+        File dir = new File(filePath);
+        dir.delete();
     }
 
     private void statusBarColor(){

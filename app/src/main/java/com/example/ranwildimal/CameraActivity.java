@@ -89,7 +89,8 @@ public class CameraActivity extends AppCompatActivity {
     private Button btnGallery, btnCamera;
 
     //public final String FILE_PATH = this.getExternalCacheDir().getPath()+"/data/com.example.ranwildimal";
-    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal";
+    public String FILE_PATH = "";
+    String filepath = "MyFileDir";
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -145,6 +146,8 @@ public class CameraActivity extends AppCompatActivity {
         cameraView = findViewById(R.id.cameraView);
         btnGallery = findViewById(R.id.btn_Gallery);
         btnCamera = findViewById(R.id.btn_Camera);
+
+        FILE_PATH = getExternalFilesDir(filepath).getPath();
 
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
@@ -305,6 +308,7 @@ public class CameraActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(@NonNull ImageCaptureException exception) {
+                        System.out.println("//////Error: "+exception.getMessage());
                         Toast.makeText(CameraActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
