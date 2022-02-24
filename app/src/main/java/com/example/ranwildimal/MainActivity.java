@@ -151,9 +151,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(!file.exists()){
                 file.createNewFile();
                 setLocale("en");
+                FileOutputStream fos = new FileOutputStream(file, false);
+                Locale current = getResources().getConfiguration().locale;
+                data += "en";
+                byte buff[] = data.getBytes();
+                fos.write(buff,0 ,buff.length);
+                fos.close();
             }
             if(file.length() == 0){
                 setLocale("en");
+                FileOutputStream fos = new FileOutputStream(file, false);
+                Locale current = getResources().getConfiguration().locale;
+                data += current.toString();
+                byte buff[] = data.getBytes();
+                fos.write(buff,0 ,buff.length);
+                fos.close();
             }
             FileInputStream fis = new FileInputStream(path);
             int lengh;
