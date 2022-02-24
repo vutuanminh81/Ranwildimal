@@ -36,7 +36,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal/";
+    public String FILE_PATH = "";
     public static final String ID_FILE = "locale.txt";
     private String data = "";
     DrawerLayout drawer;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     Context context;
     Resources res ;
+    String filepath = "MyFileDir";
 
     static{
         if(OpenCVLoader.initDebug()){
@@ -57,12 +58,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FILE_PATH=getExternalFilesDir(filepath).getPath();
         loadID();
         //Customize status bar
         statusBarColor();
         drawer = findViewById(R.id.drawer_layout);
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
+
+
 
         System.out.println("DAta can write??--->"+ Environment.getDataDirectory().canWrite());
         System.out.println("DAta can read??--->"+Environment.getDataDirectory().canRead());
@@ -141,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void loadID(){
-        String path = FILE_PATH + ID_FILE;
+        String path = FILE_PATH +"/"+ ID_FILE;
         try {
             File file = new File(path);
             if(!file.exists()){
@@ -156,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             byte buff[] = new byte[1024];
             Locale current = getResources().getConfiguration().locale;
             while((lengh = fis.read(buff)) > 0){
-                data+= new String(buff,0,lengh);
+                data = new String(buff,0,lengh);
             }
             if(data.compareTo("en") == 0){
                 setLocale("en");

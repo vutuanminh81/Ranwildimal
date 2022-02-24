@@ -30,7 +30,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity {
-    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal/";
+    public String FILE_PATH = "";
+    String filepath = "MyFileDir";
     public static final String ID_FILE = "locale.txt";
     private String data = "";
     Toolbar setting_toolbar;
@@ -44,6 +45,8 @@ public class SettingActivity extends AppCompatActivity {
         //Customize status bar
         statusBarColor();
         //Customize toolbar
+        FILE_PATH=getExternalFilesDir(filepath).getPath();
+
         setSupportActionBar(setting_toolbar);
         getSupportActionBar().setTitle(null);
         Spinner spinner = (Spinner) findViewById(R.id.spin_language);
@@ -113,7 +116,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
     public void saveID(){
-        String path = FILE_PATH + ID_FILE;
+        String path = FILE_PATH +"/"+ ID_FILE;
         try {
             File file = new File(path);
             if(!file.exists()){
