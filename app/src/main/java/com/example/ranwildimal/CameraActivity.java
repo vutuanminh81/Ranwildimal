@@ -22,13 +22,18 @@ import androidx.camera.core.Preview;
 
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -79,10 +84,14 @@ import java.util.concurrent.ExecutionException;
 
 public class CameraActivity extends AppCompatActivity {
 
+
+    private int CAMERA_PERMISSION_CODE = 1;
+    private int STORAGE_PERMISSION_CODE = 1;
     public static final int CAMERA_ACTION_CODE = 1;
+    boolean checkGalleryButton = false;
 
 
-    PreviewView cameraView ;
+    PreviewView cameraView;
 
     private ListenableFuture<ProcessCameraProvider> cameraProvider;
     private ImageCapture imageCapture;
@@ -94,8 +103,8 @@ public class CameraActivity extends AppCompatActivity {
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
-    private  int imageSizeX;
-    private  int imageSizeY;
+    private int imageSizeX;
+    private int imageSizeY;
     private TensorBuffer outputProbabilityBuffer;
     private TensorProcessor probabilityProcessor;
     private static final float IMAGE_MEAN = 0.0f;
@@ -110,7 +119,7 @@ public class CameraActivity extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if(result!=null && result.getResultCode()==RESULT_OK && result.getData()!=null) {
+                    if (result != null && result.getResultCode() == RESULT_OK && result.getData() != null) {
                         imageuri = result.getData().getData();
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
@@ -149,6 +158,9 @@ public class CameraActivity extends AppCompatActivity {
 
         FILE_PATH = getExternalFilesDir(filepath).getPath();
 
+        if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            grantPermissionCamera();
+        }
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
 
@@ -172,24 +184,30 @@ public class CameraActivity extends AppCompatActivity {
         });
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startForResult.launch(intent);
+                checkGalleryButton = true;
+                if(ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    grantPermissionStorage();
+                }else{
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startForResult.launch(intent);
+                }
             }
         });
 
-        try{
-            tflite=new Interpreter(loadmodelfile(this));
-        }catch (Exception e) {
+        try {
+            tflite = new Interpreter(loadmodelfile(this));
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void classifyImage(){
+    private void classifyImage() {
         int imageTensorIndex = 0;
         int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
         imageSizeY = imageShape[1];
@@ -211,7 +229,7 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
+        tflite.run(inputImageBuffer.getBuffer(), outputProbabilityBuffer.getBuffer().rewind());
         System.out.println("///////////////////////");
         float[] listResult = outputProbabilityBuffer.getFloatArray();
         boolean checkResult = false;
@@ -247,39 +265,38 @@ public class CameraActivity extends AppCompatActivity {
         cameraProvider.unbindAll();
 
         CameraSelector cameraSelector = new CameraSelector.Builder()
-                        .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-                        .build();
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .build();
 
         Preview preview = new Preview.Builder().build();
 
         preview.setSurfaceProvider(cameraView.getSurfaceProvider());
 
         imageCapture = new ImageCapture.Builder()
-                        .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
-                        .build();
+                .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                .build();
 
         cameraProvider.bindToLifecycle(
-                        ((LifecycleOwner) this),
-                        cameraSelector,
-                        preview,
-                        imageCapture);
+                ((LifecycleOwner) this),
+                cameraSelector,
+                preview,
+                imageCapture);
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
-    private void getCaptureImage(){
+    private void getCaptureImage() {
         imageCapture.takePicture(this.getMainExecutor(), new ImageCapture.OnImageCapturedCallback() {
 
             @Override
-            public void onCaptureSuccess (ImageProxy imageProxy) {
+            public void onCaptureSuccess(ImageProxy imageProxy) {
                 // Use the image, then make sure to close it before returning from the method
-                bitmap= imageProxyToBitmap(imageProxy);
+                bitmap = imageProxyToBitmap(imageProxy);
                 imageProxy.close();
-
             }
 
             @Override
-            public void onError (ImageCaptureException exception) {
+            public void onError(ImageCaptureException exception) {
                 // Handle the exception however you'd like
             }
         });
@@ -302,7 +319,7 @@ public class CameraActivity extends AppCompatActivity {
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
                         classifyImage();
                     }
 
@@ -319,7 +336,7 @@ public class CameraActivity extends AppCompatActivity {
         ByteBuffer buffer = image.getPlanes()[0].getBuffer();
         byte[] bytes = new byte[buffer.remaining()];
         buffer.get(bytes);
-        return BitmapFactory.decodeByteArray(bytes,0,bytes.length,null);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
     }
 
     private TensorImage loadImage(final Bitmap bitmap) throws IOException {
@@ -341,43 +358,102 @@ public class CameraActivity extends AppCompatActivity {
         return imageProcessor.process(inputImageBuffer);
     }
 
+    private void grantPermissionCamera() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(CameraActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+        }
+    }
+
+    private void grantPermissionStorage() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(CameraActivity.this,"Permission Granted",Toast.LENGTH_LONG).show();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(checkGalleryButton){
+            if (requestCode == STORAGE_PERMISSION_CODE) {
+                if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startForResult.launch(intent);
+                } else {
+                    Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_LONG).show();
+                }
+            }
+        }else{
+            if (requestCode == CAMERA_PERMISSION_CODE) {
+                if (grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_LONG).show();
+                } else if(grantResults.length >= 0 && grantResults[0] == PackageManager.PERMISSION_DENIED){
+                    Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    this.startActivity(intent);
+                    this.finish();
+                }
+
+            }
+        }
+
+    }
+
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("newBestModel_4.tflite");
-        FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
-        FileChannel fileChannel=inputStream.getChannel();
+        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd("newBestModel_4.tflite");
+        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+        FileChannel fileChannel = inputStream.getChannel();
         long startoffset = fileDescriptor.getStartOffset();
-        long declaredLength=fileDescriptor.getDeclaredLength();
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY,startoffset,declaredLength);
+        long declaredLength = fileDescriptor.getDeclaredLength();
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startoffset, declaredLength);
     }
 
     private TensorOperator getPreprocessNormalizeOp() {
         return new NormalizeOp(IMAGE_MEAN, IMAGE_STD);
     }
-    private TensorOperator getPostprocessNormalizeOp(){
+
+    private TensorOperator getPostprocessNormalizeOp() {
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
     }
 
-    private void showresult(){
 
-        try{
-            labels = FileUtil.loadLabels(this,"newdict.txt");
-        }catch (Exception e){
+    public void HomeIntent(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+
+    private void showresult() {
+        try {
+            labels = FileUtil.loadLabels(this, "newdict.txt");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Map<String, Float> labeledProbability =
                 new TensorLabel(labels, probabilityProcessor.process(outputProbabilityBuffer))
                         .getMapWithFloatValue();
-        float maxValueInMap =(Collections.max(labeledProbability.values()));
+        float maxValueInMap = (Collections.max(labeledProbability.values()));
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
-
-            if (entry.getValue()==maxValueInMap) {
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            if (entry.getValue() == maxValueInMap) {
+                //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 //                byte[] byteArray = stream.toByteArray();
                 Intent intent = new Intent(this, ResultSuccessActivity.class);
 //                intent.putExtra("imgBitmap",byteArray);
-                intent.putExtra("animalName",entry.getKey());
+                intent.putExtra("animalName", entry.getKey());
                 intent.putExtra("filePathImg",filePathAll);
                 this.startActivity(intent);
                 break;
