@@ -132,4 +132,16 @@ public class DatabaseAccess {
         }
         return list;
     }
+
+
+    public int searchAnimalbyname(String search){
+        int id = 0;
+        c = db.rawQuery("select * from Word where UPPER(Word) like UPPER('%"+search+"%')and Language_Id = 2", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        ArrayList<Word> list = new ArrayList<>();
+        while(c.moveToNext()){
+            id = c.getInt(0);
+        }
+        return id;
+    }
 }

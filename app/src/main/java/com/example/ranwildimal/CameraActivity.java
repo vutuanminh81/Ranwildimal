@@ -29,16 +29,19 @@ import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -64,12 +67,16 @@ import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -90,6 +97,9 @@ public class CameraActivity extends AppCompatActivity {
     private ImageCapture imageCapture;
     private Button btnGallery, btnCamera;
 
+    //public final String FILE_PATH = this.getExternalCacheDir().getPath()+"/data/com.example.ranwildimal";
+    public String FILE_PATH = "";
+    String filepath = "MyFileDir";
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -102,6 +112,7 @@ public class CameraActivity extends AppCompatActivity {
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
     private Bitmap bitmap;
+    String filePathAll;
     private List<String> labels;
     Uri imageuri;
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -112,6 +123,22 @@ public class CameraActivity extends AppCompatActivity {
                         imageuri = result.getData().getData();
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
+                            File photoDir = new File(FILE_PATH);
+                            if(!photoDir.exists()){
+                                photoDir.mkdir();
+                            }
+                            Date date = new Date();
+                            String timestamp=  String.valueOf(date.getTime());
+                            String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+                            filePathAll = photoFilePath;
+                            File photoFile = new File(photoFilePath);
+                            try (FileOutputStream out = new FileOutputStream(photoFile)) {
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out); // bmp is your Bitmap instance
+                                // PNG is a lossless format, the compression factor (100) is ignored
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+//                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
                             classifyImage();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -129,10 +156,11 @@ public class CameraActivity extends AppCompatActivity {
         btnGallery = findViewById(R.id.btn_Gallery);
         btnCamera = findViewById(R.id.btn_Camera);
 
+        FILE_PATH = getExternalFilesDir(filepath).getPath();
+
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             grantPermissionCamera();
         }
-
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
 
@@ -202,7 +230,35 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         tflite.run(inputImageBuffer.getBuffer(), outputProbabilityBuffer.getBuffer().rewind());
-        showresult();
+        System.out.println("///////////////////////");
+        float[] listResult = outputProbabilityBuffer.getFloatArray();
+        boolean checkResult = false;
+        int i=1;
+        for(Float f : listResult){
+            if(f>=0.7){
+                checkResult = true;
+
+            }
+            System.out.println(i++ + "//////////////////"+f);
+        }
+        if(checkResult){
+            showresult();
+        }else{
+            Intent intent = new Intent(this, ResultErrorActivity.class);
+            intent.putExtra("filePathImg",filePathAll);
+            this.startActivity(intent);
+        }
+
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        @SuppressWarnings("deprecation")
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     private void startCameraX(ProcessCameraProvider cameraProvider) {
@@ -236,9 +292,7 @@ public class CameraActivity extends AppCompatActivity {
             public void onCaptureSuccess(ImageProxy imageProxy) {
                 // Use the image, then make sure to close it before returning from the method
                 bitmap = imageProxyToBitmap(imageProxy);
-                classifyImage();
                 imageProxy.close();
-
             }
 
             @Override
@@ -246,6 +300,36 @@ public class CameraActivity extends AppCompatActivity {
                 // Handle the exception however you'd like
             }
         });
+
+        File photoDir = new File(FILE_PATH);
+        if(!photoDir.exists()){
+            photoDir.mkdir();
+        }
+        Date date = new Date();
+        String timestamp=  String.valueOf(date.getTime());
+        String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+        filePathAll = photoFilePath;
+        File photoFile = new File(photoFilePath);
+
+
+
+        imageCapture.takePicture(
+                new ImageCapture.OutputFileOptions.Builder(photoFile).build(),
+                getMainExecutor(),
+                new ImageCapture.OnImageSavedCallback() {
+                    @Override
+                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                        //Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        classifyImage();
+                    }
+
+                    @Override
+                    public void onError(@NonNull ImageCaptureException exception) {
+                        System.out.println("//////Error: "+exception.getMessage());
+                        Toast.makeText(CameraActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private Bitmap imageProxyToBitmap(ImageProxy image) {
@@ -364,12 +448,13 @@ public class CameraActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue() == maxValueInMap) {
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 //                byte[] byteArray = stream.toByteArray();
                 Intent intent = new Intent(this, ResultSuccessActivity.class);
 //                intent.putExtra("imgBitmap",byteArray);
                 intent.putExtra("animalName", entry.getKey());
+                intent.putExtra("filePathImg",filePathAll);
                 this.startActivity(intent);
                 break;
             }

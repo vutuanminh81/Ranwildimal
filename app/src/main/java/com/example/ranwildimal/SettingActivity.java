@@ -13,6 +13,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,16 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity {
-
+    public String FILE_PATH = "";
+    String filepath = "MyFileDir";
+    public static final String ID_FILE = "locale.txt";
+    private String data = "";
     Toolbar setting_toolbar;
     Context context;
 
@@ -38,6 +45,8 @@ public class SettingActivity extends AppCompatActivity {
         //Customize status bar
         statusBarColor();
         //Customize toolbar
+        FILE_PATH=getExternalFilesDir(filepath).getPath();
+
         setSupportActionBar(setting_toolbar);
         getSupportActionBar().setTitle(null);
         Spinner spinner = (Spinner) findViewById(R.id.spin_language);
@@ -73,6 +82,7 @@ public class SettingActivity extends AppCompatActivity {
                 if(spinner.getSelectedItemPosition() == 0){
                     if(!locale.toString().equals("vi")){
                         setLocale("vi");
+                        saveID();
                         recreate();
                     }else{
                         return;
@@ -80,6 +90,7 @@ public class SettingActivity extends AppCompatActivity {
                 }else if(spinner.getSelectedItemPosition() == 1){
                     if(!locale.toString().equals("en")){
                         setLocale("en");
+                        saveID();
                         recreate();
                     }else{
                         return;
@@ -87,6 +98,7 @@ public class SettingActivity extends AppCompatActivity {
                 }else if(spinner.getSelectedItemPosition() == 2){
                     if(!locale.toString().equals("ja")){
                         setLocale("ja");
+                        saveID();
                         recreate();
                     }else{
                         return;
@@ -100,6 +112,25 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void saveID(){
+        String path = FILE_PATH +"/"+ ID_FILE;
+        try {
+            File file = new File(path);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(file, false);
+            Locale current = getResources().getConfiguration().locale;
+            data += current.toString();
+            byte buff[] = data.getBytes();
+            fos.write(buff,0 ,buff.length);
+            fos.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

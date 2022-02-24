@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ranwildimal</string>
-    <string name="home_title">TRANG CHÍNH</string>
-    <string name="about_title">VỀ CHÚNG TÔI</string>
+    <string name="home_title">TRANG CHỦ</string>
+    <string name="about_title">NHÀ PHÁT TRIỂN</string>
     <string name="setting_title">CÀI ĐẶT</string>
-    <string name="home_page_1">Chào mừng đến với</string>
-    <string name="home_page_2">Nơi bạn có thể gọi con vật bằng</string>
-    <string name="home_page_3">Tiếng Nhật và tiếng Việt</string>
+    <string name="sidebar_open">MỞ MENU CHÍNH</string>
+    <string name="sidebar_close">ĐÓNG MENU CHÍNH</string>
+    <string name="home_page_1">CHÀO MỪNG BẠN</string>
+    <string name="home_page_2">LÀ NƠI BẠN CÓ THỂ GỌI ĐỘNG VẬT BẰNG</string>
+    <string name="home_page_3">TIẾNG NHẬT VÀ TIỀNG VIỆT</string>
     <string name="animal_encounter">Con vật</string>
     <string-array name="languages">
         <item>Tiếng Việt</item>
