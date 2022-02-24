@@ -12,7 +12,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,7 +29,16 @@ import com.google.android.material.navigation.NavigationView;
 import org.jetbrains.annotations.NotNull;
 import org.opencv.android.OpenCVLoader;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String FILE_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.ranwildimal/";
+    public static final String ID_FILE = "locale.txt";
+    private String data = "";
     DrawerLayout drawer;
     NavigationView sidebar;
     Toolbar toolbar;
@@ -46,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadID();
         //Customize status bar
         statusBarColor();
         drawer = findViewById(R.id.drawer_layout);
@@ -109,6 +121,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
+    }
+
+
+
+    private void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+        //save data to shared preference
+        SharedPreferences.Editor editor = getSharedPreferences("Setting",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",lang);
+        editor.apply();
+        editor.commit();
+    }
+
+
+
+    public void loadID(){
+        String path = FILE_PATH + ID_FILE;
+        try {
+            File file = new File(path);
+            if(!file.exists()){
+                file.createNewFile();
+                setLocale("en");
+            }
+            if(file.length() == 0){
+                setLocale("en");
+            }
+            FileInputStream fis = new FileInputStream(path);
+            int lengh;
+            byte buff[] = new byte[1024];
+            Locale current = getResources().getConfiguration().locale;
+            while((lengh = fis.read(buff)) > 0){
+                data+= new String(buff,0,lengh);
+            }
+            if(data.compareTo("en") == 0){
+                setLocale("en");
+            }else if(data.compareTo("vi") == 0){
+                setLocale("vi");
+            }else{
+                setLocale("ja");
+            }
+            fis.close();
+            if(data.compareTo(current.toString()) != 0){
+                recreate();
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void statusBarColor(){
