@@ -53,6 +53,10 @@ import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.opencv.android.Utils;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.common.FileUtil;
@@ -74,6 +78,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -139,6 +144,7 @@ public class CameraActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 //                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
+                            bitmap = hisEqua(bitmap);
                             classifyImage();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -320,6 +326,7 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         //Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        bitmap = hisEqua(bitmap);
                         classifyImage();
                     }
 
@@ -330,6 +337,26 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private Bitmap hisEqua(Bitmap bmImg){
+        Mat equ = new Mat();
+        Utils.bitmapToMat(bmImg,equ);
+
+        // Applying color
+        Imgproc.cvtColor(equ, equ, Imgproc.COLOR_BGR2YCrCb);
+        List<Mat> channels = new ArrayList<Mat>();
+
+        // Splitting the channels
+        Core.split(equ, channels);
+
+        // Equalizing the histogram of the image
+        Imgproc.equalizeHist(channels.get(0), channels.get(0));
+        Core.merge(channels, equ);
+        Imgproc.cvtColor(equ, equ, Imgproc.COLOR_YCrCb2BGR);
+
+        Utils.matToBitmap(equ,bmImg);
+        return bmImg;
     }
 
     private Bitmap imageProxyToBitmap(ImageProxy image) {

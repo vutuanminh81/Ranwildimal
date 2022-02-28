@@ -19,16 +19,18 @@ import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
 
 import org.opencv.android.Utils;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResultSuccessActivity extends AppCompatActivity {
 
     Toolbar successResultActivity_toolbar;
-    ImageView currentImage;
+    ImageView currentImage,test;
     TextView animalName;
     Button btnViewDetail;
 
@@ -40,6 +42,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
         currentImage = findViewById(R.id.img_result_current_image);
         animalName = findViewById(R.id.txt_result_success_name);
         btnViewDetail = findViewById(R.id.btn_success_view);
+        test = findViewById(R.id.img_result_app_image);
 
         //Customize status bar
         statusBarColor();
@@ -49,12 +52,25 @@ public class ResultSuccessActivity extends AppCompatActivity {
         String animal = getIntent().getStringExtra("animalName");
         String filePath = getIntent().getStringExtra("filePathImg");
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
+        Bitmap testImg = BitmapFactory.decodeFile(filePath);
+        test.setImageBitmap(testImg);
 
-//        Mat mat = new Mat();
-//        Mat mat2 = new Mat();
-//        Utils.bitmapToMat(bmImg,mat);
-//        Imgproc.equalizeHist(mat,mat2);
-//        Utils.matToBitmap(mat,bmImg);
+        Mat equ = new Mat();
+        Utils.bitmapToMat(bmImg,equ);
+
+        // Applying color
+        Imgproc.cvtColor(equ, equ, Imgproc.COLOR_BGR2YCrCb);
+        List<Mat> channels = new ArrayList<Mat>();
+
+        // Splitting the channels
+        Core.split(equ, channels);
+
+        // Equalizing the histogram of the image
+        Imgproc.equalizeHist(channels.get(0), channels.get(0));
+        Core.merge(channels, equ);
+        Imgproc.cvtColor(equ, equ, Imgproc.COLOR_YCrCb2BGR);
+
+        Utils.matToBitmap(equ,bmImg);
 
         currentImage.setImageBitmap(bmImg);
         File dir = new File(filePath);
