@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MyEncounterActivity extends AppCompatActivity {
 
@@ -128,11 +129,20 @@ public class MyEncounterActivity extends AppCompatActivity {
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
         newlist = dbAccess.getWord();
+        Locale currentLang = getResources().getConfiguration().locale;
+        int langId = 0 ;
+        if(currentLang.toString().equals("vi")){
+            langId = 1;
+        }else if(currentLang.toString().equals("en")){
+            langId = 2;
+        }else if(currentLang.toString().equals("ja")){
+            langId = 3;
+        }
         if(getId[0] != ""){
             for (int i = getId.length-1; i >= 0 ; i--){
                 int desId =0;
                 for (Word w: newlist) {
-                    if(Integer.parseInt(getId[i]) == w.getWord_ID()){
+                    if(Integer.parseInt(getId[i]) == w.getWord_Des_Id() && w.getLanguage_Id() == langId){
                         desId = w.getWord_Des_Id();
                         languagelist.add(w);
                     }

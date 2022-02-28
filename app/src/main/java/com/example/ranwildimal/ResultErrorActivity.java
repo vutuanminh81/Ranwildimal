@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class ResultErrorActivity extends AppCompatActivity {
 
     Toolbar errorResultActivity_toolbar;
     ImageView currentImage;
+    Button takePictureButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class ResultErrorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result_error);
         errorResultActivity_toolbar = findViewById(R.id.result_error_toolbar);
         currentImage = findViewById(R.id.img_result_current_error_image);
+        takePictureButton = findViewById(R.id.btn_error_take_picture);
         //Customize status bar
         statusBarColor();
         //Customize toolbar
@@ -34,6 +37,13 @@ public class ResultErrorActivity extends AppCompatActivity {
         currentImage.setImageBitmap(bmImg);
         File dir = new File(filePath);
         dir.delete();
+        takePictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ResultErrorActivity.this, CameraActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void statusBarColor(){

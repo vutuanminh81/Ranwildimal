@@ -12,6 +12,7 @@ import com.example.ranwildimal.model.Word;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -84,8 +85,16 @@ public class DatabaseAccess {
         return list;
     }
 
-    public Word getOneWordById(String wordId){
-        c = db.rawQuery("select * from Word where Word_Id = " + wordId, new String[]{});
+    public Word getOneWordById(String wordDesId, String locale){
+        int langId = 1;
+        if(locale.equals("vi")){
+            langId = 1;
+        }else if(locale.equals("en")){
+            langId = 2;
+        }else if(locale.equals("ja")){
+            langId = 3;
+        }
+        c = db.rawQuery("select * from Word where Word_Des_Id = " + wordDesId + " and Language_Id = " + langId, new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){
@@ -117,8 +126,16 @@ public class DatabaseAccess {
     }
 
 
-    public ArrayList<Word> searchWord(String search){
-        c = db.rawQuery("select * from Word where Word like '%"+search+"%' and Language_Id = 1", new String[]{});
+    public ArrayList<Word> searchWord(String search, String locale){
+        int langId = 1;
+        if(locale.equals("vi")){
+            langId = 1;
+        }else if(locale.equals("en")){
+            langId = 2;
+        }else if(locale.equals("ja")){
+            langId = 3;
+        }
+        c = db.rawQuery("select * from Word where Word like '%"+search+"%' and Language_Id = "+langId, new String[]{});
         StringBuffer buffer = new StringBuffer();
         ArrayList<Word> list = new ArrayList<>();
         while(c.moveToNext()){

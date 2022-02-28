@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -77,9 +78,10 @@ public class SearchActivity extends AppCompatActivity {
         if (s.isEmpty()) {
             recyclerView.setVisibility(View.INVISIBLE);
         } else {
+            Locale current = getResources().getConfiguration().locale;
             DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
             dbAccess.openConn();
-            newlist = dbAccess.searchWord(s);
+            newlist = dbAccess.searchWord(s, current.toString());
             if (!newlist.isEmpty()) {
                 recyclerView.setVisibility(View.VISIBLE);
             } else {

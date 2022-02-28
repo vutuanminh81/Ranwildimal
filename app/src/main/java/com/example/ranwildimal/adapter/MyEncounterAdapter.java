@@ -3,11 +3,13 @@ package com.example.ranwildimal.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,10 +29,12 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
     private Context context;
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txtWordName, txtJapName;
+        ImageView imgAvatar;
         MyViewHolder(View view) {
             super(view);
             txtWordName = view.findViewById(R.id.txt_normal_name);
             txtJapName = view.findViewById(R.id.txt_japanese_name);
+            imgAvatar = view.findViewById(R.id.img_encounter_animal);
         }
     }
     public MyEncounterAdapter(ArrayList<Word> wordsearchList, Context context) {
@@ -51,6 +55,16 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
             Word wordall = wordJapList.get(position);
             holder.txtWordName.setText(word.getWord());
             holder.txtJapName.setText(wordall.getWord());
+            String img_id = word.getWord_Des_Id() + ".jpg";
+            Bitmap bitmap = null;
+            AssetManager assetMan =this.context.getAssets();
+            try {
+                InputStream is = assetMan.open("avt/"+img_id);
+                bitmap = BitmapFactory.decodeStream(is);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            holder.imgAvatar.setImageBitmap(bitmap);
             holder.txtWordName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

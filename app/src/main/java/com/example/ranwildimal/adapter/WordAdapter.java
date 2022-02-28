@@ -51,7 +51,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.MyViewHolder> 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DescriptionActivity.class);
-                    intent.putExtra("GETID",wordList.get(holder.getAdapterPosition()).getWord_ID());
+                    intent.putExtra("GETID",wordList.get(holder.getAdapterPosition()).getWord_Des_Id());
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }

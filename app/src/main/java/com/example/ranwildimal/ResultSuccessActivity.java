@@ -26,6 +26,7 @@ import org.opencv.imgproc.Imgproc;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ResultSuccessActivity extends AppCompatActivity {
 
@@ -33,6 +34,8 @@ public class ResultSuccessActivity extends AppCompatActivity {
     ImageView currentImage,test;
     TextView animalName;
     Button btnViewDetail;
+    Word getWord;
+    ArrayList<Word> list = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,10 @@ public class ResultSuccessActivity extends AppCompatActivity {
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         Bitmap testImg = BitmapFactory.decodeFile(filePath);
         test.setImageBitmap(testImg);
-
+        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+        dbAccess.openConn();
+        Intent i = new Intent(ResultSuccessActivity.this, DescriptionActivity.class);
+        list = dbAccess.getWord();
         Mat equ = new Mat();
         Utils.bitmapToMat(bmImg,equ);
 
@@ -78,14 +84,11 @@ public class ResultSuccessActivity extends AppCompatActivity {
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-                dbAccess.openConn();
-                Intent i = new Intent(ResultSuccessActivity.this, DescriptionActivity.class);
                 int id = 0;
-                ArrayList<Word> list = dbAccess.getWord();
                 for (Word w : list){
                     if(w.getWord().toLowerCase().equals(animal.toLowerCase())){
-                        id = w.getWord_ID();
+                        getWord = w;
+                        id = w.getWord_Des_Id();
                         break;
                     }
                 }
@@ -93,7 +96,15 @@ public class ResultSuccessActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        animalName.setText(animal);
+        Locale current = getResources().getConfiguration().locale;
+        String animalCurrent = "";
+        for (Word w : list){
+            if(w.getWord().toLowerCase().equals(animal.toLowerCase())){
+                getWord = dbAccess.getOneWordById(String.valueOf(w.getWord_Des_Id()),current.toString());
+                break;
+            }
+        }
+        animalName.setText(getWord.getWord());
 
     }
 

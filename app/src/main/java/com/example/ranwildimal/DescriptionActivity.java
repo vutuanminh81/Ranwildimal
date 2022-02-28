@@ -44,6 +44,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public class DescriptionActivity extends AppCompatActivity {
     public String FILE_PATH = "";
@@ -67,6 +68,7 @@ public class DescriptionActivity extends AppCompatActivity {
     String filename = "idfile.txt";
     String filepath = "MyFileDir";
     String fileContent = "";
+    String worlDesId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +85,8 @@ public class DescriptionActivity extends AppCompatActivity {
         FILE_PATH = getExternalFilesDir(filepath).getPath()+"/"+filename;
         if (extras != null) {
             getId = String.valueOf(extras.getInt("GETID"));
+            worlDesId = getId;
         }
-        loadID();
-
-        saveID();
 
         playbutton = findViewById(R.id.btn_des_sound);
         jpTxtWord = findViewById(R.id.text_description_japanese_word);
@@ -101,6 +101,8 @@ public class DescriptionActivity extends AppCompatActivity {
 
         wordID = String.valueOf(getIntent().getIntExtra("GETID",0));
         loadData();
+        loadID();
+        saveID();
 
         jpTxtWord.setText(jpWord.getWord());
         selectedTxtWord.setText(selectWord.getWord());
@@ -136,7 +138,8 @@ public class DescriptionActivity extends AppCompatActivity {
     private void loadData(){
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
-        selectWord = dbAccess.getOneWordById(wordID);
+        Locale current = getResources().getConfiguration().locale;
+        selectWord = dbAccess.getOneWordById(worlDesId,current.toString());
         jpWord = dbAccess.getOneWordByLanguage(String.valueOf(selectWord.getWord_Des_Id()),"3");
         listJpExample = dbAccess.getExampleListByWord(String.valueOf(jpWord.getWord_ID()));
         listSelectExample = dbAccess.getExampleListByWord(String.valueOf(selectWord.getWord_ID()));
@@ -215,26 +218,6 @@ public class DescriptionActivity extends AppCompatActivity {
         }catch (IOException e) {
             e.printStackTrace();
         }
-//        File myExternalFile = new File(getExternalFilesDir(filepath), filename);
-//        // Create an object of FileOutputStream for writing data to myFile.txt
-//        FileOutputStream fos = null;
-//        try {
-//            if(data.compareTo("") == 0){
-//                data = getId;
-//            }else{
-//                checkDuplicate();
-//            }
-//            // Instantiate the FileOutputStream object and pass myExternalFile in constructor
-//            fos = new FileOutputStream(myExternalFile);
-//            // Write to the file
-//            fos.write(data.getBytes());
-//            // Close the stream
-//            fos.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void loadID(){
@@ -254,38 +237,20 @@ public class DescriptionActivity extends AppCompatActivity {
         }catch (IOException e) {
             e.printStackTrace();
         }
-//        FileReader fr = null;
-//        File myExternalFile = new File(getExternalFilesDir(filepath), filename);
-//        StringBuilder stringBuilder = new StringBuilder();
-//        try {
-//            fr = new FileReader(myExternalFile);
-//            BufferedReader br = new BufferedReader(fr);
-//            String line = br.readLine();
-//            while(line != null){
-//                stringBuilder.append(line).append('\n');
-//                // Again read the next line and store in variable line
-//                line = br.readLine();
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     void checkDuplicate(){
         String getdata[] = data.split(",");
-        if(getdata.length>1){
+        if(getdata.length>=1){
             data="";
             for (int i = 0;i < getdata.length;i++) {
                 if(getId.compareTo(getdata[i])!= 0){
-                    data+=getdata[i]+",";
+                    data+=getdata[i] + ",";
                 }
             }
+            data+=getId;
         }else{
-            data+=",";
+            data+=getId;
         }
-        data+=getId;
-
     }
 }
