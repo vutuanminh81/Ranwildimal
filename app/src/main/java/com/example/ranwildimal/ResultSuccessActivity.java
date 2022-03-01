@@ -120,4 +120,11 @@ public class ResultSuccessActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(ResultSuccessActivity.this, CameraActivity.class);
+        this.startActivity(i);
+        this.finish();
+    }
 }

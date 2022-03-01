@@ -44,6 +44,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -120,6 +121,7 @@ public class CameraActivity extends AppCompatActivity {
     String filePathAll;
     private List<String> labels;
     Uri imageuri;
+    AlertDialog alertDialog;
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -161,7 +163,6 @@ public class CameraActivity extends AppCompatActivity {
         cameraView = findViewById(R.id.cameraView);
         btnGallery = findViewById(R.id.btn_Gallery);
         btnCamera = findViewById(R.id.btn_Camera);
-
         FILE_PATH = getExternalFilesDir(filepath).getPath();
 
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
@@ -184,8 +185,9 @@ public class CameraActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View view) {
-                getCaptureImage();
 
+                startLoading();
+                getCaptureImage();
             }
         });
 
@@ -204,8 +206,8 @@ public class CameraActivity extends AppCompatActivity {
                 }
             }
         });
-
         try {
+
             tflite = new Interpreter(loadmodelfile(this));
         } catch (Exception e) {
             e.printStackTrace();
@@ -301,12 +303,13 @@ public class CameraActivity extends AppCompatActivity {
                 imageProxy.close();
             }
 
+
             @Override
             public void onError(ImageCaptureException exception) {
                 // Handle the exception however you'd like
             }
-        });
 
+        });
         File photoDir = new File(FILE_PATH);
         if(!photoDir.exists()){
             photoDir.mkdir();
@@ -316,9 +319,6 @@ public class CameraActivity extends AppCompatActivity {
         String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
         filePathAll = photoFilePath;
         File photoFile = new File(photoFilePath);
-
-
-
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(photoFile).build(),
                 getMainExecutor(),
@@ -328,6 +328,7 @@ public class CameraActivity extends AppCompatActivity {
                         //Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
                         bitmap = hisEqua(bitmap);
                         classifyImage();
+//                        dismissLoading();
                     }
 
                     @Override
@@ -475,16 +476,32 @@ public class CameraActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue() == maxValueInMap) {
-                //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                byte[] byteArray = stream.toByteArray();
                 Intent intent = new Intent(this, ResultSuccessActivity.class);
-//                intent.putExtra("imgBitmap",byteArray);
                 intent.putExtra("animalName", entry.getKey());
                 intent.putExtra("filePathImg",filePathAll);
                 this.startActivity(intent);
                 break;
             }
         }
+    }
+
+    private void startLoading(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.activity_loading,null));
+        builder.setCancelable(false);
+        alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void dismissLoading(){
+        alertDialog.dismiss();
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(CameraActivity.this, MainActivity.class);
+        this.startActivity(i);
+        this.finish();
     }
 }

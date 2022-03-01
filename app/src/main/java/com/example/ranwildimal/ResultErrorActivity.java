@@ -58,4 +58,11 @@ public class ResultErrorActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(ResultErrorActivity.this, CameraActivity.class);
+        this.startActivity(i);
+        this.finish();
+    }
 }

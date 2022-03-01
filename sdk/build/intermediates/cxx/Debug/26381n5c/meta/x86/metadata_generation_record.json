@@ -11,11 +11,11 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -2057198041
+    "memoizedHashCode": -1066334054
   },
   {
     "level_": 0,
-    "message_": "JSON \u0027F:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\\android_gradle_build.json\u0027 was up-to-date",
+    "message_": "rebuilding JSON F:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\\android_gradle_build.json due to:",
     "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
@@ -25,7 +25,119 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 324969385
+    "memoizedHashCode": 1767774917
+  },
+  {
+    "level_": 0,
+    "message_": "- a dependent build file changed",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2076643365
+  },
+  {
+    "level_": 0,
+    "message_": "  - F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -634115533
+  },
+  {
+    "level_": 0,
+    "message_": "keeping json folder \u0027F:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\u0027 but regenerating project",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 851797255
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : C:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HF:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dF:\\SU21\\Do an tot nghiep\\Application\\sdk\\build\\intermediates\\cxx\\Debug\\26381n5c\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dF:\\SU21\\Do an tot nghiep\\Application\\sdk\\build\\intermediates\\cxx\\Debug\\26381n5c\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BF:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1943433064
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : C:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HF:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dF:\\SU21\\Do an tot nghiep\\Application\\sdk\\build\\intermediates\\cxx\\Debug\\26381n5c\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dF:\\SU21\\Do an tot nghiep\\Application\\sdk\\build\\intermediates\\cxx\\Debug\\26381n5c\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BF:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -585507191
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of F:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\\compile_commands.json.bin normally",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1740634571
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1082449323
+  },
+  {
+    "level_": 0,
+    "message_": "write command file F:\\SU21\\Do an tot nghiep\\Application\\sdk\\.cxx\\Debug\\26381n5c\\x86\\metadata_generation_command.txt",
+    "file_": "F:\\SU21\\Do an tot nghiep\\Application\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1214505295
   },
   {
     "level_": 0,
@@ -39,6 +151,6 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 2029658420
+    "memoizedHashCode": -1274444889
   }
 ]

@@ -139,8 +139,16 @@ public class DescriptionActivity extends AppCompatActivity {
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
         Locale current = getResources().getConfiguration().locale;
+        int langId = 1;
+        if(current.toString().equals("vi")){
+            langId = 1;
+        }else if(current.toString().equals("en")){
+            langId = 2;
+        }else if(current.toString().equals("ja")){
+            langId = 3;
+        }
         selectWord = dbAccess.getOneWordById(worlDesId,current.toString());
-        jpWord = dbAccess.getOneWordByLanguage(String.valueOf(selectWord.getWord_Des_Id()),"3");
+        jpWord = dbAccess.getOneWordByLanguage(String.valueOf(worlDesId), String.valueOf(langId));
         listJpExample = dbAccess.getExampleListByWord(String.valueOf(jpWord.getWord_ID()));
         listSelectExample = dbAccess.getExampleListByWord(String.valueOf(selectWord.getWord_ID()));
         dbAccess.closeConn();

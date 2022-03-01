@@ -69,7 +69,7 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DescriptionActivity.class);
-                    intent.putExtra("GETID",wordsearchList.get(holder.getAdapterPosition()).getWord_ID());
+                    intent.putExtra("GETID",wordsearchList.get(holder.getAdapterPosition()).getWord_Des_Id());
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }
