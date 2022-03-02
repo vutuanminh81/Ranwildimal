@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,12 +37,22 @@ public class SettingActivity extends AppCompatActivity {
     private String data = "";
     Toolbar setting_toolbar;
     Context context;
+    Button guidbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         setting_toolbar = findViewById(R.id.setting_toolbar);
+        guidbtn = findViewById(R.id.btn_howtouse);
+
+        guidbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, GuilineActivity.class);
+                startActivity(intent);
+            }
+        });
         //Customize status bar
         statusBarColor();
         //Customize toolbar
@@ -68,6 +79,7 @@ public class SettingActivity extends AppCompatActivity {
         };
         languages.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(languages);
+        // set localize
         Locale locale = getResources().getConfiguration().locale;
         if(locale.toString().equals("ja")){
             spinner.setSelection(2);

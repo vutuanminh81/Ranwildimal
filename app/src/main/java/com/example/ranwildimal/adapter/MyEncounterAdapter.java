@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,11 +31,13 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txtWordName, txtJapName;
         ImageView imgAvatar;
+        LinearLayout counterItem;
         MyViewHolder(View view) {
             super(view);
             txtWordName = view.findViewById(R.id.txt_normal_name);
             txtJapName = view.findViewById(R.id.txt_japanese_name);
             imgAvatar = view.findViewById(R.id.img_encounter_animal);
+            counterItem = view.findViewById(R.id.encounter_item);
         }
     }
     public MyEncounterAdapter(ArrayList<Word> wordsearchList, Context context) {
@@ -65,7 +68,7 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
                 e.printStackTrace();
             }
             holder.imgAvatar.setImageBitmap(bitmap);
-            holder.txtWordName.setOnClickListener(new View.OnClickListener() {
+            holder.counterItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DescriptionActivity.class);
