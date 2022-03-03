@@ -131,15 +131,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setLocale(String lang){
         Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
         //save data to shared preference
         SharedPreferences.Editor editor = getSharedPreferences("Setting",MODE_PRIVATE).edit();
         editor.putString("My_Lang",lang);
         editor.apply();
         editor.commit();
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
     }
 
 
