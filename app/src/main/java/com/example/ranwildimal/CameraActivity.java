@@ -38,6 +38,8 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -325,7 +327,16 @@ public class CameraActivity extends AppCompatActivity {
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        //Toast.makeText(CameraActivity.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        try {
+                            bitmap = rotateImage(bitmap,photoFilePath);
+                            FileOutputStream out = new FileOutputStream(photoFile);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                            out.flush();
+                            out.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                         bitmap = hisEqua(bitmap);
                         classifyImage();
                     }
@@ -460,6 +471,31 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
         this.finish();
+    }
+
+    private Bitmap rotateImage(Bitmap bm, String path) throws IOException {
+        Bitmap bitmap = bm;
+        int rotate = 0;
+
+        ExifInterface exif;
+        exif = new ExifInterface(path);
+        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL);
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotate = 270;
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotate = 180;
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotate = 90;
+                break;
+        }
+        Matrix matrix = new Matrix();
+        matrix.postRotate(rotate);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                bitmap.getHeight(), matrix, true);
     }
 
     private void showresult() {

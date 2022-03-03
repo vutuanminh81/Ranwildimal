@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -65,7 +67,6 @@ public class DescriptionActivity extends AppCompatActivity {
     ImageView animalImage;
     YouTubePlayerView youTubePlayerView;
     String videoLink;
-
     String filename = "idfile.txt";
     String filepath = "MyFileDir";
     String fileContent = "";
@@ -82,6 +83,13 @@ public class DescriptionActivity extends AppCompatActivity {
         statusBarColor();
         //Customize toolbar
         setSupportActionBar(description_toolbar);
+        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
+            setLocale("en");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
+            setLocale("vi");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
+            setLocale("ja");
+        }
         getSupportActionBar().setTitle(null);
         Bundle extras = getIntent().getExtras();
         FILE_PATH = getExternalFilesDir(filepath).getPath()+"/"+filename;
@@ -89,6 +97,7 @@ public class DescriptionActivity extends AppCompatActivity {
             getId = String.valueOf(extras.getInt("GETID"));
             worlDesId = getId;
         }
+
 
         playbutton = findViewById(R.id.btn_des_sound);
         jpTxtWord = findViewById(R.id.text_description_japanese_word);
@@ -235,6 +244,7 @@ public class DescriptionActivity extends AppCompatActivity {
         }
     }
 
+
     public void loadID(){
         String path = FILE_PATH;
         try {
@@ -267,5 +277,18 @@ public class DescriptionActivity extends AppCompatActivity {
         }else{
             data+=getId;
         }
+    }
+
+    private void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        //save data to shared preference
+        SharedPreferences.Editor editor = getSharedPreferences("Setting",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",lang);
+        editor.apply();
+        editor.commit();
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
     }
 }

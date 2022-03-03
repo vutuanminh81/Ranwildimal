@@ -90,11 +90,11 @@ public class DatabaseAccess {
 
     public Word getOneWordById(String wordDesId, String locale){
         int langId = 1;
-        if(locale.equals("vi")){
+        if(locale.equals("vi") || locale.equalsIgnoreCase("vi_VN")){
             langId = 1;
-        }else if(locale.equals("en")){
+        }else if(locale.equals("en") || locale.equalsIgnoreCase("en_US")){
             langId = 2;
-        }else if(locale.equals("ja")){
+        }else if(locale.equals("ja") || locale.equalsIgnoreCase("ja_JP")){
             langId = 3;
         }
         c = db.rawQuery("select * from Word where Word_Des_Id = " + wordDesId + " and Language_Id = " + langId, new String[]{});
