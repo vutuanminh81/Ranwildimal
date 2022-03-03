@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ranwildimal.DescriptionActivity;
 import com.example.ranwildimal.R;
+import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
+import com.example.ranwildimal.model.Word_Description;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,6 +52,9 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.MyViewHolder> 
             holder.txtWordName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    DatabaseAccess dbAccess = DatabaseAccess.getInstance(context);
+                    dbAccess.openConn();
+                    dbAccess.increaseWordSearch(String.valueOf(word.getWord_Des_Id()));
                     Intent intent = new Intent(context, DescriptionActivity.class);
                     intent.putExtra("GETID",wordList.get(holder.getAdapterPosition()).getWord_Des_Id());
                     context.startActivity(intent);

@@ -46,6 +46,9 @@ public class ResultSuccessActivity extends AppCompatActivity {
         animalName = findViewById(R.id.txt_result_success_name);
         btnViewDetail = findViewById(R.id.btn_success_view);
         test = findViewById(R.id.img_result_app_image);
+        //open DB connection
+        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+        dbAccess.openConn();
 
         //Customize status bar
         statusBarColor();
@@ -54,11 +57,11 @@ public class ResultSuccessActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
         String animal = getIntent().getStringExtra("animalName");
         String filePath = getIntent().getStringExtra("filePathImg");
+
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         Bitmap testImg = BitmapFactory.decodeFile(filePath);
         test.setImageBitmap(testImg);
-        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-        dbAccess.openConn();
+
         Intent i = new Intent(ResultSuccessActivity.this, DescriptionActivity.class);
         list = dbAccess.getWord();
         Mat equ = new Mat();
@@ -81,6 +84,8 @@ public class ResultSuccessActivity extends AppCompatActivity {
         currentImage.setImageBitmap(bmImg);
         File dir = new File(filePath);
         dir.delete();
+        int des_Id = dbAccess.getWordDesIdbyName(animal);
+        dbAccess.increaseWordScan(String.valueOf(des_Id));
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

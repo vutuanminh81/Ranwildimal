@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ranwildimal.DescriptionActivity;
 import com.example.ranwildimal.R;
+import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
 
 import java.io.IOException;
@@ -69,6 +70,9 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DescriptionActivity.class);
+                    DatabaseAccess dbAccess = DatabaseAccess.getInstance(context);
+                    dbAccess.openConn();
+                    dbAccess.increaseWordSearch(String.valueOf(word.getWord_Des_Id()));
                     intent.putExtra("GETID",wordsearchList.get(holder.getAdapterPosition()).getWord_Des_Id());
                     context.startActivity(intent);
                     ((Activity)context).finish();

@@ -28,6 +28,7 @@ import com.example.ranwildimal.database.DatabaseAccess;
 import com.example.ranwildimal.model.Word;
 import com.example.ranwildimal.model.Example;
 
+import com.example.ranwildimal.model.Word_Description;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -66,11 +67,11 @@ public class DescriptionActivity extends AppCompatActivity {
     ImageView animalImage;
     YouTubePlayerView youTubePlayerView;
     String videoLink;
-
     String filename = "idfile.txt";
     String filepath = "MyFileDir";
     String fileContent = "";
     String worlDesId = "";
+    Word_Description wordDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,15 +123,20 @@ public class DescriptionActivity extends AppCompatActivity {
         exampleListView.setAdapter(exampleAdapter);
         exampleListView.setLayoutManager(manager);
 
+        int des_id = selectWord.getWord_Des_Id();
+        wordDescription = new Word_Description();
+        wordDescription = loadDescription(String.valueOf(des_id));
+
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "1HygThMLzGs";
+                String videoId = wordDescription.getWord_Video();
                 youTubePlayer.cueVideo(videoId, 0);
+                youTubePlayer.play();
             }
         });
 
-        int des_id = selectWord.getWord_Des_Id();
+
         String img_id = des_id + ".jpg";
         Bitmap bitmap = null;
         try {
@@ -154,6 +160,14 @@ public class DescriptionActivity extends AppCompatActivity {
         listJpExample = dbAccess.getExampleListByWord(String.valueOf(jpWord.getWord_ID()));
         listSelectExample = dbAccess.getExampleListByWord(String.valueOf(selectWord.getWord_ID()));
         dbAccess.closeConn();
+    }
+
+    private Word_Description loadDescription(String wordDesId){
+        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+        dbAccess.openConn();
+        Word_Description word_description = new Word_Description();
+        word_description = dbAccess.getWordDes(wordDesId);
+        return word_description;
     }
 
     private void statusBarColor(){
