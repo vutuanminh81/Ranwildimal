@@ -84,6 +84,8 @@ public class ResultSuccessActivity extends AppCompatActivity {
         currentImage.setImageBitmap(bmImg);
         File dir = new File(filePath);
         dir.delete();
+        int des_Id = dbAccess.getWordDesIdbyName(animal);
+        dbAccess.increaseWordScan(String.valueOf(des_Id));
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -196,4 +196,17 @@ public class DatabaseAccess {
         c.moveToFirst();
         c.close();
     }
+
+    public int getWordDesIdbyName(String id){
+        String new_id = id.toLowerCase();
+        Word_Description word_des = new Word_Description();
+        c = db.rawQuery("select * from Word where Lower(Word) Like '%" +new_id+"%'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        int des_id = 0;
+        while(c.moveToNext()){
+            des_id = c.getInt(3);
+        }
+        c.close();
+        return des_id;
+    }
 }
