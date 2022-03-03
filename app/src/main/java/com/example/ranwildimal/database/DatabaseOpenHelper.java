@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class DatabaseOpenHelper extends SQLiteAssetHelper {
-    private static final String DB_NAME = "WildAnimal.db";
+    private static final String DB_NAME = "RanWildAnimal.db";
     private static final int DB_VERSION = 1;
 
     /**

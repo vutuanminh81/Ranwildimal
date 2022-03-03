@@ -5,7 +5,7 @@ public class Word_Description {
     String Word_Pronounce;
     String Word_Video;
     String Word_Image;
-    int Word_Status;
+    int Word_Status = 1;
 
     public int getWord_Des_Id() {
         return Word_Des_Id;

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 
 import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
+import com.example.ranwildimal.model.Word_Description;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,7 @@ public class DatabaseAccess {
             Word new_word = new Word(id,word,language,word_des,type);
             list.add(new_word);
         }
+        c.close();
         return list;
     }
 
@@ -82,6 +84,7 @@ public class DatabaseAccess {
             Example new_example = new Example(id,example,word_id);
             list.add(new_example);
         }
+        c.close();
         return list;
     }
 
@@ -106,6 +109,7 @@ public class DatabaseAccess {
             Word new_word = new Word(w_id,word,language,word_des,type);
             return new_word;
         }
+        c.close();
         return null;
     }
 
@@ -122,6 +126,7 @@ public class DatabaseAccess {
             Word new_word = new Word(id,word,language,word_des,type);
             return new_word;
         }
+        c.close();
         return null;
     }
 
@@ -147,6 +152,7 @@ public class DatabaseAccess {
             Word new_word = new Word(id,word,language,word_des,type);
             list.add(new_word);
         }
+        c.close();
         return list;
     }
 
@@ -159,6 +165,35 @@ public class DatabaseAccess {
         while(c.moveToNext()){
             id = c.getInt(0);
         }
+        c.close();
         return id;
+    }
+
+    public Word_Description getWordDes(String id){
+        Word_Description word_des = new Word_Description();
+        c = db.rawQuery("select * from Word_Description where Word_Des_Id = "+id, new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while(c.moveToNext()){
+            word_des.setWord_Des_Id(c.getInt(0));
+            word_des.setWord_Pronounce(c.getString(1));
+            word_des.setWord_Video(c.getString(2));
+            word_des.setWord_Image(c.getString(3));
+        }
+        c.close();
+        return word_des;
+    }
+
+    public void increaseWordSearch(String id){
+        c = db.rawQuery("update Word_Description set Num_Of_Search = Num_Of_Search + 1  where Word_Des_Id = "+id, null);
+        StringBuffer buffer = new StringBuffer();
+        c.moveToFirst();
+        c.close();
+    }
+
+    public void increaseWordScan(String id){
+        c = db.rawQuery("update Word_Description set Num_Of_Scan = Num_Of_Scan + 1  where Word_Des_Id = "+id, null);
+        StringBuffer buffer = new StringBuffer();
+        c.moveToFirst();
+        c.close();
     }
 }
