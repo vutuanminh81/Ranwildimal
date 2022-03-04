@@ -58,6 +58,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.example.ranwildimal.model.CustomProgressBar;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -154,6 +157,14 @@ public class CameraActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            if(!Python.isStarted()){
+                                Python.start(new AndroidPlatform(CameraActivity.this));
+                            }
+                            Python py = Python.getInstance();
+                            PyObject pyObject = py.getModule("test2Py");
+                            PyObject pyO = pyObject.callAttr("run",filePathAll,FILE_PATH );
+                            System.out.println("//////////////////////////////"+pyO);
+                            Mat test = new Mat();
 //                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
                             bitmap = hisEqua(bitmap);
                             classifyImage();

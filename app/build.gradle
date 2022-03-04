@@ -1,5 +1,8 @@
+
+
 plugins {
     id 'com.android.application'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -15,6 +18,23 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationId "opencv.org"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        python {
+            buildPython "C:/Program Files/Python38/python.exe"
+        }
+        python{
+            pip {
+                install "opencv-python"
+                install "matplotlib"
+            }
+        }
+        sourceSets {
+            main {
+                python.srcDir "src/main/java/python"
+            }
+        }
     }
 
     buildTypes {
