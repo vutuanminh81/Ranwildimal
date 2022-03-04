@@ -29,6 +29,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -57,6 +58,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.ranwildimal.model.CustomProgressBar;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.opencv.android.Utils;
@@ -127,6 +129,8 @@ public class CameraActivity extends AppCompatActivity {
     private List<String> labels;
     Uri imageuri;
     AlertDialog alertDialog;
+    ProgressDialog progressDialog;
+    CustomProgressBar customProgressBar;
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -169,6 +173,7 @@ public class CameraActivity extends AppCompatActivity {
         btnGallery = findViewById(R.id.btn_Gallery);
         btnCamera = findViewById(R.id.btn_Camera);
         FILE_PATH = getExternalFilesDir(filepath).getPath();
+        customProgressBar = new CustomProgressBar(this);
 
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             grantPermissionCamera();
@@ -191,7 +196,7 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startLoading();
+                customProgressBar.show();
                 getCaptureImage();
             }
         });
@@ -502,12 +507,13 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void startLoading(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.activity_loading,null));
-        builder.setCancelable(false);
-        alertDialog = builder.create();
-        alertDialog.show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        LayoutInflater inflater = this.getLayoutInflater();
+//        builder.setView(inflater.inflate(R.layout.activity_loading,null));
+//        builder.setCancelable(false);
+//        alertDialog = builder.create();
+//        alertDialog.show();
+
     }
 
     private void dismissLoading(){

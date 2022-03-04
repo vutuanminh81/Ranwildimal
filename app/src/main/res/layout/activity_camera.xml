@@ -7,60 +7,51 @@
     tools:context=".CameraActivity">
 
 
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/btn_search_back"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@color/main_color"-->
-    <!--        android:gravity="start"-->
-    <!--        android:onClick="HomeIntent"-->
-    <!--        app:srcCompat="@drawable/back"-->
-    <!--        tools:layout_editor_absoluteX="16dp"-->
-    <!--        tools:layout_editor_absoluteY="13dp" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
-    </LinearLayout>
+        <androidx.camera.view.PreviewView
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints">
 
 
-    <Button
-        android:id="@+id/btn_Gallery"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/custome_button"
+        </androidx.camera.view.PreviewView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        android:text="Gallery"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/cameraView"
-        android:layout_width="270dp"
-        android:layout_height="341dp"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="66dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="600dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_Camera"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_vertical|center_horizontal"
+            <Button
+                    android:id="@+id/btn_Camera"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/custome_button"
+                    android:text="Camera"
+                    android:textSize="12sp"
+                    android:layout_marginRight="100dp"
+                tools:ignore="MissingConstraints" />
 
-        android:layout_marginBottom="52dp"
+            <Button
+                    android:id="@+id/btn_Gallery"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/custome_button"
+                    android:text="Gallery"
+                    android:textSize="12sp"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
-        android:background="@drawable/custome_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Camera"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
