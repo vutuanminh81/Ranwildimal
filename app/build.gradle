@@ -28,6 +28,7 @@ android {
             pip {
                 install "opencv-python"
                 install "matplotlib"
+                install "Pillow"
             }
         }
         sourceSets {

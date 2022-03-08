@@ -161,7 +161,7 @@ public class CameraActivity extends AppCompatActivity {
                                 Python.start(new AndroidPlatform(CameraActivity.this));
                             }
                             Python py = Python.getInstance();
-                            PyObject pyObject = py.getModule("test2Py");
+                            PyObject pyObject = py.getModule("testPy4");
                             PyObject pyO = pyObject.callAttr("run",filePathAll,FILE_PATH );
                             System.out.println("//////////////////////////////"+pyO);
                             Mat test = new Mat();

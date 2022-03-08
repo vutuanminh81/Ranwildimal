@@ -1,22 +1,47 @@
-import cv2
 import numpy as np
+import cv2 as cv
 from matplotlib import pyplot as plt
+import sys
 import os
+from  PIL  import Image
 
 def run(url, path):
-    image_bgr = cv2.imread(url)
-    image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
+    img = cv.imread(url, cv.IMREAD_UNCHANGED)
+    original = img.copy()
 
-    rectangle = (600, 600, 1500, 1500)
-    # 600, 550, 1150, 2000
-    mask = np.zeros(image_rgb.shape[:2], np.uint8)
+    l = int(max(5, 6))
+    u = int(min(6, 6))
 
-    bgdModel = np.zeros((1, 65), np.float64)
-    fgdModel = np.zeros((1, 65), np.float64)
+    ed = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    edges = cv.GaussianBlur(img, (21, 51), 3)
+    edges = cv.cvtColor(edges, cv.COLOR_BGR2GRAY)
+    edges = cv.Canny(edges, l, u)
 
-    cv2.grabCut(image_rgb, mask, rectangle, bgdModel, fgdModel, 5, cv2.GC_INIT_WITH_RECT)
+    _, thresh = cv.threshold(edges, 0, 255, cv.THRESH_BINARY  + cv.THRESH_OTSU)
+    kernel = cv.getStructuringElement(cv.MORPH_ELLIPSE, (5, 5))
+    mask = cv.morphologyEx(thresh, cv.MORPH_CLOSE, kernel, iterations=4)
 
-    mask_2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
+    data = mask.tolist()
+    sys.setrecursionlimit(10**8)
+    for i in  range(len(data)):
+        for j in  range(len(data[i])):
+            if data[i][j] !=  255:
+                data[i][j] =  -1
+            else:
+                break
+        for j in  range(len(data[i])-1, -1, -1):
+            if data[i][j] !=  255:
+                data[i][j] =  -1
+            else:
+                break
+    image = np.array(data)
+    image[image !=  -1] =  255
+    image[image ==  -1] =  0
 
-    image_rgd_nobg = image_rgb * mask_2[:, :, np.newaxis]
-    cv2.imwrite(os.path.join(path , 'waka.jpg'), image_rgd_nobg)
+    mask = np.array(image, np.uint8)
+
+    result = cv.bitwise_and(original, original, mask=mask)
+    result[mask ==  0] =  255
+    cv.imwrite(os.path.join(path , 'bg.png'), result)
+    #cv.imwrite('bg.png', result)
+
