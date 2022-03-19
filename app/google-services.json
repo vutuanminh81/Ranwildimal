@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "145722705403",
+    "project_id": "ranwildimal",
+    "storage_bucket": "ranwildimal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145722705403:android:b9a845a449fd098d7eb75e",
+        "android_client_info": {
+          "package_name": "com.example.ranwildimal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145722705403-i4qldndafqulug2c5ittj7q6gn9eqc98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx41xB1YZ1_t09kIa18GDO3cS_mCIbILQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145722705403-i4qldndafqulug2c5ittj7q6gn9eqc98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145722705403:android:6de56276bc83b84f7eb75e",
+        "android_client_info": {
+          "package_name": "opencv.org"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145722705403-i4qldndafqulug2c5ittj7q6gn9eqc98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx41xB1YZ1_t09kIa18GDO3cS_mCIbILQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145722705403-i4qldndafqulug2c5ittj7q6gn9eqc98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

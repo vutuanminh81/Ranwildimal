@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +71,7 @@ public class DescriptionActivity extends AppCompatActivity {
     String fileContent = "";
     String worlDesId = "";
     Word_Description wordDescription;
+    MediaPlayer media = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +129,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+            public void onReady(YouTubePlayer youTubePlayer) {
                 String videoId = wordDescription.getWord_Video();
                 youTubePlayer.cueVideo(videoId, 0);
                 youTubePlayer.play();
@@ -210,6 +210,18 @@ public class DescriptionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         dbAccess.closeConn();
+
+
+    }
+
+    private void prepareMedia(){
+        try {
+            media.setDataSource("https://drive.google.com/file/d/1AWFQjiZ4qxEpiBUFrlCIctJypa-VqHk2/view?usp=sharing");
+            media.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
