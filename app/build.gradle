@@ -22,7 +22,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         python {
-            buildPython "C:/Program Files/Python38/python.exe"
+            buildPython "D:/Python 3.8.10/python.exe"
         }
         python{
             pip {

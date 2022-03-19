@@ -5,26 +5,31 @@ import sys
 import os
 from  PIL  import Image
 
-def run(url, path):
+def run(url, path, filename):
     # Read image 
     image = cv2.imread(url).astype(np.uint8)
 
-    # Get contours
-    gray = (cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)).astype(np.uint8)
-    img_canny = cv2.Canny(gray,50,150)
-    ret,thresh = cv2.threshold(img_canny,
-                           int(image[:, :, 0].mean()),
-                           int(image[:, :, 1].mean()),
-                           0)
-    contours, _ = cv2.findContours(thresh, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    mask1 = get_mask(image)
+    img_masked = cv2.bitwise_and(image, image, mask=mask1)
 
-    # Create mask
-    mask = np.zeros(shape=(gray.shape), dtype=np.uint8)
-    cv2.drawContours(mask, contours, -1, (1,0,0), cv2.FILLED)   
-    mask = (~(mask == 1) * 1).astype(np.uint8)
+    cv2.imwrite(os.path.join(path , filename), img_masked)
 
-    # cut off background
-    img_masked = cv2.bitwise_and(image, image, mask=mask)
-    cv2.imwrite(os.path.join(path , 'waka.jpg'), img_masked)
-    cv2.imwrite(os.path.join(path , 'waka2.jpg'), mask)
+def process(img):
+    # convert the image to grayscale and blur it slightly
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    thresh = cv2.adaptiveThreshold(blurred, 255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 21, 4)
+    kernel = np.ones((13, 13))
+    img_dilate = cv2.dilate(thresh, kernel, iterations=1)
+    return cv2.erode(img_dilate, kernel, iterations=1)
+
+def get_mask(img):
+    contours, _ = cv2.findContours(process(img), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+    blank = np.zeros(img.shape[:2]).astype('uint8')
+    for cnt in contours:
+        if cv2.contourArea(cnt) > 700:
+            peri = cv2.arcLength(cnt, True)
+            approx = cv2.approxPolyDP(cnt, peri * 0.004, True)
+            cv2.drawContours(blank, [approx], -1, 255, -1)
+    return blank
 

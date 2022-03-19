@@ -66,7 +66,12 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -147,8 +152,8 @@ public class CameraActivity extends AppCompatActivity {
                                 photoDir.mkdir();
                             }
                             Date date = new Date();
-                            String timestamp=  String.valueOf(date.getTime());
-                            String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
+                            String timestamp=  String.valueOf(date.getTime())+".jpg";
+                            String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp;
                             filePathAll = photoFilePath;
                             File photoFile = new File(photoFilePath);
                             try (FileOutputStream out = new FileOutputStream(photoFile)) {
@@ -157,14 +162,16 @@ public class CameraActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            if(!Python.isStarted()){
-                                Python.start(new AndroidPlatform(CameraActivity.this));
-                            }
-                            Python py = Python.getInstance();
-                            PyObject pyObject = py.getModule("testPy4");
-                            PyObject pyO = pyObject.callAttr("run",filePathAll,FILE_PATH );
-                            System.out.println("//////////////////////////////"+pyO);
-                            Mat test = new Mat();
+
+                            String filename = "ImageRemove.jpg";
+                            removeImageBackground(filename);
+
+                            String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
+                            File photoFile2 = new File(photoFilePath2);
+
+                            String filePath = photoFile2.getPath();
+                            bitmap = BitmapFactory.decodeFile(filePath);
+
 //                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
                             bitmap = hisEqua(bitmap);
                             classifyImage();
@@ -175,6 +182,15 @@ public class CameraActivity extends AppCompatActivity {
                 }
             });
 
+    private void removeImageBackground(String filename){
+        filename = filename;
+        if(!Python.isStarted()){
+            Python.start(new AndroidPlatform(CameraActivity.this));
+        }
+        Python py = Python.getInstance();
+        PyObject pyObject = py.getModule("testPy4");
+        PyObject pyO = pyObject.callAttr("run",filePathAll,FILE_PATH,filename);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->F:\SU21\Do an tot nghiep\Application\sdk\java\AndroidManifest.xml
+6-->D:\Final_University\Ranwildimal\sdk\java\AndroidManifest.xml
 7        android:targetSdkVersion="26" />
-7-->F:\SU21\Do an tot nghiep\Application\sdk\java\AndroidManifest.xml
+7-->D:\Final_University\Ranwildimal\sdk\java\AndroidManifest.xml
 8
 9</manifest>
