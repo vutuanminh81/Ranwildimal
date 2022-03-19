@@ -57,7 +57,7 @@ public class MyEncounterActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(MyEncounterActivity.this); //Linear Layout Manager use to handling layout for each Lecturer
         recyclerView.setAdapter(encounterAdapter);
         recyclerView.setLayoutManager(manager);
-        loadID();
+        loadAnimalId();
         getDataList();
         searchtxt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -157,7 +157,7 @@ public class MyEncounterActivity extends AppCompatActivity {
         }
     }
 
-    public void loadID(){
+    public void loadAnimalId (){
         String path = getExternalFilesDir(filepath).getPath()+"/"+filename;
         try {
             File file = new File(getExternalFilesDir(filepath), filename);
