@@ -375,6 +375,16 @@ public class CameraActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
+                        String filename = "ImageRemove.jpg";
+                        removeImageBackground(filename);
+
+                        String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
+                        File photoFile2 = new File(photoFilePath2);
+
+                        String filePath = photoFile2.getPath();
+                        bitmap = BitmapFactory.decodeFile(filePath);
+                        
                         bitmap = hisEqua(bitmap);
                         classifyImage();
                     }
