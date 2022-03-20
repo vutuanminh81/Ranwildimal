@@ -66,8 +66,24 @@ public class DatabaseAccess {
             int language = c.getInt(2);
             int word_des = c.getInt(3);
             int type = c.getInt(4);
-            Word new_word = new Word(id,word,language,word_des,type);
+            Word new_word = new Word(id,word,language,word_des,type,1);
             list.add(new_word);
+        }
+        c.close();
+        return list;
+    }
+
+    public ArrayList<Example> getExample(){
+        c = db.rawQuery("select * from Example", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        ArrayList<Example> list = new ArrayList<>();
+        while(c.moveToNext()){
+            int id = c.getInt(0);
+            String example = c.getString(1);
+            int word_id = c.getInt(2);
+
+            Example new_ex = new Example(id,example,word_id);
+            list.add(new_ex);
         }
         c.close();
         return list;
@@ -106,7 +122,7 @@ public class DatabaseAccess {
             int language = c.getInt(2);
             int word_des = c.getInt(3);
             int type = c.getInt(4);
-            Word new_word = new Word(w_id,word,language,word_des,type);
+            Word new_word = new Word(w_id,word,language,word_des,type,1);
             return new_word;
         }
         c.close();
@@ -123,7 +139,7 @@ public class DatabaseAccess {
             int language = c.getInt(2);
             int word_des = c.getInt(3);
             int type = c.getInt(4);
-            Word new_word = new Word(id,word,language,word_des,type);
+            Word new_word = new Word(id,word,language,word_des,type,1);
             return new_word;
         }
         c.close();
@@ -149,7 +165,7 @@ public class DatabaseAccess {
             int language = c.getInt(2);
             int word_des = c.getInt(3);
             int type = c.getInt(4);
-            Word new_word = new Word(id,word,language,word_des,type);
+            Word new_word = new Word(id,word,language,word_des,type,1);
             list.add(new_word);
         }
         c.close();
@@ -204,6 +220,12 @@ public class DatabaseAccess {
         c.close();
     }
 
+    public void updateWord(Word word){
+        c = db.rawQuery("update Word set Word = ?, Word_Des_Id = ?, Word_Status = 0, Word_Type_Id = ?, Language_Id = ? where Word_Id = ?", new String[]{word.getWord(), String.valueOf(word.getWord_Des_Id()), String.valueOf(word.getWord_Type_Id()),String.valueOf(word.getLanguage_Id()), String.valueOf(word.getWord_ID())});
+        StringBuffer buffer = new StringBuffer();
+        c.moveToFirst();
+        c.close();
+    }
 
     public int getWordDesIdbyName(String id){
         String new_id = id.toLowerCase();

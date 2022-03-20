@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 
 import com.example.ranwildimal.database.DatabaseAccess;
+import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
 import com.example.ranwildimal.model.Word_Description;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -164,6 +165,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     word_des_obj.put("Word_Image",w.getWord_Image());
                                     word_des_obj.put("Word_Status",0);
                                     fs.collection("Word_Description")
+                                            .document(doc_Id[j])
+                                            .update(word_des_obj);
+                                    j++;
+                                }
+                            }
+                        });
+                fs.collection("Word")
+                        .whereEqualTo("Word_Status",2)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                                    int i = 0;
+                                    for(QueryDocumentSnapshot doc : task.getResult()){
+                                        doc_Id[i] = doc.getId();
+                                        Word word_des = new Word();
+                                        word_des.setWord_Des_Id(doc.get("Word_Des_Id",Integer.class));
+                                        word_des.setWord_Type_Id(doc.get("Word_Type_Id",Integer.class));
+                                        word_des.setWord(doc.getString("Word"));
+                                        word_des.setLanguage_Id(doc.get("Language_Id",Integer.class));
+                                        word_des.setWord_Status(0);
+                                        word.add(word_des);
+                                        i++;
+                                    }
+                                }
+                                int j = 0;
+                                for (Word w :word) {
+                                    dbAccess.updateWord(w);
+                                    Map<String, Object> word_des_obj = new HashMap<>();
+                                    word_des_obj.put("Word_Status",0);
+                                    fs.collection("Word")
                                             .document(doc_Id[j])
                                             .update(word_des_obj);
                                     j++;

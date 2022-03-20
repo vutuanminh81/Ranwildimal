@@ -43,6 +43,18 @@ public class Word {
         Word_Type_Id = word_Type_Id;
     }
 
+    public int getWord_Status() {
+        return Word_Status;
+    }
+
+    public void setWord_Status(int word_Status) {
+        Word_Status = word_Status;
+    }
+
+    public int Word_Status;
+
+
+
     private String Word;
     private int Language_Id;
     private int Word_Des_Id;
@@ -51,11 +63,12 @@ public class Word {
     public Word() {
     }
 
-    public Word(int word_ID, String word, int language_Id, int word_Des_Id, int word_Type_Id) {
+    public Word(int word_ID, String word, int language_Id, int word_Des_Id, int word_Type_Id,int word_Status) {
         Word_ID = word_ID;
         Word = word;
         Language_Id = language_Id;
         Word_Des_Id = word_Des_Id;
         Word_Type_Id = word_Type_Id;
+        Word_Status = word_Status;
     }
 }
