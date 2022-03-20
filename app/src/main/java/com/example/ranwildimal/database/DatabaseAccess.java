@@ -197,6 +197,14 @@ public class DatabaseAccess {
         c.close();
     }
 
+    public void updateWordDes(Word_Description word){
+        c = db.rawQuery("update Word_Description set Word_Image = ?, Word_Pronounce = ?, Word_Video = ?, Word_Status = 0  where Word_Des_Id = ?", new String[]{word.getWord_Image(),word.getWord_Pronounce(),word.getWord_Video(),String.valueOf(word.getWord_Des_Id())});
+        StringBuffer buffer = new StringBuffer();
+        c.moveToFirst();
+        c.close();
+    }
+
+
     public int getWordDesIdbyName(String id){
         String new_id = id.toLowerCase();
         Word_Description word_des = new Word_Description();
