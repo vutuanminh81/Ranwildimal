@@ -11,6 +11,7 @@ import com.example.ranwildimal.model.GuidelineItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class GuilineActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class GuilineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guiline);
 
-//        layoutGuideline = findViewById(R.id.layout)
+
 
         setupGuidelineItems();
         ViewPager2 guidelineViewPaper = findViewById(R.id.GuilineViewPaper);
@@ -31,18 +32,41 @@ public class GuilineActivity extends AppCompatActivity {
 
     private void setupGuidelineItems() {
         List<GuidelineItem> guidelineItemList = new ArrayList<>();
-
         GuidelineItem itemInHome = new GuidelineItem();
-        itemInHome.setTitle("IN HOME SCREEN & CAMERA SCREEN");
-        itemInHome.setDescriptionImg(R.drawable.guideline_home);
-
         GuidelineItem itemInSideBar = new GuidelineItem();
-        itemInSideBar.setTitle("IN SIDEBAR");
-        itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar);
-
         GuidelineItem itemInformation = new GuidelineItem();
-        itemInformation.setTitle("IN ANIMAL'S INFORMATION SCREEN");
-        itemInformation.setDescriptionImg(R.drawable.guideline_information);
+        Locale locale = getResources().getConfiguration().locale;
+        if(locale.toString().equals("ja")){
+            itemInHome.setTitle("ホーム画面とカメラ画面");
+            itemInHome.setDescriptionImg(R.drawable.guideline_home_jp);
+
+            itemInSideBar.setTitle("サイドバー");
+            itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar_jp);
+
+            itemInformation.setTitle("動物の情報画面");
+            itemInformation.setDescriptionImg(R.drawable.guideline_information_jp);
+        }else if(locale.toString().equals("vi")){
+            itemInHome.setTitle("TRANG CHỦ VÀ TRANG CHỤP HÌNH");
+            itemInHome.setDescriptionImg(R.drawable.guideline_home_vn);
+
+            itemInSideBar.setTitle("THANH CÔNG CỤ");
+            itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar_vn);
+
+            itemInformation.setTitle("TRANG THÔNG TIN CON VẬT");
+            itemInformation.setDescriptionImg(R.drawable.guideline_information_vn);
+        }else{
+            itemInHome.setTitle("IN HOME SCREEN & CAMERA SCREEN");
+            itemInHome.setDescriptionImg(R.drawable.guideline_home);
+
+            itemInSideBar.setTitle("IN SIDEBAR");
+            itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar);
+
+            itemInformation.setTitle("IN ANIMAL'S INFORMATION SCREEN");
+            itemInformation.setDescriptionImg(R.drawable.guideline_information);
+        }
+
+
+
 
         guidelineItemList.add(itemInHome);
         guidelineItemList.add(itemInSideBar);
