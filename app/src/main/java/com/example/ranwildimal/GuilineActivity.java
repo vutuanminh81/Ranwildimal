@@ -38,11 +38,11 @@ public class GuilineActivity extends AppCompatActivity {
 
         GuidelineItem itemInSideBar = new GuidelineItem();
         itemInSideBar.setTitle("IN SIDEBAR");
-        itemInHome.setDescriptionImg(R.drawable.guideline_home);
+        itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar);
 
         GuidelineItem itemInformation = new GuidelineItem();
-        itemInSideBar.setTitle("IN ANIMAL'S INFORMATION SCREEN");
-        itemInHome.setDescriptionImg(R.drawable.guideline_home);
+        itemInformation.setTitle("IN ANIMAL'S INFORMATION SCREEN");
+        itemInformation.setDescriptionImg(R.drawable.guideline_information);
 
         guidelineItemList.add(itemInHome);
         guidelineItemList.add(itemInSideBar);
