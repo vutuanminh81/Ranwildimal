@@ -166,11 +166,11 @@ public class CameraActivity extends AppCompatActivity {
                             String filename = "ImageRemove.jpg";
                             removeImageBackground(filename);
 
-                            String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
-                            File photoFile2 = new File(photoFilePath2);
-
-                            String filePath = photoFile2.getPath();
-                            bitmap = BitmapFactory.decodeFile(filePath);
+//                            String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
+//                            File photoFile2 = new File(photoFilePath2);
+//
+//                            String filePath = photoFile2.getPath();
+//                            bitmap = BitmapFactory.decodeFile(filePath);
 
 //                            filePathAll = UriUtils.getPathFromUri(CameraActivity.this,imageuri);
                             bitmap = hisEqua(bitmap);
@@ -379,12 +379,12 @@ public class CameraActivity extends AppCompatActivity {
                         String filename = "ImageRemove.jpg";
                         removeImageBackground(filename);
 
-                        String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
-                        File photoFile2 = new File(photoFilePath2);
+//                        String photoFilePath2 =  photoDir.getAbsolutePath()+"/"+filename;
+//                        File photoFile2 = new File(photoFilePath2);
+//
+//                        String filePath = photoFile2.getPath();
+//                        bitmap = BitmapFactory.decodeFile(filePath);
 
-                        String filePath = photoFile2.getPath();
-                        bitmap = BitmapFactory.decodeFile(filePath);
-                        
                         bitmap = hisEqua(bitmap);
                         classifyImage();
                     }
