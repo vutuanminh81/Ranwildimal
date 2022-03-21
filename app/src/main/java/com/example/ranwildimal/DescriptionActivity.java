@@ -182,11 +182,11 @@ public class DescriptionActivity extends AppCompatActivity {
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
         int des_id = selectWord.getWord_Des_Id();
-        String sound_id = +des_id+"_Pronounce.mp3";
+        Word_Description word_des_temp = dbAccess.getWordDes(String.valueOf(des_id));
         try {
-            AssetFileDescriptor is = assetMan.openFd("pronounce/"+sound_id);
             MediaPlayer media = new MediaPlayer();
-            media.setDataSource(is.getFileDescriptor(),is.getStartOffset(),is.getLength());
+            media.setDataSource(word_des_temp.getWord_Pronounce());
+            media.setVolume(300,300);
             media.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
@@ -214,16 +214,6 @@ public class DescriptionActivity extends AppCompatActivity {
 
     }
 
-    private void prepareMedia(){
-        try {
-            media.setDataSource("https://drive.google.com/file/d/1AWFQjiZ4qxEpiBUFrlCIctJypa-VqHk2/view?usp=sharing");
-            media.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
 
     public void HomeIntent(View view) {
@@ -234,7 +224,6 @@ public class DescriptionActivity extends AppCompatActivity {
 
     public void saveID(){
         String path = FILE_PATH;
-        System.out.println("////////////////////////"+FILE_PATH);
         try {
             File file = new File(path);
             if(!file.exists()){
