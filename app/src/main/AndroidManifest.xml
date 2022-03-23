@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ranwildimal">
+    package="com.example.ranwildimal" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-
     <application
         android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
@@ -17,30 +16,26 @@
         android:label="RANWILDIMAL"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ranwildimal">
-        <activity android:name=".ResultErrorActivity">
-
+        android:theme="@style/Theme.Ranwildimal" >
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ResultSuccessActivity" >
-        </activity>
+        <activity android:name=".ResultErrorActivity" />
+        <activity android:name=".ResultSuccessActivity" />
         <activity android:name=".DescriptionExempleListActivity" />
         <activity android:name=".DescriptionActivity" />
-        <activity android:name=".GuilineActivity"></activity>
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".SearchHistoryListActivity"></activity>
+        <activity android:name=".GuilineActivity" />
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".SearchHistoryListActivity" />
         <activity android:name=".Encounter_List_Activity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AbouUsActivity" />
         <activity android:name=".MyEncounterActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
