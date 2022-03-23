@@ -89,6 +89,24 @@ public class DatabaseAccess {
         return list;
     }
 
+    public ArrayList<Word_Description> getWordDes(){
+        c = db.rawQuery("select * from Word_Description", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        ArrayList<Word_Description> list = new ArrayList<>();
+        while(c.moveToNext()){
+            int id = c.getInt(0);
+            String pronounce = c.getString(1);
+            String video = c.getString(2);
+            String image = c.getString(3);
+            int scan = c.getInt(4);
+            int status = 1;
+            Word_Description new_word = new Word_Description(id,pronounce,video,image,1);
+            list.add(new_word);
+        }
+        c.close();
+        return list;
+    }
+
     public ArrayList<Example> getExampleListByWord(String wordId){
         c = db.rawQuery("select * from Example where Word_Id = "+wordId, new String[]{});
         StringBuffer buffer = new StringBuffer();
