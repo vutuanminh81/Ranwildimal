@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if((wifiConn != null && wifiConn.isConnected())){
             System.out.println(" >>>>>>>>>>>>> Network Connected");
-            updateDatafromFS();
+            //updateDatafromFS();
         }else{
             System.out.println(" >>>>>>>>>>>>> Network DisConnected");
         }
