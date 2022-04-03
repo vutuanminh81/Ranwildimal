@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +71,7 @@ public class DescriptionActivity extends AppCompatActivity {
     String fileContent = "";
     String worlDesId = "";
     Word_Description wordDescription;
+    MediaPlayer media = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +129,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+            public void onReady(YouTubePlayer youTubePlayer) {
                 String videoId = wordDescription.getWord_Video();
                 youTubePlayer.cueVideo(videoId, 0);
                 youTubePlayer.play();
@@ -182,11 +182,11 @@ public class DescriptionActivity extends AppCompatActivity {
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
         int des_id = selectWord.getWord_Des_Id();
-        String sound_id = +des_id+"_Pronounce.mp3";
+        Word_Description word_des_temp = dbAccess.getWordDes(String.valueOf(des_id));
         try {
-            AssetFileDescriptor is = assetMan.openFd("pronounce/"+sound_id);
             MediaPlayer media = new MediaPlayer();
-            media.setDataSource(is.getFileDescriptor(),is.getStartOffset(),is.getLength());
+            media.setDataSource(word_des_temp.getWord_Pronounce());
+            media.setVolume(300,300);
             media.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
@@ -210,6 +210,8 @@ public class DescriptionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         dbAccess.closeConn();
+
+
     }
 
 
@@ -222,7 +224,6 @@ public class DescriptionActivity extends AppCompatActivity {
 
     public void saveID(){
         String path = FILE_PATH;
-        System.out.println("////////////////////////"+FILE_PATH);
         try {
             File file = new File(path);
             if(!file.exists()){

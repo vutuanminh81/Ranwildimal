@@ -289,8 +289,7 @@
             app:layout_constraintBottom_toTopOf="@+id/view24"
             app:layout_constraintEnd_toStartOf="@+id/view31"
             app:layout_constraintStart_toEndOf="@+id/view30"
-            app:layout_constraintTop_toBottomOf="@+id/view21"
-            app:showFullScreenButton="false" />
+            app:layout_constraintTop_toBottomOf="@+id/view21" />
 
         <View
             android:id="@+id/view21"

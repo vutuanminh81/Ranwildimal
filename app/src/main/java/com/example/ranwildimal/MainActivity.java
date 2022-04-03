@@ -16,15 +16,29 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 
+import com.example.ranwildimal.database.DatabaseAccess;
+import com.example.ranwildimal.model.Example;
+import com.example.ranwildimal.model.Word;
+import com.example.ranwildimal.model.Word_Description;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 import org.opencv.android.OpenCVLoader;
@@ -33,7 +47,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public String FILE_PATH = "";
@@ -45,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Context context;
     Resources res ;
     String filepath = "MyFileDir";
+    Handler handler;
 
     static{
         if(OpenCVLoader.initDebug()){
@@ -60,11 +79,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         FILE_PATH=getExternalFilesDir(filepath).getPath();
         loadID();
+        initHanlder();
         //Customize status bar
         statusBarColor();
         drawer = findViewById(R.id.drawer_layout);
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
+
+
+
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if((wifiConn != null && wifiConn.isConnected())){
+            System.out.println(" >>>>>>>>>>>>> Network Connected");
+            //updateDatafromFS();
+        }else{
+            System.out.println(" >>>>>>>>>>>>> Network DisConnected");
+        }
 
 
 
@@ -84,6 +117,98 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         sidebar.setNavigationItemSelectedListener(this);
 
+    }
+
+    private void initHanlder() {
+        handler = new Handler(){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+            }
+        };
+    }
+
+    private void updateDatafromFS() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                dbAccess.openConn();
+                final String[] doc_Id = new String[100];
+                ArrayList<Word> word = new ArrayList<>();
+                ArrayList<Word_Description> word_descriptions = new ArrayList<>();
+                FirebaseFirestore fs = FirebaseFirestore.getInstance();
+                fs.collection("Word_Description")
+                        .whereEqualTo("Word_Status",2)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                                    int i = 0;
+                                    for(QueryDocumentSnapshot doc : task.getResult()){
+                                        doc_Id[i] = doc.getId();
+                                       Word_Description word_des = new Word_Description();
+                                       word_des.setWord_Des_Id(doc.get("Word_Des_Id",Integer.class));
+                                       word_des.setWord_Image(doc.getString("Word_Image"));
+                                       word_des.setWord_Video(doc.getString("Word_Video"));
+                                       word_des.setWord_Pronounce(doc.getString("Word_Pronounce"));
+                                       word_des.setWord_Status(0);
+                                       word_descriptions.add(word_des);
+                                       i++;
+                                    }
+                                }
+                                int j = 0;
+                                for (Word_Description w :word_descriptions) {
+                                    dbAccess.updateWordDes(w);
+                                    Map<String, Object> word_des_obj = new HashMap<>();
+                                    word_des_obj.put("Word_Des_Id",w.getWord_Des_Id());
+                                    word_des_obj.put("Word_Pronounce",w.getWord_Pronounce());
+                                    word_des_obj.put("Word_Video",w.getWord_Video());
+                                    word_des_obj.put("Word_Image",w.getWord_Image());
+                                    word_des_obj.put("Word_Status",0);
+                                    fs.collection("Word_Description")
+                                            .document(doc_Id[j])
+                                            .update(word_des_obj);
+                                    j++;
+                                }
+                            }
+                        });
+                fs.collection("Word")
+                        .whereEqualTo("Word_Status",2)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                                    int i = 0;
+                                    for(QueryDocumentSnapshot doc : task.getResult()){
+                                        doc_Id[i] = doc.getId();
+                                        Word word_des = new Word();
+                                        word_des.setWord_Des_Id(doc.get("Word_Des_Id",Integer.class));
+                                        word_des.setWord_Type_Id(doc.get("Word_Type_Id",Integer.class));
+                                        word_des.setWord(doc.getString("Word"));
+                                        word_des.setLanguage_Id(doc.get("Language_Id",Integer.class));
+                                        word_des.setWord_Status(0);
+                                        word.add(word_des);
+                                        i++;
+                                    }
+                                }
+                                int j = 0;
+                                for (Word w :word) {
+                                    dbAccess.updateWord(w);
+                                    Map<String, Object> word_des_obj = new HashMap<>();
+                                    word_des_obj.put("Word_Status",0);
+                                    fs.collection("Word")
+                                            .document(doc_Id[j])
+                                            .update(word_des_obj);
+                                    j++;
+                                }
+                            }
+                        });
+            }
+        });
+        thread.run();
     }
 
     public void SearchIntent(View view) {
