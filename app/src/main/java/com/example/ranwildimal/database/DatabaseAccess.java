@@ -239,7 +239,7 @@ public class DatabaseAccess {
     }
 
     public void updateWord(Word word){
-        c = db.rawQuery("update Word set Word = ?, Word_Des_Id = ?, Word_Status = 0, Word_Type_Id = ?, Language_Id = ? where Word_Id = ?", new String[]{word.getWord(), String.valueOf(word.getWord_Des_Id()), String.valueOf(word.getWord_Type_Id()),String.valueOf(word.getLanguage_Id()), String.valueOf(word.getWord_ID())});
+        c = db.rawQuery("update Word set Word = ?, Word_Des_Id = ?, Word_Status = 1, Word_Type_Id = ?, Language_Id = ? where Word_Id = ?", new String[]{word.getWord(), String.valueOf(word.getWord_Des_Id()), String.valueOf(word.getWord_Type_Id()),String.valueOf(word.getLanguage_Id()), String.valueOf(word.getWord_ID())});
         StringBuffer buffer = new StringBuffer();
         c.moveToFirst();
         c.close();
