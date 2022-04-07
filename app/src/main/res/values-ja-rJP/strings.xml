@@ -15,9 +15,9 @@
     <string name="guideline_title">ガイドライン</string>
     <string name="result_error_message_title">申し訳ありませんが、この写真を特定できません</string>
     <string name="result_error_message">識別したい動物の他のビューを試すことも、鮮明でより近いショットを試すこともできます。</string>
-    <string name="post_message">動物の写真を撮った場合は、この写真をデータに投稿することで、データの改善に役立てることができます。 それは私たちのアプリを近い機能でより良くするでしょう。</string>
+    <string name="post_message">アプリケーションが間違った動物を識別した場合は、アプリケーションの品質を向上させるために私たちに通知することができます。</string>
     <string name="take_another_picture_button">別の写真を撮る</string>
-    <string name="post_picture_button">写真を投稿する</string>
+    <string name="post_picture_button">報告</string>
     <string name="result_success_button">"動物を見る "</string>
     <string name="result_success_message_title">動物を特定しました</string>
     <string name="search_animal">動物を検索する</string>

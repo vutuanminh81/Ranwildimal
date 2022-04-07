@@ -19,9 +19,9 @@
     <string name="result_error_message_title">SORRY, WE CAN’T IDENTIFY THIS PICTURE</string>
     <string name="result_error_message">You can try other view of the animal you want to identify, or try a clear and closer shot.</string>
     <string name="result_success_button">VIEW ANIMAL</string>
-    <string name="post_picture_button">POST THIS PICTURE</string>
+    <string name="post_picture_button">REPORT</string>
     <string name="take_another_picture_button">TAKE ANOTHER PICTURE</string>
-    <string name="post_message">If you took a picture of animal, you can help us improve our data by posting this picture to our data. Of course, it will make our app more better in the near feature.</string>
+    <string name="post_message">If the application identifies the wrong animal, you can report us to improve the quality of the application</string>
     <string name="dot_1" translatable="false">●</string>
     <string name="dot_2" translatable="false">○</string>
     <string name="guideline_title">Guideline</string>

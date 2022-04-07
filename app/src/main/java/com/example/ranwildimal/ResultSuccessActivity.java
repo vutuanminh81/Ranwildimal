@@ -1,11 +1,16 @@
 package com.example.ranwildimal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -124,5 +129,27 @@ public class ResultSuccessActivity extends AppCompatActivity {
     public void HomeIntent(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+    }
+
+    public void ReportIntent(View view){
+        ConnectivityManager connectivityManager = (ConnectivityManager) ResultSuccessActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
+
+        }else{
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(ResultSuccessActivity.this);
+            builder1.setMessage("Please connect to network to report");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
     }
 }
