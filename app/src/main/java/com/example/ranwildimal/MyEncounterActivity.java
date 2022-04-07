@@ -94,9 +94,7 @@ public class MyEncounterActivity extends AppCompatActivity {
     private void filter(String s) {
         ArrayList<Word> newlist = new ArrayList<>();
         ArrayList<Word> listall = new ArrayList<>();
-        if (s.isEmpty()) {
-            getDataList();
-        } else {
+        if (!s.isEmpty() && s.compareTo("")!=0) {
             if(listsearchWord != null){
                 for (Word w: listsearchWord) {
                     int desID = 0;
@@ -112,12 +110,9 @@ public class MyEncounterActivity extends AppCompatActivity {
                     }
                 }
             }
-            if (!newlist.isEmpty()) {
-                recyclerView.setVisibility(View.VISIBLE);
-            } else {
-                recyclerView.setVisibility(View.INVISIBLE);
-            }
             encounterAdapter.ArrayFilter(newlist, listall);
+        } else {
+            getDataList();
         }
     }
 
