@@ -1,17 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name"        >Ranwildimal</string>
+    <string name="app_name">Ranwildimal</string>
     <string name="main_title">RANWILDIMAL</string>
     <string name="welcome_title">RANWILDIMAL</string>
-    <string name="home_title"      >HOME</string>
-    <string name="encounter_title" >MY ENCOUNTER</string>
-    <string name="about_title"     >ABOUT</string>
-    <string name="setting_title"   >SETTINGS</string>
+    <string name="home_title">HOME</string>
+    <string name="encounter_title">MY ENCOUNTER</string>
+    <string name="about_title">ABOUT</string>
+    <string name="setting_title">SETTINGS</string>
     <string name="sidebar_open" translatable="false">Open sidebar</string>
     <string name="sidebar_close" translatable="false">Close sidebar</string>
     <string name="search_animal" tools:ignore="MissingTranslation">Search an animal</string>
-    <string name="home_page_1"     >Welcome to</string>
-    <string name="home_page_2"     >Where you can know animals in</string>
-    <string name="home_page_3"     >Japanese and Vietnamses</string>
+    <string name="home_page_1">Welcome to</string>
+    <string name="home_page_2">Where you can know animals in</string>
+    <string name="home_page_3">Japanese and Vietnamses</string>
     <string name="animal_encounter" tools:ignore="MissingTranslation">Animal</string>
     <string name="description_language">Japanese</string>
     <string name="description_video">Video</string>
@@ -36,5 +36,7 @@
         <item>English</item>
         <item>Japanese</item>
     </string-array>
+
+
 </resources>
 

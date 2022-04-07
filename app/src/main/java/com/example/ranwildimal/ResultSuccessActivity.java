@@ -41,6 +41,8 @@ public class ResultSuccessActivity extends AppCompatActivity {
     Button btnViewDetail;
     Word getWord;
     ArrayList<Word> list = null;
+    String filePath;
+    String animal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,8 @@ public class ResultSuccessActivity extends AppCompatActivity {
         //Customize toolbar
         setSupportActionBar(successResultActivity_toolbar);
         getSupportActionBar().setTitle(null);
-        String animal = getIntent().getStringExtra("animalName");
-        String filePath = getIntent().getStringExtra("filePathImg");
+        animal = getIntent().getStringExtra("animalName");
+        filePath = getIntent().getStringExtra("filePathImg");
 
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         Bitmap testImg = BitmapFactory.decodeFile(filePath);
@@ -87,13 +89,13 @@ public class ResultSuccessActivity extends AppCompatActivity {
         Utils.matToBitmap(equ,bmImg);
 
         currentImage.setImageBitmap(bmImg);
-        File dir = new File(filePath);
-        dir.delete();
         int des_Id = dbAccess.getWordDesIdbyName(animal);
         dbAccess.increaseWordScan(String.valueOf(des_Id));
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                File dir = new File(filePath);
+                dir.delete();
                 int id = 0;
                 for (Word w : list){
                     if(w.getWord().toLowerCase().equals(animal.toLowerCase())){
@@ -127,6 +129,17 @@ public class ResultSuccessActivity extends AppCompatActivity {
     }
 
     public void HomeIntent(View view) {
+        File dir = new File(filePath);
+        dir.delete();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        File dir = new File(filePath);
+        dir.delete();
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
     }
@@ -136,7 +149,10 @@ public class ResultSuccessActivity extends AppCompatActivity {
         NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
-
+            Intent intent = new Intent(this, ReportActivity.class);
+            intent.putExtra("NAME",animal);
+            intent.putExtra("Dir",filePath);
+            this.startActivity(intent);
         }else{
             AlertDialog.Builder builder1 = new AlertDialog.Builder(ResultSuccessActivity.this);
             builder1.setMessage("Please connect to network to report");

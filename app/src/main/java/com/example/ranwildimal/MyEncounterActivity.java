@@ -38,7 +38,6 @@ public class MyEncounterActivity extends AppCompatActivity {
     ArrayList<Word> listJapWord;
     ArrayList<Word> listsearchWord;
     TextView searchtxt;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

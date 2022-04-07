@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultSuccessActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/result_success_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/error_message"
+        android:gravity="top"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/main_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_36"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_des_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/error_message"
+            android:gravity="start"
+            android:onClick="HomeIntent"
+            app:srcCompat="@drawable/back" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_current_image_report"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="65dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="96dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_result_current_image_report"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_actual_result"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="69dp"
+        android:hint="@string/search_animal"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_current_image_report" />
+
+    <EditText
+        android:id="@+id/txt_note"
+        android:layout_width="308dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="66dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animal_spinner" />
+
+    <Button
+        android:id="@+id/btn_error_post_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_marginBottom="67dp"
+        android:background="@drawable/result_error_button"
+        android:gravity="center"
+        android:onClick="Report"
+        android:text="@string/post_picture_button"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        app:backgroundTint="@color/error_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_note" />
+
+    <Spinner
+        android:id="@+id/animal_spinner"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="69dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_actual_result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
