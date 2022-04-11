@@ -6,74 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".CameraActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/search_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/camera_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textsize_36"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btn_search_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/main_color"
-            android:gravity="start"
-            android:onClick="HomeIntent"
-            app:srcCompat="@drawable/back"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="13dp" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <Button
+    <ImageButton
         android:id="@+id/btn_Camera"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/custome_button"
-
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Camera"
-
-        android:textSize="12sp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/Take_photo"
+        android:translationZ="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn_Gallery"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:background="@drawable/custome_button"
-
-        android:text="Gallery"
-        android:textSize="12sp"
+        android:text="@string/gallery"
+        android:textSize="@dimen/textsize_12"
+        android:translationZ="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/btn_search_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back"
+        android:onClick="HomeIntent"
+        android:translationZ="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018"
+        app:srcCompat="@drawable/back"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.camera.view.PreviewView
         android:id="@+id/cameraView"
-        android:layout_width="345dp"
-        android:layout_height="485dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617">
+
+    </androidx.camera.view.PreviewView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,49 +73,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spin_language" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="@dimen/margin_15"
-        android:layout_marginBottom="@dimen/margin_15"
-        android:gravity="center"
-        android:text="@string/ranwildimal_version"
-        android:textColor="#4E8A3E"
-        android:textSize="@dimen/textsize_24"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_version"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_howtouse" />
-
-    <Button
-        android:id="@+id/btn_version"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_marginTop="15dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/latest_version"
-        android:textColor="@color/main_color"
-        android:textSize="@dimen/textsize_20"
-        android:textStyle="bold"
-        app:backgroundTint="@color/main_menu_color"
-        app:cornerRadius="10dp"
-        app:elevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/view33"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:strokeColor="@color/main_color"
-        app:strokeWidth="2dp" />
-
     <Button
         android:id="@+id/btn_howtouse"
         android:layout_width="@dimen/dimen_200"
         android:layout_height="65dp"
         android:layout_marginTop="@dimen/margin_15"
-        android:layout_marginBottom="@dimen/margin_15"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="GuidelineIntent"
@@ -126,7 +88,7 @@
         app:backgroundTint="@color/main_menu_color"
         app:cornerRadius="10dp"
         app:elevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintBottom_toTopOf="@+id/view33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
@@ -163,7 +125,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_version" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_howtouse" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

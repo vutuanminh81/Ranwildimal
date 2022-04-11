@@ -63,41 +63,36 @@
 
     <TextView
         android:id="@+id/txt_actual_result"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/width_300"
         android:layout_height="30dp"
         android:layout_gravity="end"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="69dp"
         android:hint="@string/search_animal"
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="@dimen/textsize_18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_current_image_report" />
+        app:layout_constraintBottom_toTopOf="@+id/view43"
+        app:layout_constraintEnd_toStartOf="@+id/view45"
+        app:layout_constraintStart_toEndOf="@+id/view44"
+        app:layout_constraintTop_toBottomOf="@+id/view35" />
 
     <EditText
         android:id="@+id/txt_note"
-        android:layout_width="308dp"
-        android:layout_height="152dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="66dp"
+        android:layout_width="@dimen/width_300"
+        android:layout_height="150dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animal_spinner" />
+        app:layout_constraintBottom_toTopOf="@+id/view49"
+        app:layout_constraintEnd_toStartOf="@+id/view51"
+        app:layout_constraintStart_toEndOf="@+id/view50"
+        app:layout_constraintTop_toBottomOf="@+id/view46" />
 
     <Button
         android:id="@+id/btn_error_post_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:layout_marginBottom="67dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/result_error_button"
         android:gravity="center"
         android:onClick="Report"
@@ -106,21 +101,148 @@
         android:textSize="@dimen/textsize_20"
         android:textStyle="bold"
         app:backgroundTint="@color/error_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_note" />
+        app:layout_constraintBottom_toTopOf="@+id/view34"
+        app:layout_constraintEnd_toStartOf="@+id/view53"
+        app:layout_constraintStart_toEndOf="@+id/view52"
+        app:layout_constraintTop_toBottomOf="@+id/view49" />
 
     <Spinner
         android:id="@+id/animal_spinner"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/width_300"
         android:layout_height="50dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="69dp"
+        app:layout_constraintBottom_toTopOf="@+id/view46"
+        app:layout_constraintEnd_toStartOf="@+id/view48"
+        app:layout_constraintStart_toEndOf="@+id/view47"
+        app:layout_constraintTop_toBottomOf="@+id/view43" />
+
+    <View
+        android:id="@+id/view34"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view54"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_error_post_image" />
+
+    <View
+        android:id="@+id/view35"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_actual_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_current_image_report"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/view43"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/animal_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_actual_result" />
+
+    <View
+        android:id="@+id/view46"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animal_spinner" />
+
+    <View
+        android:id="@+id/view47"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view46"
+        app:layout_constraintEnd_toStartOf="@+id/animal_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view43" />
+
+    <View
+        android:id="@+id/view48"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view46"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/animal_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/view43" />
+
+    <View
+        android:id="@+id/view44"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view43"
+        app:layout_constraintEnd_toStartOf="@+id/txt_actual_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view35" />
+
+    <View
+        android:id="@+id/view45"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_actual_result"
+        app:layout_constraintTop_toBottomOf="@+id/view35" />
+
+    <View
+        android:id="@+id/view49"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_error_post_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_note" />
+
+    <View
+        android:id="@+id/view50"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view49"
+        app:layout_constraintEnd_toStartOf="@+id/txt_note"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view46" />
+
+    <View
+        android:id="@+id/view51"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view49"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_note"
+        app:layout_constraintTop_toBottomOf="@+id/view46" />
+
+    <View
+        android:id="@+id/view52"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view34"
+        app:layout_constraintEnd_toStartOf="@+id/btn_error_post_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view49" />
+
+    <View
+        android:id="@+id/view53"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/view34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_error_post_image"
+        app:layout_constraintTop_toBottomOf="@+id/view49" />
+
+    <View
+        android:id="@+id/view54"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view34" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@
     <string name="app_name">Ranwildimal</string>
     <string name="home_title">ホーム</string>
     <string name="encounter_title">出会い</string>
-    <string name="about_title">私たちについて</string>
+    <string name="about_title">開発者</string>
     <string name="setting_title">設定</string>
     <string name="description_language" >日本語</string>
     <string name="animal_encounter">動物</string>
@@ -32,4 +32,14 @@
         <item>日本語</item>
     </string-array>
     <string name="description_video">ビデオ</string>
+    <string name="camera_title">カメラ</string>
+    <string name="gallery" translatable="false">" ギャラリー  "</string>
+    <string name="memebers" translatable="false">隊員</string>
+    <string name="memeber_2">指導者Nguyen Pham Huu Tai</string>
+    <string name="memeber_1">講師 Vo Hong Khanh</string>
+    <string name="memeber_3">Ngo Hoan Tam Huy</string>
+    <string name="memeber_4">Tran Ngoc Man Huy</string>
+    <string name="memeber_5">Tran Hoang Qui</string>
+    <string name="memeber_6">Vu Tuan Minh</string>
+    <string name="about_content_1" translatable="false">日本語辞書アプリケーションは、FPT大学のRanwildimalチームの学生グループによって設計および開発された動物辞書アプリケーションです。</string>
 </resources>
