@@ -9,9 +9,7 @@
     <string name="animal_encounter">動物</string>
     <string name="ranwildimal_guideline">RANWILDIMAL ガイドライン</string>
     <string name="ranwildimal_language">RANWILDIMAL 語</string>
-    <string name="ranwildimal_version">RANWILDMAL バージョン</string>
     <string name="how_to_use">使い方</string>
-    <string name="latest_version">最新バージョン</string>
     <string name="guideline_title">ガイドライン</string>
     <string name="result_error_message_title">申し訳ありませんが、この写真を特定できません</string>
     <string name="result_error_message">識別したい動物の他のビューを試すことも、鮮明でより近いショットを試すこともできます。</string>
@@ -33,13 +31,13 @@
     </string-array>
     <string name="description_video">ビデオ</string>
     <string name="camera_title">カメラ</string>
-    <string name="gallery" translatable="false">" ギャラリー  "</string>
-    <string name="memebers" translatable="false">隊員</string>
-    <string name="memeber_2">指導者Nguyen Pham Huu Tai</string>
-    <string name="memeber_1">講師 Vo Hong Khanh</string>
+    <string name="gallery">" ギャラリー  "</string>
+    <string name="memebers">隊員</string>
+    <string name="memeber_2">Nguyen Pham Huu Tai 指導者</string>
+    <string name="memeber_1">Vo Hong Khanh 講師</string>
     <string name="memeber_3">Ngo Hoan Tam Huy</string>
     <string name="memeber_4">Tran Ngoc Man Huy</string>
     <string name="memeber_5">Tran Hoang Qui</string>
     <string name="memeber_6">Vu Tuan Minh</string>
-    <string name="about_content_1" translatable="false">日本語辞書アプリケーションは、FPT大学のRanwildimalチームの学生グループによって設計および開発された動物辞書アプリケーションです。</string>
+    <string name="about_content_1">日本語辞書アプリケーションは、FPT大学のRanwildimalチームの学生グループによって設計および開発された動物辞書アプリケーションです。</string>
 </resources>
