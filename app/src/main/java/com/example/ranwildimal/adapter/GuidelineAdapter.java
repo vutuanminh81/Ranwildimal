@@ -47,17 +47,20 @@ public class GuidelineAdapter extends RecyclerView.Adapter<GuidelineAdapter.Guid
     class GuidelineViewHolder extends RecyclerView.ViewHolder{
         private TextView title;
         private ImageView descriptionImg;
+        private TextView number;
 
         public GuidelineViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.guidelineTitle);
             descriptionImg = itemView.findViewById(R.id.guidelineImg);
+            number = itemView.findViewById(R.id.txtGLnumber);
 
         }
 
         void setGuidelineData (GuidelineItem guidelineItem) {
             title.setText(guidelineItem.getTitle());
             descriptionImg.setImageResource(guidelineItem.getDescriptionImg());
+            number.setText(guidelineItem.getNumber());
         }
     }
 
