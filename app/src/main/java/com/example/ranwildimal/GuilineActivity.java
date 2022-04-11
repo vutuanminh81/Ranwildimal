@@ -16,7 +16,6 @@ import java.util.Locale;
 public class GuilineActivity extends AppCompatActivity {
 
     private GuidelineAdapter guidelineAdapter;
-    private LinearLayout layoutGuideline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +38,39 @@ public class GuilineActivity extends AppCompatActivity {
         if(locale.toString().equals("ja")){
             itemInHome.setTitle("ホーム画面とカメラ画面");
             itemInHome.setDescriptionImg(R.drawable.guideline_home_jp);
+            itemInHome.setNumber("1/3");
 
             itemInSideBar.setTitle("サイドバー");
             itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar_jp);
+            itemInSideBar.setNumber("2/3");
 
             itemInformation.setTitle("動物の情報画面");
             itemInformation.setDescriptionImg(R.drawable.guideline_information_jp);
+            itemInformation.setNumber("3/3");
         }else if(locale.toString().equals("vi")){
             itemInHome.setTitle("TRANG CHỦ VÀ TRANG CHỤP HÌNH");
             itemInHome.setDescriptionImg(R.drawable.guideline_home_vn);
+            itemInHome.setNumber("1/3");
 
             itemInSideBar.setTitle("THANH CÔNG CỤ");
             itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar_vn);
+            itemInSideBar.setNumber("2/3");
 
             itemInformation.setTitle("TRANG THÔNG TIN CON VẬT");
             itemInformation.setDescriptionImg(R.drawable.guideline_information_vn);
+            itemInformation.setNumber("3/3");
         }else{
             itemInHome.setTitle("IN HOME SCREEN & CAMERA SCREEN");
             itemInHome.setDescriptionImg(R.drawable.guideline_home);
+            itemInHome.setNumber("1/3");
 
             itemInSideBar.setTitle("IN SIDEBAR");
             itemInSideBar.setDescriptionImg(R.drawable.guideline_insidebar);
+            itemInSideBar.setNumber("2/3");
 
             itemInformation.setTitle("IN ANIMAL'S INFORMATION SCREEN");
             itemInformation.setDescriptionImg(R.drawable.guideline_information);
+            itemInformation.setNumber("3/3");
         }
 
 
