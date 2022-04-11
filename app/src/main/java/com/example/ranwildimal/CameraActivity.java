@@ -48,6 +48,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -102,7 +103,8 @@ public class CameraActivity extends AppCompatActivity {
 
     private ListenableFuture<ProcessCameraProvider> cameraProvider;
     private ImageCapture imageCapture;
-    private Button btnGallery, btnCamera;
+    private Button btnGallery ;
+    private ImageButton btnCamera;
 
     //public final String FILE_PATH = this.getExternalCacheDir().getPath()+"/data/com.example.ranwildimal";
     public String FILE_PATH = "";
