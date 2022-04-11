@@ -25,9 +25,7 @@
     <string name="guideline_title">Hướng dẫn</string>
     <string name="ranwildimal_language">"NGÔN NGỮ CỦA RANWILDIMAL "</string>
     <string name="ranwildimal_guideline">"HƯỚNG DẪN CỦA RANWILDIMAL "</string>
-    <string name="ranwildimal_version">"PHIÊN BẢN CỦA RANWILDIMAL "</string>
     <string name="how_to_use">CÁCH SỬ DỤNG</string>
-    <string name="latest_version">PHIÊN BẢN MỚI NHẤT</string>
     <string name="encounter_title">LỊCH SỬ TÌM KIẾM</string>
     <string name="main_title">RANWILDIMAL</string>
     <string name="welcome_title">RANWILDIMAL</string>
@@ -39,7 +37,7 @@
     <string name="memeber_6">Vũ Tuấn Minh</string>
     <string name="memebers">Các thành viên</string>
     <string name="memeber_1">Giảng viên Võ Hồng Khanh</string>
-    <string name="gallery" translatable="false">Thư viện</string>
+    <string name="gallery" >Thư viện</string>
     <string name="camera_title">Máy ảnh</string>
     <string name="about_content_1">Từ Điển Tiếng Nhật là một ứng dụng từ điển động vật, được thiết kế và phát triển bởi một nhóm sinh viên của Đại học FPT, nhóm Ranwildimal.</string>
 </resources>
