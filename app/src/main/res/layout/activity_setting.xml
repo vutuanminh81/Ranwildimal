@@ -118,6 +118,7 @@
         android:layout_marginBottom="@dimen/margin_15"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:onClick="GuidelineIntent"
         android:text="@string/how_to_use"
         android:textColor="@color/main_color"
         android:textSize="@dimen/textsize_20"

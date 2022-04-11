@@ -38,7 +38,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -111,6 +114,9 @@ public class ReportActivity extends AppCompatActivity {
         dir.delete();
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
+        Date d = Calendar.getInstance().getTime(); // Current time
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); // Set your date format
+        String currentData = sdf.format(d); // Get Date String according to date format
 
 
 
@@ -119,6 +125,7 @@ public class ReportActivity extends AppCompatActivity {
         user.put("Report_Id", "");
         user.put("Actual_Word_Id",dbAccess.getWordDesIdbyName(animal));
         user.put("Expected_Word_Id", dbAccess.getWordDesIdbyName(spinner.getSelectedItem().toString()));
+        user.put("Day_Report",currentData);
         user.put("Note",note.getText().toString());
         user.put("Status",1);
         user.put("Report_Image","");

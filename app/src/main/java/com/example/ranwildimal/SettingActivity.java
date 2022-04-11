@@ -173,4 +173,9 @@ public class SettingActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void GuidelineIntent(View view){
+        Intent intent = new Intent(this,GuilineActivity.class);
+        startActivity(intent);
+    }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.ranwildimal.adapter.GuidelineAdapter;
@@ -50,5 +51,9 @@ public class GuilineActivity extends AppCompatActivity {
 
         guidelineAdapter = new GuidelineAdapter(guidelineItemList);
 
+    }
+
+    public void Back(View view){
+        this.finish();
     }
 }
