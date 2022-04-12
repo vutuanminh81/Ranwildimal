@@ -12,6 +12,8 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -178,15 +180,60 @@ public class DescriptionActivity extends AppCompatActivity {
         }
     }
 
+//    public void playSound(View view){
+//        DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+//        dbAccess.openConn();
+//        int des_id = selectWord.getWord_Des_Id();
+//        Word_Description word_des_temp = dbAccess.getWordDes(String.valueOf(des_id));
+//        try {
+//            MediaPlayer media = new MediaPlayer();
+//            media.setDataSource(word_des_temp.getWord_Pronounce());
+//            media.setVolume(100,100);
+//            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                media.setAudioAttributes(new AudioAttributes.Builder()
+//                        .setUsage(AudioAttributes.USAGE_MEDIA)
+//                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//                        .build());
+//            } else {
+//                media.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//            }
+//            media.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                @Override
+//                public void onPrepared(MediaPlayer mp) {
+//                    if(media.isPlaying()){
+//                        media.pause();
+//                    }else{
+//                        long duration = media.getDuration();
+//                        media.start();
+//                        playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_activate));
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                playbutton.setImageDrawable(getResources().getDrawable(R.drawable.sound_mute));
+//                            }
+//                        },duration);
+//                    }
+//                }
+//            });
+//            media.prepareAsync();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        dbAccess.closeConn();
+//
+//
+//    }
+
     public void playSound(View view){
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();
         int des_id = selectWord.getWord_Des_Id();
-        Word_Description word_des_temp = dbAccess.getWordDes(String.valueOf(des_id));
+        String sound_id = +des_id+"_Pronounce.mp3";
         try {
+            AssetFileDescriptor is = assetMan.openFd("pronounce/"+sound_id);
             MediaPlayer media = new MediaPlayer();
-            media.setDataSource(word_des_temp.getWord_Pronounce());
-            media.setVolume(300,300);
+            media.setDataSource(is.getFileDescriptor(),is.getStartOffset(),is.getLength());
+            media.setVolume(200,200);
             media.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
@@ -210,10 +257,7 @@ public class DescriptionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         dbAccess.closeConn();
-
-
     }
-
 
 
     public void HomeIntent(View view) {

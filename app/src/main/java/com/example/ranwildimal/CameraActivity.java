@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -257,6 +258,7 @@ public class CameraActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ResultErrorActivity.class);
             intent.putExtra("filePathImg",filePathAll);
             this.startActivity(intent);
+            finish();
         }
 
     }
@@ -315,6 +317,7 @@ public class CameraActivity extends AppCompatActivity {
         if(!photoDir.exists()){
             photoDir.mkdir();
         }
+        startLoading();
         Date date = new Date();
         String timestamp=  String.valueOf(date.getTime());
         String photoFilePath =  photoDir.getAbsolutePath()+"/"+timestamp+".jpg";
@@ -352,6 +355,16 @@ public class CameraActivity extends AppCompatActivity {
         );
     }
 
+    private void startLoading(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.activity_loading,null));
+        builder.setCancelable(false);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+    
     private Bitmap hisEqua(Bitmap bmImg){
         Mat equ = new Mat();
         Utils.bitmapToMat(bmImg,equ);
@@ -521,6 +534,7 @@ public class CameraActivity extends AppCompatActivity {
                 intent.putExtra("animalName", entry.getKey());
                 intent.putExtra("filePathImg",filePathAll);
                 this.startActivity(intent);
+                this.finish();
                 break;
             }
         }

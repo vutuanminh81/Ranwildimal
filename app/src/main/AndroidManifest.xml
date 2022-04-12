@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ranwildimal">
         <activity
+            android:name=".LoadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReportActivity"
             android:exported="false" />
         <activity android:name=".SplashScreenActivity">

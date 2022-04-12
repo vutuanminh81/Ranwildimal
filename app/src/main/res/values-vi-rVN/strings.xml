@@ -40,4 +40,5 @@
     <string name="gallery" >Thư viện</string>
     <string name="camera_title">Máy ảnh</string>
     <string name="about_content_1">Từ Điển Tiếng Nhật là một ứng dụng từ điển động vật, được thiết kế và phát triển bởi một nhóm sinh viên của Đại học FPT, nhóm Ranwildimal.</string>
+    <string name="processing">Đang xử lý</string>
 </resources>

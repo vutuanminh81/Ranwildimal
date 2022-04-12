@@ -3,6 +3,7 @@ package com.example.ranwildimal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -12,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -139,6 +141,7 @@ public class ReportActivity extends AppCompatActivity {
         user.put("Report_Image","");
 
         FirebaseFirestore fs = FirebaseFirestore.getInstance();
+        startLoading();
     // Add a new document with a generated ID
         fs.collection("Report")
                 .add(user)
@@ -212,5 +215,15 @@ public class ReportActivity extends AppCompatActivity {
         Configuration config = new Configuration();
         config.setLocale(locale);
         getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    private void startLoading(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.activity_loading,null));
+        builder.setCancelable(false);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }
