@@ -74,6 +74,7 @@ public class DescriptionActivity extends AppCompatActivity {
     String worlDesId = "";
     Word_Description wordDescription;
     MediaPlayer media = new MediaPlayer();
+    String getIntent = getIntent().getStringExtra("IntentFrom");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -261,7 +262,25 @@ public class DescriptionActivity extends AppCompatActivity {
 
 
     public void HomeIntent(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = null;
+        if(getIntent.equals("MyEncounter")){
+            intent = new Intent(this, MyEncounterActivity.class);
+        }else if(getIntent.equals("Search")){
+            intent = new Intent(this, SearchActivity.class);
+        }
+        this.startActivity(intent);
+        this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = null;
+        if(getIntent.equals("MyEncounter")){
+            intent = new Intent(this, MyEncounterActivity.class);
+        }else if(getIntent.equals("Search")){
+            intent = new Intent(this, SearchActivity.class);
+        }
         this.startActivity(intent);
         this.finish();
     }

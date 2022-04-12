@@ -131,7 +131,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
     public void HomeIntent(View view) {
         File dir = new File(filePath);
         dir.delete();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
     }
 
@@ -140,7 +140,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
         super.onBackPressed();
         File dir = new File(filePath);
         dir.delete();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
     }
 

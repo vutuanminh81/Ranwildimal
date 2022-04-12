@@ -74,6 +74,7 @@ public class MyEncounterAdapter extends RecyclerView.Adapter<MyEncounterAdapter.
                     dbAccess.openConn();
                     dbAccess.increaseWordSearch(String.valueOf(word.getWord_Des_Id()));
                     intent.putExtra("GETID",wordsearchList.get(holder.getAdapterPosition()).getWord_Des_Id());
+                    intent.putExtra("IntentFrom","MyEncounter");
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }

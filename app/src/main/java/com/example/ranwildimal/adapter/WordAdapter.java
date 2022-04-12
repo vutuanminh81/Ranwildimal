@@ -57,6 +57,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.MyViewHolder> 
                     dbAccess.increaseWordSearch(String.valueOf(word.getWord_Des_Id()));
                     Intent intent = new Intent(context, DescriptionActivity.class);
                     intent.putExtra("GETID",wordList.get(holder.getAdapterPosition()).getWord_Des_Id());
+                    intent.putExtra("IntentFrom","Search");
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }
