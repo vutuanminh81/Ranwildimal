@@ -19,6 +19,7 @@ public class ResultErrorActivity extends AppCompatActivity {
     Toolbar errorResultActivity_toolbar;
     ImageView currentImage;
     Button takePictureButton;
+    String filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,9 @@ public class ResultErrorActivity extends AppCompatActivity {
         //Customize toolbar
         setSupportActionBar(errorResultActivity_toolbar);
         getSupportActionBar().setTitle(null);
-        String filePath = getIntent().getStringExtra("filePathImg");
+        filePath = getIntent().getStringExtra("filePathImg");
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         currentImage.setImageBitmap(bmImg);
-        File dir = new File(filePath);
-        dir.delete();
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +55,14 @@ public class ResultErrorActivity extends AppCompatActivity {
 
     public void HomeIntent(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        File dir = new File(filePath);
+        dir.delete();
+        this.startActivity(intent);
+    }
+
+    public void ReportIntent(View view){
+        Intent intent = new Intent(this, ReportActivity.class);
+        intent.putExtra("Dir",filePath);
         this.startActivity(intent);
     }
 }

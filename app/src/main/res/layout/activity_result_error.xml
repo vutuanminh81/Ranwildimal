@@ -179,6 +179,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/result_error_button"
         android:gravity="center"
+        android:onClick="ReportIntent"
         android:text="@string/post_picture_button"
         android:textColor="@color/white"
         android:textSize="@dimen/textsize_20"

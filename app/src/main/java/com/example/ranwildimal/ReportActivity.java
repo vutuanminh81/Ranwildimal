@@ -63,7 +63,11 @@ public class ReportActivity extends AppCompatActivity {
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         currentImage.setImageBitmap(bmImg);
         actualRes = findViewById(R.id.txt_actual_result);
-        actualRes.setText(animal);
+        if(animal != null){
+            actualRes.setText(animal);
+        }else{
+            actualRes.setText("Unidentify");
+        }
         if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
             setLocale("en");
         }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
@@ -123,7 +127,11 @@ public class ReportActivity extends AppCompatActivity {
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
         user.put("Report_Id", "");
-        user.put("Actual_Word_Id",dbAccess.getWordDesIdbyName(animal));
+        if(animal != null){
+            user.put("Actual_Word_Id",dbAccess.getWordDesIdbyName(animal));
+        }else{
+            user.put("Actual_Word_Id","Unidentify");
+        }
         user.put("Expected_Word_Id", dbAccess.getWordDesIdbyName(spinner.getSelectedItem().toString()));
         user.put("Day_Report",currentData);
         user.put("Note",note.getText().toString());
