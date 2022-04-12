@@ -54,9 +54,18 @@ public class ResultErrorActivity extends AppCompatActivity {
     }
 
     public void HomeIntent(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         File dir = new File(filePath);
         dir.delete();
+        this.startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        File dir = new File(filePath);
+        dir.delete();
+        Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
     }
 
