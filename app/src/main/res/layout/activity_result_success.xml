@@ -37,33 +37,6 @@
             app:srcCompat="@drawable/back" />
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_current_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="65dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="96dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/view22"
-        app:layout_constraintEnd_toStartOf="@+id/view23"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/img_result_current_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@color/black"/>
-
-    </androidx.cardview.widget.CardView>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_app_image"
@@ -71,14 +44,12 @@
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
         android:elevation="10dp"
         app:cardCornerRadius="96dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/view22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view23"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -89,7 +60,7 @@
             android:adjustViewBounds="true"
             android:background="@drawable/animal_image2"
             android:scaleType="fitXY"
-            android:src="@color/black"/>
+            android:src="@color/black" />
     </androidx.cardview.widget.CardView>
 
 
@@ -115,17 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view23" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_app_image" />
 
-    <View
-        android:id="@+id/view23"
-        android:layout_width="60dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="65dp"
-        app:layout_constraintBottom_toTopOf="@+id/view22"
-        app:layout_constraintEnd_toStartOf="@+id/cv_app_image"
-        app:layout_constraintStart_toEndOf="@+id/cv_current_image"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view24"
@@ -142,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="hello"
+        android:text="@string/animal_name"
         android:textColor="@color/black"
         android:textSize="@dimen/textsize_24"
         android:textStyle="bold"

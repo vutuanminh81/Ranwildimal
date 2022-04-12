@@ -1,0 +1,156 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: x86",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -514341812
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\\android_gradle_build.json due to:",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1263790564
+  },
+  {
+    "level_": 0,
+    "message_": "- a dependent build file changed",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1524651123
+  },
+  {
+    "level_": 0,
+    "message_": "  - D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1569097277
+  },
+  {
+    "level_": 0,
+    "message_": "keeping json folder \u0027D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\u0027 but regenerating project",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -456979976
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : C:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\build\\intermediates\\cxx\\Debug\\5j62b2u1\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\build\\intermediates\\cxx\\Debug\\5j62b2u1\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1818981152
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : C:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\huuta\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\build\\intermediates\\cxx\\Debug\\5j62b2u1\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\build\\intermediates\\cxx\\Debug\\5j62b2u1\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BD:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 130406111
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\\compile_commands.json.bin normally",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1671959110
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1634441565
+  },
+  {
+    "level_": 0,
+    "message_": "write command file D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\.cxx\\Debug\\5j62b2u1\\x86\\metadata_generation_command.txt",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1752215000
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "D:\\Last Journey\\Do_an\\Project\\App\\Ranwildimal\\sdk\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -722452647
+  }
+]

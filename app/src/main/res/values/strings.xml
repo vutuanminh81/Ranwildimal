@@ -28,14 +28,19 @@
     <string name="how_to_use">HOW TO USE</string>
     <string name="camera_title">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="animal_name">Animal Name</string>
+    <string name="report_1">This animal is</string>
+    <string name="report_2">What do you think this animal is?</string>
+    <string name="report_3">Can you give us more information</string>
     <string name="about_content_1">Japanese Dictionary Application is an animal dictionary application, designed and developed by a student group of FPT University, Ranwildimal Team.</string>
     <string name="memebers">Team members</string>
-    <string name="memeber_1">Lecturer Vo Hong Khanh</string>
-    <string name="memeber_2">Leader Nguyen Pham Huu Tai</string>
-    <string name="memeber_3">Ngo Hoan Tam Huy</string>
-    <string name="memeber_4">Tran Ngoc Man Huy</string>
-    <string name="memeber_5">Tran Hoang Qui</string>
-    <string name="memeber_6">Vu Tuan Minh</string>
+    <string name="lecturer">Lecturer</string>
+    <string name="memeber_1">Vo Hong Khanh</string>
+    <string name="memeber_2">CE140443 - Nguyen Pham Huu Tai ◈</string>
+    <string name="memeber_3">CE140289 - Tran Ngoc Man Huy</string>
+    <string name="memeber_4">CE140548 - Ngo Hoan Tam Huy</string>
+    <string name="memeber_5">CE140632 - Tran Hoang Qui</string>
+    <string name="memeber_6">CE140156 - Vu Tuan Minh</string>
     <string-array name="languages">
         <item>Vietnamese</item>
         <item>English</item>

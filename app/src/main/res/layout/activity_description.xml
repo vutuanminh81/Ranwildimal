@@ -20,7 +20,7 @@
 
         <View
             android:id="@+id/view17"
-            android:layout_width="240dp"
+            android:layout_width="235dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/description_exxemple_list"
             app:layout_constraintEnd_toEndOf="parent"
@@ -147,7 +147,6 @@
             android:id="@+id/text_description_japanese_sound"
             android:layout_width="175dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="5dp"
             android:gravity="start"
             android:text="@string/description_language"
             android:textColor="@color/main_color"
@@ -178,7 +177,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toStartOf="@+id/text_description_japanese_sound"
-            app:layout_constraintStart_toEndOf="@+id/view15"
+            app:layout_constraintStart_toEndOf="@+id/view16"
             app:layout_constraintTop_toBottomOf="@+id/view13" />
 
         <ImageButton
@@ -191,6 +190,7 @@
             android:onClick="playSound"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toStartOf="@+id/view11"
+            app:layout_constraintStart_toEndOf="@+id/text_description_japanese_sound"
             app:layout_constraintTop_toBottomOf="@+id/view13"
             app:srcCompat="@drawable/sound_mute" />
 
@@ -206,6 +206,7 @@
             android:id="@+id/description_exxemple_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
             app:layout_constraintBottom_toTopOf="@+id/view18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

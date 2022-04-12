@@ -19,8 +19,6 @@
     <string name="result_success_button">"動物を見る "</string>
     <string name="result_success_message_title">動物を特定しました</string>
     <string name="search_animal">動物を検索する</string>
-    <string name="home_page_2">日本語とベトナム語で</string>
-    <string name="home_page_3">動物を知ることができる場所</string>
     <string name="home_page_1">Ranwildimalへ</string>
     <string name="main_title">RANWILDIMAL</string>
     <string name="welcome_title">ようこそ</string>
@@ -33,11 +31,17 @@
     <string name="camera_title">カメラ</string>
     <string name="gallery">" ギャラリー  "</string>
     <string name="memebers">隊員</string>
-    <string name="memeber_2">Nguyen Pham Huu Tai 指導者</string>
-    <string name="memeber_1">Vo Hong Khanh 講師</string>
-    <string name="memeber_3">Ngo Hoan Tam Huy</string>
-    <string name="memeber_4">Tran Ngoc Man Huy</string>
-    <string name="memeber_5">Tran Hoang Qui</string>
-    <string name="memeber_6">Vu Tuan Minh</string>
+    <string name="memeber_2">CE140443 - Nguyen Pham Huu Tai ◈</string>
+    <string name="memeber_1">Vo Hong Khanh</string>
+    <string name="memeber_3">CE140289 - Tran Ngoc Man Huy</string>
+    <string name="memeber_4">CE140548 - Ngo Hoan Tam Huy</string>
+    <string name="memeber_5">CE140632 - Tran Hoang Qui</string>
+    <string name="memeber_6">CE140156 - Vu Tuan Minh</string>
     <string name="about_content_1">日本語辞書アプリケーションは、FPT大学のRanwildimalチームの学生グループによって設計および開発された動物辞書アプリケーションです。</string>
+    <string name="processing">ちょっと待ってね</string>
+    <string name="animal_name">動物の名</string>
+    <string name="report_1">この動物は</string>
+    <string name="report_2">この動物は何だと思いますか？</string>
+    <string name="report_3">詳細を教えてください</string>
+    <string name="lecturer">講師</string>
 </resources>

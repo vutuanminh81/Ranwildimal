@@ -5,8 +5,6 @@
     <string name="about_title">NHÀ PHÁT TRIỂN</string>
     <string name="setting_title">CÀI ĐẶT</string>
     <string name="home_page_1">Chào mừng bạn đến với</string>
-    <string name="home_page_2">LÀ NƠI BẠN CÓ THỂ GỌI ĐỘNG VẬT BẰNG</string>
-    <string name="home_page_3">TIẾNG NHẬT VÀ TIỀNG VIỆT</string>
     <string name="animal_encounter">Con vật</string>
     <string-array name="languages">
         <item>Tiếng Việt</item>
@@ -30,15 +28,20 @@
     <string name="main_title">RANWILDIMAL</string>
     <string name="welcome_title">RANWILDIMAL</string>
     <string name="description_video">Video</string>
-    <string name="memeber_2">Nhóm Trưởng Nguyễn Phạm Hữu Tài</string>
-    <string name="memeber_3">Ngô Hoàn Tâm Huy</string>
-    <string name="memeber_4">Trần Ngọc Mẫn Huy</string>
-    <string name="memeber_5">Trần Hoàng Quí</string>
-    <string name="memeber_6">Vũ Tuấn Minh</string>
+    <string name="memeber_2">CE1443 - Nguyễn Phạm Hữu Tài ◈</string>
+    <string name="memeber_3">CE140548 - Trần Ngọc Mẫn Huy</string>
+    <string name="memeber_4">CE140289 - Ngô Hoàn Tâm Huy</string>
+    <string name="memeber_5">CE140632 - Trần Hoàng Quí</string>
+    <string name="memeber_6">CE140156 - Vũ Tuấn Minh</string>
     <string name="memebers">Các thành viên</string>
-    <string name="memeber_1">Giảng viên Võ Hồng Khanh</string>
+    <string name="memeber_1">Võ Hồng Khanh</string>
     <string name="gallery" >Thư viện</string>
     <string name="camera_title">Máy ảnh</string>
     <string name="about_content_1">Từ Điển Tiếng Nhật là một ứng dụng từ điển động vật, được thiết kế và phát triển bởi một nhóm sinh viên của Đại học FPT, nhóm Ranwildimal.</string>
     <string name="processing">Đang xử lý</string>
+    <string name="animal_name">Tên của con vật</string>
+    <string name="report_1">Con vật này là</string>
+    <string name="report_2">Bạn nghĩ con vật này là con gì?</string>
+    <string name="report_3">Hãy cho chúng tôi biết thêm về con vật này</string>
+    <string name="lecturer">Giảng viên hướng dẫn</string>
 </resources>
