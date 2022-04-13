@@ -123,11 +123,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void SearchIntent(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         this.startActivity(intent);
+        finish();
     }
 
     public void CameraIntent(View view) {
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
+        finish();
     }
 
     @Override

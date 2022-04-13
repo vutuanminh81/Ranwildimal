@@ -103,7 +103,14 @@ public class SearchActivity extends AppCompatActivity {
     public void HomeIntent(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+        finish();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        finish();
+    }
 }

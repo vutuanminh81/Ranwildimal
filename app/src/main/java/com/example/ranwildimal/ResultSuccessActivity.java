@@ -49,7 +49,6 @@ public class ResultSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_success);
         successResultActivity_toolbar = findViewById(R.id.result_success_toolbar);
-        currentImage = findViewById(R.id.img_result_current_image);
         animalName = findViewById(R.id.txt_result_success_name);
         btnViewDetail = findViewById(R.id.btn_success_view);
         test = findViewById(R.id.img_result_app_image);
@@ -88,7 +87,6 @@ public class ResultSuccessActivity extends AppCompatActivity {
 
         Utils.matToBitmap(equ,bmImg);
 
-        currentImage.setImageBitmap(bmImg);
         int des_Id = dbAccess.getWordDesIdbyName(animal);
         dbAccess.increaseWordScan(String.valueOf(des_Id));
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +103,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
                     }
                 }
                 i.putExtra("GETID",id);
+                i.putExtra("IntentFrom","Result");
                 startActivity(i);
             }
         });
@@ -133,6 +132,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
         dir.delete();
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
+        this.finish();
     }
 
     @Override
@@ -142,6 +142,14 @@ public class ResultSuccessActivity extends AppCompatActivity {
         dir.delete();
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
+        this.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        File dir = new File(filePath);
+        dir.delete();
     }
 
     public void ReportIntent(View view){

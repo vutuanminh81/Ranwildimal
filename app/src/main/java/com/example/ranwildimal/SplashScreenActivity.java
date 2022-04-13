@@ -33,7 +33,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         statusBarColor();
         ConnectivityManager connectivityManager = (ConnectivityManager) SplashScreenActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if((wifiConn != null && wifiConn.isConnected())){
             System.out.println(" >>>>>>>>>>>>> Network Connected");
             updateDatafromFS();
@@ -58,6 +57,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Get data from Firestore to SQLite
+     */
     private void updateDatafromFS() {
         Thread thread = new Thread(new Runnable() {
             @Override

@@ -488,6 +488,14 @@ public class CameraActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+
     private Bitmap rotateImage(Bitmap bm, String path) throws IOException {
         Bitmap bitmap = bm;
         int rotate = 0;

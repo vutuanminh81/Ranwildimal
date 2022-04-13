@@ -41,6 +41,7 @@ public class ResultErrorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ResultErrorActivity.this, CameraActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -58,6 +59,7 @@ public class ResultErrorActivity extends AppCompatActivity {
         File dir = new File(filePath);
         dir.delete();
         this.startActivity(intent);
+        this.finish();
     }
 
     @Override
@@ -67,6 +69,14 @@ public class ResultErrorActivity extends AppCompatActivity {
         dir.delete();
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
+        this.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        File dir = new File(filePath);
+        dir.delete();
     }
 
     public void ReportIntent(View view){

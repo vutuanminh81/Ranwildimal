@@ -74,7 +74,7 @@ public class DescriptionActivity extends AppCompatActivity {
     String worlDesId = "";
     Word_Description wordDescription;
     MediaPlayer media = new MediaPlayer();
-    String getIntent = getIntent().getStringExtra("IntentFrom");
+    String getIntent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +85,7 @@ public class DescriptionActivity extends AppCompatActivity {
         //Customize status bar
         statusBarColor();
         //Customize toolbar
+        getIntent = getIntent().getStringExtra("IntentFrom");
         setSupportActionBar(description_toolbar);
         if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
             setLocale("en");
@@ -265,10 +266,11 @@ public class DescriptionActivity extends AppCompatActivity {
         Intent intent = null;
         if(getIntent.equals("MyEncounter")){
             intent = new Intent(this, MyEncounterActivity.class);
+            this.startActivity(intent);
         }else if(getIntent.equals("Search")){
             intent = new Intent(this, SearchActivity.class);
+            this.startActivity(intent);
         }
-        this.startActivity(intent);
         this.finish();
     }
 
@@ -278,10 +280,11 @@ public class DescriptionActivity extends AppCompatActivity {
         Intent intent = null;
         if(getIntent.equals("MyEncounter")){
             intent = new Intent(this, MyEncounterActivity.class);
+            this.startActivity(intent);
         }else if(getIntent.equals("Search")){
             intent = new Intent(this, SearchActivity.class);
+            this.startActivity(intent);
         }
-        this.startActivity(intent);
         this.finish();
     }
 

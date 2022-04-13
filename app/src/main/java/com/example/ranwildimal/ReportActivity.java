@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ public class ReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        statusBarColor();
         animal = getIntent().getStringExtra("NAME");
         filePath = getIntent().getStringExtra("Dir");
         currentImage = findViewById(R.id.img_result_current_image_report);
@@ -224,6 +226,13 @@ public class ReportActivity extends AppCompatActivity {
         builder.setCancelable(false);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
 
+    private void statusBarColor(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.error_message,this.getTheme()));
+        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.error_message));
+        }
     }
 }
