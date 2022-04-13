@@ -114,6 +114,11 @@ public class DatabaseAccess {
         wordDescriptionModel.increaseWordScan(id,c,db);
     }
 
+    public void resetScanSearch(String id){
+        wordDescriptionModel = new Word_DescriptionModel();
+        wordDescriptionModel.resetScanSearch(id,c,db);
+    }
+
     public void updateWordDes(Word_Description word){
         wordDescriptionModel = new Word_DescriptionModel();
         wordDescriptionModel.updateWordDes(word,c,db);

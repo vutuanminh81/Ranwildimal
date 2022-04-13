@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -147,6 +148,51 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                ArrayList<Word> updateword = new ArrayList<>();
+                ArrayList<Word_Description> updatedes = new ArrayList<>();
+                ArrayList<Word_Description> fsdes = new ArrayList<>();
+                updatedes = dbAccess.getWordDes();
+                ArrayList<Word_Description> finalUpdatedes = updatedes;
+                fs.collection("Word_Description")
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful() && !task.getResult().isEmpty()){
+                            int i = 0;
+                            for(QueryDocumentSnapshot doc : task.getResult()){
+                                doc_Id[i] = doc.getId();
+                                Word_Description word_des = new Word_Description();
+                                word_des.setWord_Des_Id(doc.get("word_Des_Id",Integer.class));
+                                word_des.setWord_Image(doc.getString("word_Image"));
+                                word_des.setWord_Video(doc.getString("word_Video"));
+                                word_des.setWord_Pronounce(doc.getString("Word_Pronounce"));
+                                word_des.setWord_Status(1);
+                                word_des.setNum_of_Scan(doc.get("num_of_Scan",Integer.class));
+                                word_des.setNum_of_Search(doc.get("num_of_Search",Integer.class));
+                                fsdes.add(word_des);
+                                i++;
+                            }
+                            for (int k=0; k < finalUpdatedes.size();k++){
+                                int update_search = fsdes.get(k).getNum_of_Search() + finalUpdatedes.get(k).getNum_of_Search();
+                                int update_scan = fsdes.get(k).getNum_of_Scan() + finalUpdatedes.get(k).getNum_of_Scan();
+                                Map<String, Object> word_des_obj = new HashMap<>();
+                                word_des_obj.put("num_Of_Scan",update_scan);
+                                word_des_obj.put("num_Of_Search",update_search);
+                                fs.collection("Word_Description")
+                                        .document(doc_Id[k])
+                                        .set(finalUpdatedes.get(k))
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                            }
+                                        });
+                                dbAccess.resetScanSearch(String.valueOf(finalUpdatedes.get(k).getWord_Des_Id()));
+                            }
+
+                        }
+                    }
+                });
             }
         });
         thread.run();

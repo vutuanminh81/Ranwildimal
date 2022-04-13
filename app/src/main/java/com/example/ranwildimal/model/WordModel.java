@@ -101,7 +101,6 @@ public class WordModel {
 
     public int getWordDesIdbyName(String id, Cursor c, SQLiteDatabase db){
         String new_id = id.toLowerCase();
-        Word_Description word_des = new Word_Description();
         c = db.rawQuery("select * from Word where Lower(Word) Like '%" +new_id+"%'", new String[]{});
         StringBuffer buffer = new StringBuffer();
         int des_id = 0;

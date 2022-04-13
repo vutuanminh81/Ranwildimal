@@ -18,8 +18,9 @@ public class Word_DescriptionModel {
             String video = c.getString(2);
             String image = c.getString(3);
             int scan = c.getInt(4);
+            int search = c.getInt(6);
             int status = 1;
-            Word_Description new_word = new Word_Description(id,pronounce,video,image,1);
+            Word_Description new_word = new Word_Description(id,pronounce,video,image,status,scan,search);
             list.add(new_word);
         }
         c.close();
@@ -35,6 +36,9 @@ public class Word_DescriptionModel {
             word_des.setWord_Pronounce(c.getString(1));
             word_des.setWord_Video(c.getString(2));
             word_des.setWord_Image(c.getString(3));
+            word_des.setNum_of_Scan(c.getInt(4));
+            word_des.setWord_Status(1);
+            word_des.setNum_of_Search(c.getInt(6));
         }
         c.close();
         return word_des;
@@ -49,6 +53,13 @@ public class Word_DescriptionModel {
 
     public void increaseWordScan(String id, Cursor c, SQLiteDatabase db){
         c = db.rawQuery("update Word_Description set Num_Of_Scan = Num_Of_Scan + 1  where Word_Des_Id = "+id, null);
+        StringBuffer buffer = new StringBuffer();
+        c.moveToFirst();
+        c.close();
+    }
+
+    public void resetScanSearch(String id, Cursor c, SQLiteDatabase db){
+        c = db.rawQuery("update Word_Description set Num_Of_Scan = 0, Num_Of_Search = 0  where Word_Des_Id = "+id, null);
         StringBuffer buffer = new StringBuffer();
         c.moveToFirst();
         c.close();

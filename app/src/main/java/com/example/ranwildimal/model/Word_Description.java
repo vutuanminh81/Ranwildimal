@@ -6,6 +6,26 @@ public class Word_Description {
     String Word_Video;
     String Word_Image;
     int Word_Status = 1;
+    int Num_of_Scan;
+    int Num_of_Search;
+
+    public int getNum_of_Scan() {
+        return Num_of_Scan;
+    }
+
+    public void setNum_of_Scan(int num_of_Scan) {
+        Num_of_Scan = num_of_Scan;
+    }
+
+    public int getNum_of_Search() {
+        return Num_of_Search;
+    }
+
+    public void setNum_of_Search(int num_of_Search) {
+        Num_of_Search = num_of_Search;
+    }
+
+
 
     public int getWord_Des_Id() {
         return Word_Des_Id;
@@ -56,5 +76,15 @@ public class Word_Description {
         Word_Video = word_Video;
         Word_Image = word_Image;
         Word_Status = word_Status;
+    }
+
+    public Word_Description(int word_Des_Id, String word_Pronounce, String word_Video, String word_Image, int word_Status, int scan, int search) {
+        Word_Des_Id = word_Des_Id;
+        Word_Pronounce = word_Pronounce;
+        Word_Video = word_Video;
+        Word_Image = word_Image;
+        Word_Status = word_Status;
+        Num_of_Scan = scan;
+        Num_of_Search = search;
     }
 }
