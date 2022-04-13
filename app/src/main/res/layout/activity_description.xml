@@ -20,7 +20,7 @@
 
         <View
             android:id="@+id/view17"
-            android:layout_width="235dp"
+            android:layout_width="225dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/description_exxemple_list"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/text_description_japanese_word"
-            android:layout_width="125dp"
+            android:layout_width="135dp"
             android:layout_height="35dp"
             android:gravity="start"
             android:text="@string/description_language"
@@ -145,7 +145,7 @@
 
         <TextView
             android:id="@+id/text_description_japanese_sound"
-            android:layout_width="175dp"
+            android:layout_width="135dp"
             android:layout_height="35dp"
             android:gravity="start"
             android:text="@string/description_language"
@@ -196,10 +196,11 @@
 
         <View
             android:id="@+id/view11"
-            android:layout_width="150dp"
+            android:layout_width="190dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/view14"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_des_sound"
             app:layout_constraintTop_toBottomOf="@+id/view13" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -244,7 +245,7 @@
 
         <View
             android:id="@+id/view20"
-            android:layout_width="240dp"
+            android:layout_width="225dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toTopOf="@+id/view21"
             app:layout_constraintEnd_toEndOf="parent"
@@ -267,7 +268,7 @@
 
         <TextView
             android:id="@+id/text_description_video"
-            android:layout_width="125dp"
+            android:layout_width="135dp"
             android:layout_height="35dp"
             android:gravity="start"
             android:text="@string/description_video"
