@@ -41,7 +41,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/GuilineViewPaper"
         android:layout_width="410dp"
-        android:layout_height="607dp"
+        android:layout_height="670dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

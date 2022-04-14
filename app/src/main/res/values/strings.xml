@@ -47,7 +47,7 @@
         <item>Japanese</item>
     </string-array>
     <string name="processing">Processing</string>
-
+    <string name="unidentify">Unidentify</string>
 
 </resources>
 

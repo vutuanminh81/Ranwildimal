@@ -3,6 +3,7 @@ package com.example.ranwildimal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -86,6 +87,8 @@ public class GuilineActivity extends AppCompatActivity {
     }
 
     public void Back(View view){
+        Intent intent = new Intent(this,SettingActivity.class);
+        startActivity(intent);
         this.finish();
     }
 }

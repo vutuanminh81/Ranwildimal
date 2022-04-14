@@ -178,5 +178,6 @@ public class SettingActivity extends AppCompatActivity {
     public void GuidelineIntent(View view){
         Intent intent = new Intent(this,GuilineActivity.class);
         startActivity(intent);
+        finish();
     }
 }

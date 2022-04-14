@@ -92,8 +92,6 @@ public class ResultSuccessActivity extends AppCompatActivity {
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File dir = new File(filePath);
-                dir.delete();
                 int id = 0;
                 for (Word w : list){
                     if(w.getWord().toLowerCase().equals(animal.toLowerCase())){
@@ -128,8 +126,10 @@ public class ResultSuccessActivity extends AppCompatActivity {
     }
 
     public void HomeIntent(View view) {
-        File dir = new File(filePath);
-        dir.delete();
+        if(filePath != null){
+            File dir = new File(filePath);
+            dir.delete();
+        }
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
         this.finish();
@@ -138,8 +138,10 @@ public class ResultSuccessActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        File dir = new File(filePath);
-        dir.delete();
+        if(filePath != null){
+            File dir = new File(filePath);
+            dir.delete();
+        }
         Intent intent = new Intent(this, CameraActivity.class);
         this.startActivity(intent);
         this.finish();
@@ -158,7 +160,7 @@ public class ResultSuccessActivity extends AppCompatActivity {
         NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
             Intent intent = new Intent(this, ReportActivity.class);
-            intent.putExtra("NAME",animal);
+            intent.putExtra("NAME",animalName.getText());
             intent.putExtra("Dir",filePath);
             this.startActivity(intent);
         }else{
