@@ -44,4 +44,6 @@
     <string name="report_2">Bạn nghĩ con vật này là con gì?</string>
     <string name="report_3">Hãy cho chúng tôi biết thêm về con vật này</string>
     <string name="lecturer">Giảng viên hướng dẫn</string>
+    <string name="report_msg">Kết nối mạng để sử dụng chức năng này</string>
+    <string name="unidentify">Không thể xác định</string>
 </resources>

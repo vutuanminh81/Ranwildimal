@@ -92,8 +92,6 @@ public class ResultSuccessActivity extends AppCompatActivity {
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File dir = new File(filePath);
-                dir.delete();
                 int id = 0;
                 for (Word w : list){
                     if(w.getWord().toLowerCase().equals(animal.toLowerCase())){
@@ -158,12 +156,12 @@ public class ResultSuccessActivity extends AppCompatActivity {
         NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
             Intent intent = new Intent(this, ReportActivity.class);
-            intent.putExtra("NAME",animal);
+            intent.putExtra("NAME",animalName.getText());
             intent.putExtra("Dir",filePath);
             this.startActivity(intent);
         }else{
             AlertDialog.Builder builder1 = new AlertDialog.Builder(ResultSuccessActivity.this);
-            builder1.setMessage("Please connect to network to report");
+            builder1.setMessage(R.string.report_msg);
             builder1.setCancelable(true);
             builder1.setPositiveButton(
                     "OK",

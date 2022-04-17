@@ -1,11 +1,16 @@
 package com.example.ranwildimal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -80,8 +85,26 @@ public class ResultErrorActivity extends AppCompatActivity {
     }
 
     public void ReportIntent(View view){
-        Intent intent = new Intent(this, ReportActivity.class);
-        intent.putExtra("Dir",filePath);
-        this.startActivity(intent);
+        ConnectivityManager connectivityManager = (ConnectivityManager) ResultErrorActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
+            Intent intent = new Intent(this, ReportActivity.class);
+            intent.putExtra("Dir",filePath);
+            this.startActivity(intent);
+        }else{
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(ResultErrorActivity.this);
+            builder1.setMessage(R.string.report_msg);
+            builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
     }
 }

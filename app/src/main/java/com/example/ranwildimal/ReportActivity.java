@@ -59,6 +59,13 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
+            setLocale("en");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
+            setLocale("vi");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
+            setLocale("ja");
+        }
         setContentView(R.layout.activity_report);
         statusBarColor();
         animal = getIntent().getStringExtra("NAME");
@@ -70,15 +77,9 @@ public class ReportActivity extends AppCompatActivity {
         if(animal != null){
             actualRes.setText(animal);
         }else{
-            actualRes.setText("Unidentify");
+            actualRes.setText(R.string.unidentify);
         }
-        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
-            setLocale("en");
-        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
-            setLocale("vi");
-        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
-            setLocale("ja");
-        }
+
         Locale current = getResources().getConfiguration().locale;
         DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
         dbAccess.openConn();

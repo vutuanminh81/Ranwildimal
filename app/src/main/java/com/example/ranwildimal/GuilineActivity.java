@@ -3,6 +3,7 @@ package com.example.ranwildimal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -22,7 +23,7 @@ public class GuilineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guiline);
-
+        statusBarColor();
 
 
         setupGuidelineItems();
@@ -85,6 +86,13 @@ public class GuilineActivity extends AppCompatActivity {
 
     }
 
+    private void statusBarColor(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.main_color,this.getTheme()));
+        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
+        }
+    }
     public void Back(View view){
         this.finish();
     }

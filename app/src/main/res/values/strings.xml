@@ -47,7 +47,8 @@
         <item>Japanese</item>
     </string-array>
     <string name="processing">Processing</string>
-
+    <string name="report_msg">Please connect to network to report</string>
+    <string name="unidentify">Unidentify</string>
 
 </resources>
 

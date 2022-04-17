@@ -12,11 +12,13 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.ranwildimal.database.DatabaseAccess;
+import com.example.ranwildimal.model.Example;
 import com.example.ranwildimal.model.Word;
 import com.example.ranwildimal.model.Word_Description;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -153,7 +155,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 ArrayList<Word_Description> fsdes = new ArrayList<>();
                 updatedes = dbAccess.getWordDes();
                 ArrayList<Word_Description> finalUpdatedes = updatedes;
-                fs.collection("Word_Description")
+                fs.collection("Word_Description").orderBy("Word_Des_Id", Query.Direction.ASCENDING)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -162,13 +164,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                             for(QueryDocumentSnapshot doc : task.getResult()){
                                 doc_Id[i] = doc.getId();
                                 Word_Description word_des = new Word_Description();
-                                word_des.setWord_Des_Id(doc.get("word_Des_Id",Integer.class));
-                                word_des.setWord_Image(doc.getString("word_Image"));
-                                word_des.setWord_Video(doc.getString("word_Video"));
+                                word_des.setWord_Des_Id(doc.get("Word_Des_Id",Integer.class));
+                                word_des.setWord_Image(doc.getString("Word_Image"));
+                                word_des.setWord_Video(doc.getString("Word_Video"));
                                 word_des.setWord_Pronounce(doc.getString("Word_Pronounce"));
                                 word_des.setWord_Status(1);
-                                word_des.setNum_of_Scan(doc.get("num_of_Scan",Integer.class));
-                                word_des.setNum_of_Search(doc.get("num_of_Search",Integer.class));
+                                word_des.setNum_of_Scan(doc.get("num_Of_Scan",Integer.class));
+                                word_des.setNum_of_Search(doc.get("num_Of_Search",Integer.class));
                                 fsdes.add(word_des);
                                 i++;
                             }
@@ -180,7 +182,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 word_des_obj.put("num_Of_Search",update_search);
                                 fs.collection("Word_Description")
                                         .document(doc_Id[k])
-                                        .set(finalUpdatedes.get(k))
+                                        .update(word_des_obj)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

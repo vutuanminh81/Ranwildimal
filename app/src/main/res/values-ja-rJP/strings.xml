@@ -44,4 +44,6 @@
     <string name="report_2">この動物は何だと思いますか？</string>
     <string name="report_3">詳細を教えてください</string>
     <string name="lecturer">講師</string>
+    <string name="report_msg">報告するにはネットワークに接続してください</string>
+    <string name="unidentify">未確認</string>
 </resources>
