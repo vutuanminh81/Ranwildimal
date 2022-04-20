@@ -40,6 +40,13 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
+            setLocale("en");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
+            setLocale("vi");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
+            setLocale("ja");
+        }
         setContentView(R.layout.activity_setting);
         setting_toolbar = findViewById(R.id.setting_toolbar);
         //Customize status bar

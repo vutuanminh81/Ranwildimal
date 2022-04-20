@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Resources res ;
     String filepath = "MyFileDir";
     Handler handler;
+    Locale current;
 
     static{
         if(OpenCVLoader.initDebug()){
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FILE_PATH=getExternalFilesDir(filepath).getPath();
-        loadID();
         initHanlder();
         //Customize status bar
         statusBarColor();
@@ -89,13 +89,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sidebar = findViewById(R.id.main_sidebar);
         toolbar = findViewById(R.id.main_toolbar);
 
-
+        current = getResources().getConfiguration().locale;
+        loadID();
 
         System.out.println("DAta can write??--->"+ Environment.getDataDirectory().canWrite());
         System.out.println("DAta can read??--->"+Environment.getDataDirectory().canRead());
 
         //Customize toolbar
         setSupportActionBar(toolbar);
+        getSupportActionBar();
         getSupportActionBar().setTitle(null);
 
         //Customize sidebar
@@ -186,9 +188,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             File file = new File(path);
             if(!file.exists()){
                 file.createNewFile();
-                setLocale("en");
+                if (current.toString().equals("vi-VN")){
+                    setLocale("vi");
+                } else if (current.toString().equals("en-US")){
+                    setLocale("en");
+                } else {
+                    setLocale("ja");
+                }
                 FileOutputStream fos = new FileOutputStream(file, false);
-                Locale current = getResources().getConfiguration().locale;
                 data += "en";
                 byte buff[] = data.getBytes();
                 fos.write(buff,0 ,buff.length);

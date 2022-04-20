@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -39,6 +41,13 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
+            setLocale("en");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
+            setLocale("vi");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
+            setLocale("ja");
+        }
         setContentView(R.layout.activity_search);
         search_toolbar = findViewById(R.id.search_toolbar);
         recyclerView = findViewById(R.id.search_history_list);
@@ -112,5 +121,18 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
         finish();
+    }
+
+    private void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+        //save data to shared preference
+        SharedPreferences.Editor editor = getSharedPreferences("Setting",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",lang);
+        editor.apply();
+        editor.commit();
     }
 }

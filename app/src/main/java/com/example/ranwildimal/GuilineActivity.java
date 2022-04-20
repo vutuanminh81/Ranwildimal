@@ -3,6 +3,8 @@ package com.example.ranwildimal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,13 @@ public class GuilineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("en")){
+            setLocale("en");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("vi")){
+            setLocale("vi");
+        }else if(this.getSharedPreferences("Setting",MODE_PRIVATE).getString("My_Lang","").equalsIgnoreCase("ja")){
+            setLocale("ja");
+        }
         setContentView(R.layout.activity_guiline);
         statusBarColor();
 
@@ -95,5 +104,18 @@ public class GuilineActivity extends AppCompatActivity {
     }
     public void Back(View view){
         this.finish();
+    }
+
+    private void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+        //save data to shared preference
+        SharedPreferences.Editor editor = getSharedPreferences("Setting",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",lang);
+        editor.apply();
+        editor.commit();
     }
 }
