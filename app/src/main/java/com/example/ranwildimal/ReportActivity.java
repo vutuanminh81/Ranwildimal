@@ -185,7 +185,7 @@ public class ReportActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@androidx.annotation.NonNull Task<Uri> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ReportActivity.this,"Add successful !",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ReportActivity.this,"Report successful !",Toast.LENGTH_SHORT).show();
                                     Uri downloadUri = task.getResult();
                                     String getUrlImage = downloadUri.toString();
 
