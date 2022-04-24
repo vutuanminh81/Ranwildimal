@@ -67,8 +67,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
-                dbAccess.openConn();
                 final String[] doc_Id = new String[100];
                 ArrayList<Word> word = new ArrayList<>();
                 ArrayList<Word_Description> word_descriptions = new ArrayList<>();
@@ -95,6 +93,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 }
                                 int j = 0;
                                 for (Word_Description w :word_descriptions) {
+                                    DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                                     dbAccess.openConn();
                                     dbAccess.updateWordDes(w);
                                     dbAccess.closeConn();
@@ -121,7 +120,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                                     int i = 0;
                                     for(QueryDocumentSnapshot doc : task.getResult()){
                                         doc_Id[i] = doc.getId();
-                                        System.out.println(">>>>>>>>>>>>>>>>"+doc.get("Word_Des_Id",Integer.class)+">>>>>>>>>>>>>>>>"+doc.get("Word_Des_Id",Integer.class));
                                         Word word_des = new Word();
                                         word_des.setWord_Des_Id(doc.get("Word_Des_Id",Integer.class));
                                         word_des.setWord_ID(doc.get("Word_Id",Integer.class));
@@ -134,6 +132,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 }
                                 int j = 0;
                                 for (Word w :word) {
+                                    DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
                                     dbAccess.openConn();
                                     dbAccess.updateWord(w);
                                     dbAccess.closeConn();
@@ -153,7 +152,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 ArrayList<Word> updateword = new ArrayList<>();
                 ArrayList<Word_Description> updatedes = new ArrayList<>();
                 ArrayList<Word_Description> fsdes = new ArrayList<>();
+                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                dbAccess.openConn();
                 updatedes = dbAccess.getWordDes();
+                dbAccess.closeConn();
                 ArrayList<Word_Description> finalUpdatedes = updatedes;
                 fs.collection("Word_Description").orderBy("Word_Des_Id", Query.Direction.ASCENDING)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -189,7 +191,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                             }
                                         });
+                                DatabaseAccess dbAccess = DatabaseAccess.getInstance(getApplicationContext());
+                                dbAccess.openConn();
                                 dbAccess.resetScanSearch(String.valueOf(finalUpdatedes.get(k).getWord_Des_Id()));
+                                dbAccess.closeConn();
                             }
 
                         }

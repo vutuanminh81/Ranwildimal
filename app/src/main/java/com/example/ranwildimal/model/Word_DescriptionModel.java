@@ -66,7 +66,7 @@ public class Word_DescriptionModel {
     }
 
     public void updateWordDes(Word_Description word, Cursor c, SQLiteDatabase db){
-        c = db.rawQuery("update Word_Description set Word_Image = ?, Word_Pronounce = ?, Word_Video = ?, Word_Status = 0  where Word_Des_Id = ?", new String[]{word.getWord_Image(),word.getWord_Pronounce(),word.getWord_Video(),String.valueOf(word.getWord_Des_Id())});
+        c = db.rawQuery("update Word_Description set Word_Image = ?, Word_Pronounce = ?, Word_Video = ?, Word_Status = 1  where Word_Des_Id = ?", new String[]{word.getWord_Image(),word.getWord_Pronounce(),word.getWord_Video(),String.valueOf(word.getWord_Des_Id())});
         StringBuffer buffer = new StringBuffer();
         c.moveToFirst();
         c.close();
